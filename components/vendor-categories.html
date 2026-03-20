@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Vendors Categories</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                font-family: "Montserrat", sans-serif;
+                background: #f5f2ee;
+            }
+
+            /* ── SECTION ── */
+            .vendor-categories {
+                padding: 48px 60px;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            /* ── HEADER ROW ── */
+            .section-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 28px;
+            }
+
+            .section-title {
+                font-size: 22px;
+                font-weight: 600;
+                color: #320c35;
+                letter-spacing: 0.1px;
+            }
+
+            .view-all {
+                font-size: 14px;
+                font-weight: 600;
+                color: #320c35;
+                text-decoration: underline;
+                text-underline-offset: 3px;
+                cursor: pointer;
+                transition: opacity 0.2s;
+            }
+
+            .view-all:hover {
+                opacity: 0.7;
+            }
+
+            /* ── CARDS GRID ── */
+            .cards-grid {
+                display: grid;
+                grid-template-columns: repeat(6, 1fr);
+                gap: 16px;
+            }
+
+            /* ── CARD ── */
+            .card {
+                background: #ffffff;
+                border-radius: 14px;
+                padding: 12px 12px 14px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+                cursor: pointer;
+                transition:
+                    transform 0.2s,
+                    box-shadow 0.2s;
+            }
+
+            .card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            }
+
+            .card-img {
+                width: 100%;
+                aspect-ratio: 1 / 1;
+                object-fit: cover;
+                border-radius: 12px;
+                background: #e8e2f0;
+                display: block;
+            }
+
+            .card-label {
+                margin-top: 10px;
+                font-size: 13px;
+                font-weight: 500;
+                color: #000000;
+                letter-spacing: 0.1px;
+            }
+        </style>
+    </head>
+    <body>
+        <section class="vendor-categories">
+            <div class="section-header">
+                <h2 class="section-title">Vendors Categories</h2>
+                <span class="view-all">View All</span>
+            </div>
+
+            <div class="cards-grid">
+                <!-- Row 1 -->
+                <div class="card">
+                    <img
+                        class="card-img"
+                        src="/assets/makeup-artist.jpg"
+                        alt="Makeup Artists"
+                    />
+                    <p class="card-label">Makeup Artists</p>
+                </div>
+
+                <div class="card">
+                    <img
+                        class="card-img"
+                        src="/assets/jewellery.jpg"
+                        alt="Jewellery"
+                    />
+                    <p class="card-label">Jewellery</p>
+                </div>
+
+                <div class="card">
+                    <img
+                        class="card-img"
+                        src="/assets/entertainment.jpg"
+                        alt="Entertainment"
+                    />
+                    <p class="card-label">Entertainment</p>
+                </div>
+
+                <div class="card">
+                    <img class="card-img" src="/assets/gifts.jpg" alt="Gifts" />
+                    <p class="card-label">Gifts</p>
+                </div>
+
+                <div class="card">
+                    <img class="card-img" src="/assets/djs.jpg" alt="DJ's" />
+                    <p class="card-label">DJ's</p>
+                </div>
+
+                <div class="card">
+                    <img
+                        class="card-img"
+                        src="/assets/pandit.jpg"
+                        alt="Pandit Ji"
+                    />
+                    <p class="card-label">Pandit Ji</p>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="card">
+                    <img
+                        class="card-img"
+                        src="/assets/pandit.jpg"
+                        alt="Pandit Ji"
+                    />
+                    <p class="card-label">Pandit Ji</p>
+                </div>
+
+                <div class="card">
+                    <img class="card-img" src="/assets/djs.jpg" alt="DJ's" />
+                    <p class="card-label">DJ's</p>
+                </div>
+
+                <div class="card">
+                    <img class="card-img" src="/assets/djs.jpg" alt="Gifts" />
+                    <p class="card-label">Gifts</p>
+                </div>
+
+                <div class="card">
+                    <img
+                        class="card-img"
+                        src="/assets/jewellery.jpg"
+                        alt="Jewellery"
+                    />
+                    <p class="card-label">Jewellery</p>
+                </div>
+
+                <div class="card">
+                    <img
+                        class="card-img"
+                        src="/assets/makeup-artist.jpg"
+                        alt="Makeup Artists"
+                    />
+                    <p class="card-label">Makeup Artists</p>
+                </div>
+
+                <div class="card">
+                    <img
+                        class="card-img"
+                        src="/assets/entertainment.jpg"
+                        alt="Entertainment"
+                    />
+                    <p class="card-label">Entertainment</p>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
