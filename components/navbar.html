@@ -1,11 +1,234 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>CelebrationKart Navbar</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Bacasime+Antique&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                font-family: "Montserrat", sans-serif;
+                min-height: 100vh;
+            }
+
+            /* ── NAVBAR ── */
+            nav {
+                background: #320c35;
+                height: 64px;
+                display: flex;
+                align-items: center;
+                padding: 0 48px;
+            }
+
+            /* ── LOGO ── */
+            .logo {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                text-decoration: none;
+                flex-shrink: 0;
+                margin-right: 40px;
+            }
+
+            .logo-icon {
+                width: 30px;
+                height: 30px;
+                flex-shrink: 0;
+            }
+
+            .logo-text {
+                font-family: "Bacasime Antique", serif;
+                font-size: 20px;
+                font-weight: 600;
+                color: #ffffff;
+                letter-spacing: 0.2px;
+                white-space: nowrap;
+            }
+
+            /* ── SEARCH BAR ── */
+            .search-bar {
+                flex: 1;
+                max-width: 560px;
+                position: relative;
+                margin-right: auto;
+            }
+
+            .search-bar input {
+                width: 100%;
+                height: 40px;
+                background: white;
+                border: none;
+                border-radius: 18px;
+                padding: 0 20px 0 40px;
+                font-size: 14px;
+                font-weight: 200;
+                color: hsla(296, 63%, 13%, 73%);
+                outline: none;
+                transition: box-shadow 0.2s;
+            }
+
+            .search-bar input::placeholder {
+                color: #320c35;
+            }
+
+            .search-bar input:focus {
+                box-shadow: 0 0 0 2px rgba(201, 168, 76, 0.4);
+            }
+
+            .search-icon {
+                position: absolute;
+                left: 14px;
+                top: 50%;
+                transform: translateY(-50%);
+                pointer-events: none;
+                color: hsla(296, 63%, 13%, 65%);
+                display: flex;
+                align-items: center;
+            }
+
+            /* ── NAV LINKS ── */
+            .nav-links {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                margin-left: 40px;
+                flex-shrink: 0;
+            }
+
+            .nav-link {
+                color: #ffffff;
+                font-size: 15px;
+                font-weight: 400;
+                text-decoration: none;
+                padding: 6px 10px;
+                border-radius: 4px;
+                white-space: nowrap;
+                position: relative;
+                letter-spacing: 0.1px;
+            }
+
+            /* Underline element */
+            .nav-link::after {
+                content: "";
+                position: absolute;
+                bottom: 0px;
+                left: 10px;
+                right: 10px;
+                height: 1.5px;
+                background: #ffffff;
+                transform: scaleX(0);
+                transform-origin: left;
+                transition: transform 0.22s ease;
+            }
+
+            /* Active link — always underlined */
+            .nav-link.active::after {
+                transform: scaleX(1);
+            }
+
+            /* Hover — bold + underline slides in */
+            .nav-link:hover {
+                font-weight: 600;
+            }
+
+            .nav-link:hover::after {
+                transform: scaleX(1);
+            }
+
+            .divider {
+                color: rgba(255, 255, 255, 0.4);
+                font-size: 16px;
+                padding: 0 4px;
+                user-select: none;
+                font-weight: 300;
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <!-- Logo -->
+            <a href="#" class="logo">
+                <svg
+                    class="logo-icon"
+                    viewBox="0 0 30 30"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M8 22 C6 18 7 12 12 9 C10 14 11 19 8 22Z"
+                        fill="rgba(255,255,255,0.85)"
+                    />
+                    <path
+                        d="M12 22 C14 18 15 12 20 9 C17 14 16 19 12 22Z"
+                        fill="rgba(255,255,255,0.85)"
+                    />
+                    <path
+                        d="M13 22 C13 18 13 13 15 9"
+                        stroke="rgba(255,255,255,0.7)"
+                        stroke-width="1"
+                        stroke-linecap="round"
+                    />
+                </svg>
+                <span class="logo-text">CelebrationKart</span>
+            </a>
+
+            <!-- Search bar -->
+            <div class="search-bar">
+                <span class="search-icon">
+                    <svg
+                        width="15"
+                        height="15"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <circle cx="11" cy="11" r="8" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
+                </span>
+                <input type="text" placeholder="Search" />
+            </div>
+
+            <!-- Nav links -->
+            <div class="nav-links">
+                <a href="#" class="nav-link active" id="link-vendors"
+                    >Vendors</a
+                >
+                <a href="#" class="nav-link" id="link-login">Login</a>
+                <span class="divider">|</span>
+                <a href="#" class="nav-link" id="link-vendor-login"
+                    >Log in as a Vendor</a
+                >
+            </div>
+        </nav>
+
+        <script>
+            // Active link switching on click
+            document.querySelectorAll(".nav-link").forEach((link) => {
+                link.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    document
+                        .querySelectorAll(".nav-link")
+                        .forEach((l) => l.classList.remove("active"));
+                    link.classList.add("active");
+                });
+            });
+        </script>
+    </body>
 </html>
