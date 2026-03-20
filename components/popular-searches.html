@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Popular Searches</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                font-family: "Montserrat", sans-serif;
+                background: #f5f2ee;
+            }
+
+            /* ── SECTION ── */
+            .popular-searches {
+                padding: 48px 60px;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            /* ── HEADER ROW ── */
+            .section-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 28px;
+            }
+
+            .section-title {
+                font-size: 22px;
+                font-weight: 600;
+                color: #320c35;
+                letter-spacing: 0.1px;
+            }
+
+            .view-all {
+                font-size: 14px;
+                font-weight: 600;
+                color: #320c35;
+                text-decoration: underline;
+                text-underline-offset: 3px;
+                cursor: pointer;
+                transition: opacity 0.2s;
+            }
+
+            .view-all:hover {
+                opacity: 0.7;
+            }
+
+            /* ── CARDS GRID ── */
+            .cards-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
+            }
+
+            /* ── CARD ── */
+            .card {
+                background: #ffffff;
+                border-radius: 12px;
+                padding: 14px 14px 16px;
+                box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+                cursor: pointer;
+                transition:
+                    transform 0.2s,
+                    box-shadow 0.2s;
+            }
+
+            .card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.13);
+            }
+
+            .card-img {
+                width: 100%;
+                aspect-ratio: 1 / 1;
+                object-fit: cover;
+                border-radius: 10px;
+                background: #e8e2f0;
+                display: block;
+            }
+
+            /* placeholder when no src */
+            .card-img[src=""],
+            .card-img:not([src]) {
+                background: linear-gradient(135deg, #e8e2f0 0%, #d4c8e0 100%);
+            }
+
+            .card-label {
+                margin-top: 12px;
+                font-size: 14px;
+                font-weight: 500;
+                color: #000000;
+                letter-spacing: 0.1px;
+            }
+        </style>
+    </head>
+    <body>
+        <section class="popular-searches">
+            <div class="section-header">
+                <h2 class="section-title">Popular Searches</h2>
+                <span class="view-all">View All</span>
+            </div>
+
+            <div class="cards-grid">
+                <!-- Card 1 — odd image (IMAGE_ODD_1) -->
+                <div class="card">
+                    <img
+                        class="card-img"
+                        src="/assets/makeup-artists.jpg"
+                        alt="Makeup Artists"
+                    />
+                    <p class="card-label">Makeup Artists</p>
+                </div>
+
+                <!-- Card 2 — even image (IMAGE_EVEN_1) -->
+                <div class="card">
+                    <img
+                        class="card-img"
+                        src="/assets/photographer.jpg"
+                        alt="Photographer"
+                    />
+                    <p class="card-label">Photographer</p>
+                </div>
+
+                <!-- Card 3 — odd image (IMAGE_ODD_1 repeated) -->
+                <div class="card">
+                    <img
+                        class="card-img"
+                        src="/assets/makeup-artists.jpg"
+                        alt="Makeup Artists"
+                    />
+                    <p class="card-label">Makeup Artists</p>
+                </div>
+
+                <!-- Card 4 — even image (IMAGE_EVEN_1 repeated) -->
+                <div class="card">
+                    <img
+                        class="card-img"
+                        src="/assets/photographer.jpg"
+                        alt="Photographer"
+                    />
+                    <p class="card-label">Photographer</p>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
