@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>CelebrationKart – Hero</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Bacasime+Antique&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                font-family: "Montserrat", sans-serif;
+                background: #1a0a1e;
+            }
+
+            /* ─── HERO ─────────────────────────────────── */
+            .hero {
+                position: relative;
+                width: 100%;
+                height: 100vh;
+                min-height: 560px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+            }
+
+            .hero-bg {
+                position: absolute;
+                inset: 0;
+                background-image: url("/assets/hero.jpg");
+                background-size: cover;
+                background-position: center top;
+                z-index: 0;
+            }
+
+            /* soft dark gradient over the image so text pops */
+            .hero-bg::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+            }
+
+            .hero-content {
+                position: relative;
+                z-index: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+                text-align: center;
+                padding: 0 16px;
+            }
+
+            /* ── Headline ── */
+            .hero-title {
+                font-family: "Montserrat", serif;
+                font-size: 48px;
+                font-weight: 700;
+                font-weight: bold;
+                color: #ffffff;
+                line-height: 1.1;
+                letter-spacing: -0.5px;
+                text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+            }
+
+            .subtitle {
+                color: white;
+                font-size: 22px;
+                font-weight: 600;
+            }
+
+            /* ── Marquee subtitle ── */
+            .hero-marquee-wrap {
+                width: 100%;
+                overflow: hidden;
+                white-space: nowrap;
+                margin: 2px 0 20px;
+            }
+
+            .hero-marquee {
+                display: inline-block;
+                animation: marquee 18s linear infinite;
+                font-size: clamp(13px, 1.6vw, 17px);
+                font-weight: 400;
+                color: rgba(255, 255, 255, 0.82);
+                letter-spacing: 0.3px;
+            }
+
+            @keyframes marquee {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(-50%);
+                }
+            }
+
+            /* ── Search card ── */
+            .search-card {
+                background: rgba(255, 255, 255, 0.97);
+                border-radius: 12px;
+                padding: 18px 20px;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                width: min(860px, 94vw);
+                box-shadow: 0 8px 40px rgba(0, 0, 0, 0.25);
+                margin-top: 8px;
+                flex-wrap: wrap;
+            }
+
+            /* ── Custom Select ── */
+            .custom-select {
+                position: relative;
+                flex: 1;
+                min-width: 200px;
+            }
+
+            .select-trigger {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                height: 52px;
+                padding: 0 16px;
+                border: 1.5px solid #4a1e5e;
+                border-radius: 8px;
+                cursor: pointer;
+                user-select: none;
+                background: #fff;
+                gap: 10px;
+                transition:
+                    border-color 0.2s,
+                    box-shadow 0.2s;
+            }
+
+            .select-trigger:hover,
+            .custom-select.open .select-trigger {
+                border-color: #3b1a3e;
+                box-shadow: 0 0 0 3px rgba(74, 30, 94, 0.12);
+            }
+
+            .select-trigger .label {
+                font-size: 15px;
+                font-weight: 500;
+                color: #2a2a2a;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .select-trigger .label.placeholder {
+                color: #000;
+            }
+
+            .arrow-icon {
+                flex-shrink: 0;
+                width: 0;
+                height: 0;
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+                border-top: 6px solid #4a1e5e;
+                transition: transform 0.2s ease;
+            }
+
+            .custom-select.open .arrow-icon {
+                transform: rotate(180deg);
+            }
+
+            /* ── Dropdown panel ── */
+            .dropdown {
+                position: absolute;
+                top: calc(100% + 6px);
+                left: 0;
+                right: 0;
+                background: #ffffff;
+                border-radius: 8px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+                z-index: 999;
+                overflow: hidden;
+                display: none;
+                animation: dropIn 0.15s ease;
+            }
+
+            .custom-select.open .dropdown {
+                display: block;
+            }
+
+            @keyframes dropIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(-6px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .dropdown-option {
+                padding: 14px 18px;
+                font-size: 15px;
+                font-weight: 400;
+                color: #1a1a1a;
+                cursor: pointer;
+                text-align: left;
+                transition: background 0.12s;
+            }
+
+            .dropdown-option:hover {
+                background: #f0ecf5;
+            }
+
+            .dropdown-option.selected {
+                background: #ede8f3;
+                font-weight: 500;
+                color: #3b1a3e;
+            }
+
+            /* ── Search button ── */
+            .btn-search {
+                height: 52px;
+                padding: 0 28px;
+                background: #320c35;
+                color: #fff;
+                font-family: "Montserrat", sans-serif;
+                font-size: 15px;
+                font-weight: 600;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                white-space: nowrap;
+                flex-shrink: 0;
+                transition:
+                    background 0.2s,
+                    transform 0.15s,
+                    box-shadow 0.2s;
+                letter-spacing: 0.2px;
+            }
+
+            .btn-search:hover {
+                background: #5a2d6e;
+                box-shadow: 0 4px 18px rgba(59, 26, 62, 0.45);
+                transform: translateY(-1px);
+            }
+
+            .btn-search:active {
+                transform: translateY(0);
+            }
+        </style>
+    </head>
+    <body>
+        <section class="hero">
+            <div class="hero-bg"></div>
+            <div class="hero-content">
+                <h1 class="hero-title">Plan Your Perfect Wedding</h1>
+
+                <div class="hero-marquee-wrap">
+                    <span class="subtitle">
+                        Plan Your Perfect Wedding Plan Your Perfect Wedding
+                    </span>
+                </div>
+
+                <div class="search-card">
+                    <!-- Vendor Category Select -->
+                    <div class="custom-select" id="vendor-select">
+                        <div
+                            class="select-trigger"
+                            onclick="toggleSelect('vendor-select')"
+                        >
+                            <span class="label placeholder" id="vendor-label"
+                                >Search Vendors</span
+                            >
+                            <span class="arrow-icon"></span>
+                        </div>
+                        <div class="dropdown" id="vendor-dropdown">
+                            <div class="dropdown-option" data-value="">
+                                All Categories
+                            </div>
+                            <div class="dropdown-option" data-value="venue">
+                                Wedding Venue
+                            </div>
+                            <div
+                                class="dropdown-option"
+                                data-value="photographer"
+                            >
+                                Wedding Photographer
+                            </div>
+                            <div class="dropdown-option" data-value="makeup">
+                                Bridal Makeup Artist
+                            </div>
+                            <div
+                                class="dropdown-option"
+                                data-value="decorators"
+                            >
+                                Decorators
+                            </div>
+                            <div class="dropdown-option" data-value="caterers">
+                                Caterers
+                            </div>
+                            <div class="dropdown-option" data-value="mehendi">
+                                Mehendi Artist
+                            </div>
+                            <div class="dropdown-option" data-value="dj">
+                                DJ &amp; Music
+                            </div>
+                            <div class="dropdown-option" data-value="planner">
+                                Wedding Planner
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- City Select -->
+                    <div class="custom-select" id="city-select">
+                        <div
+                            class="select-trigger"
+                            onclick="toggleSelect('city-select')"
+                        >
+                            <span class="label placeholder" id="city-label"
+                                >Wedding City</span
+                            >
+                            <span class="arrow-icon"></span>
+                        </div>
+                        <div class="dropdown" id="city-dropdown">
+                            <div class="dropdown-option" data-value="">
+                                All Categories
+                            </div>
+                            <div class="dropdown-option" data-value="jaipur">
+                                Jaipur
+                            </div>
+                            <div class="dropdown-option" data-value="jodhpur">
+                                Jodhpur
+                            </div>
+                            <div class="dropdown-option" data-value="kota">
+                                Kota
+                            </div>
+                            <div class="dropdown-option" data-value="bikaner">
+                                Bikaner
+                            </div>
+                            <div class="dropdown-option" data-value="udaipur">
+                                Udaipur
+                            </div>
+                            <div class="dropdown-option" data-value="delhi">
+                                Delhi
+                            </div>
+                            <div class="dropdown-option" data-value="mumbai">
+                                Mumbai
+                            </div>
+                            <div class="dropdown-option" data-value="bangalore">
+                                Bangalore
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn-search" onclick="handleSearch()">
+                        Search Vendors
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            // Track selected values
+            const state = { vendor: "", city: "" };
+
+            function toggleSelect(id) {
+                const el = document.getElementById(id);
+                const isOpen = el.classList.contains("open");
+
+                // Close all
+                document
+                    .querySelectorAll(".custom-select")
+                    .forEach((s) => s.classList.remove("open"));
+
+                // Toggle clicked
+                if (!isOpen) el.classList.add("open");
+            }
+
+            // Close dropdowns on outside click
+            document.addEventListener("click", (e) => {
+                if (!e.target.closest(".custom-select")) {
+                    document
+                        .querySelectorAll(".custom-select")
+                        .forEach((s) => s.classList.remove("open"));
+                }
+            });
+
+            // Option selection
+            document.querySelectorAll(".dropdown-option").forEach((opt) => {
+                opt.addEventListener("click", function () {
+                    const selectEl = this.closest(".custom-select");
+                    const id = selectEl.id;
+                    const value = this.dataset.value;
+                    const text = this.textContent.trim();
+
+                    // Mark selected
+                    selectEl
+                        .querySelectorAll(".dropdown-option")
+                        .forEach((o) => o.classList.remove("selected"));
+                    this.classList.add("selected");
+
+                    // Update label
+                    if (id === "vendor-select") {
+                        state.vendor = value;
+                        const lbl = document.getElementById("vendor-label");
+                        lbl.textContent = text || "Search Vendors";
+                        lbl.classList.toggle("placeholder", !value);
+                    } else {
+                        state.city = value;
+                        const lbl = document.getElementById("city-label");
+                        lbl.textContent = text || "Wedding City";
+                        lbl.classList.toggle("placeholder", !value);
+                    }
+
+                    // Close dropdown
+                    selectEl.classList.remove("open");
+                });
+            });
+
+            function handleSearch() {
+                const vendor = state.vendor || "all";
+                const city = state.city || "all";
+                alert(`Searching for: ${vendor} in ${city}`);
+            }
+        </script>
+    </body>
+</html>
