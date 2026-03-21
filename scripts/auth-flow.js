@@ -53,7 +53,6 @@
       const frameDocument = modalFrame.contentDocument;
       if (!frameDocument || frameDocument.body?.dataset.authBound === 'true') return;
 
-      // Keep the home page visible behind the modal by making the iframe page transparent.
       frameDocument.documentElement.style.background = 'transparent';
       frameDocument.body.style.background = 'transparent';
 
