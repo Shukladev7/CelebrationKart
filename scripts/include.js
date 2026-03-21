@@ -81,6 +81,7 @@ async function loadIncludes() {
 document.addEventListener('DOMContentLoaded', async () => {
   try {
     await loadIncludes();
+    window.dispatchEvent(new CustomEvent('includes:loaded'));
   } catch (error) {
     console.error(error);
   }
