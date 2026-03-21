@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: #eeeee6;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 48px 52px 52px;
+      width: 100%;
+      max-width: 640px;
+      box-shadow: 0 4px 40px rgba(0,0,0,0.06);
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 500;
+      color: #1a1a1a;
+      margin-bottom: 32px;
+      letter-spacing: -0.3px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .field:last-of-type { margin-bottom: 0; }
+
+    label {
+      font-size: 14px;
+      font-weight: 500;
+      color: #1a1a1a;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="tel"] {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1.5px solid #e0e0d8;
+      border-radius: 10px;
+      font-size: 15px;
+      font-family: 'DM Sans', sans-serif;
+      color: #1a1a1a;
+      background: #fff;
+      outline: none;
+      transition: border-color 0.18s;
+    }
+
+    input:focus {
+      border-color: #b0b0a4;
+    }
+
+    /* Phone field */
+    .phone-wrapper {
+      display: flex;
+      align-items: center;
+      border: 1.5px solid #e0e0d8;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #fff;
+      transition: border-color 0.18s;
+    }
+
+    .phone-wrapper:focus-within {
+      border-color: #b0b0a4;
+    }
+
+    .country-select {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 14px 10px 14px 14px;
+      cursor: pointer;
+      border-right: 1.5px solid #e0e0d8;
+      flex-shrink: 0;
+      user-select: none;
+    }
+
+    .flag {
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .chevron {
+      width: 10px;
+      height: 10px;
+      border-right: 1.5px solid #888;
+      border-bottom: 1.5px solid #888;
+      transform: rotate(45deg);
+      margin-top: -3px;
+    }
+
+    .phone-input {
+      border: none !important;
+      border-radius: 0 !important;
+      flex: 1;
+      padding: 14px 14px 14px 12px;
+    }
+
+    .phone-input:focus {
+      border: none !important;
+    }
+
+    /* Password row */
+    .password-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .hide-btn {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 14px;
+      color: #555;
+      cursor: pointer;
+      font-weight: 500;
+      user-select: none;
+    }
+
+    .eye-icon {
+      font-size: 16px;
+    }
+
+    .hint {
+      font-size: 12.5px;
+      color: #888;
+      margin-top: 8px;
+    }
+
+    /* Checkboxes */
+    .checkboxes {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin: 28px 0;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .checkbox-row input[type="checkbox"] {
+      display: none;
+    }
+
+    .checkbox-box {
+      width: 20px;
+      height: 20px;
+      min-width: 20px;
+      border-radius: 5px;
+      background: #2d2d2d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      margin-top: 1px;
+    }
+
+    .checkbox-box svg {
+      width: 12px;
+      height: 12px;
+      stroke: #fff;
+      stroke-width: 2.5;
+      fill: none;
+    }
+
+    .checkbox-label {
+      font-size: 14px;
+      color: #1a1a1a;
+      line-height: 1.5;
+      cursor: pointer;
+    }
+
+    .checkbox-label a {
+      color: #1a1a1a;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* Bottom row */
+    .bottom-row {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .signup-btn {
+      background: #c5c5bb;
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      border: none;
+      border-radius: 40px;
+      padding: 16px 40px;
+      cursor: pointer;
+      transition: background 0.18s;
+      white-space: nowrap;
+    }
+
+    .signup-btn:hover {
+      background: #a8a89f;
+    }
+
+    .login-text {
+      font-size: 14px;
+      color: #555;
+    }
+
+    .login-text a {
+      color: #1a1a1a;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Sign up now</h1>
+
+    <div class="row">
+      <div class="field">
+        <label>First name</label>
+        <input type="text" placeholder="" />
+      </div>
+      <div class="field">
+        <label>Last name</label>
+        <input type="text" placeholder="" />
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Email address</label>
+      <input type="email" placeholder="" />
+    </div>
+
+    <div class="field">
+      <label>Phone number</label>
+      <div class="phone-wrapper">
+        <div class="country-select">
+          <span class="flag">🇮🇳</span>
+          <span class="chevron"></span>
+        </div>
+        <input class="phone-input" type="tel" value="+91" />
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="password-label-row">
+        <label>Password</label>
+        <span class="hide-btn" onclick="togglePassword(this)">
+          <span class="eye-icon">👁</span> Hide
+        </span>
+      </div>
+      <input type="text" id="passwordInput" placeholder="" />
+      <p class="hint">Use 8 or more characters with a mix of letters, numbers &amp; symbols</p>
+    </div>
+
+    <div class="checkboxes">
+      <div class="checkbox-row">
+        <div class="checkbox-box" onclick="toggleCheck(this)">
+          <svg viewBox="0 0 12 10"><polyline points="1,5 4.5,8.5 11,1"/></svg>
+        </div>
+        <span class="checkbox-label">
+          By creating an account, I agree to our <a href="#">Terms of use</a> and <a href="#">Privacy Policy</a>
+        </span>
+      </div>
+      <div class="checkbox-row">
+        <div class="checkbox-box" onclick="toggleCheck(this)">
+          <svg viewBox="0 0 12 10"><polyline points="1,5 4.5,8.5 11,1"/></svg>
+        </div>
+        <span class="checkbox-label">
+          By creating an account, I am also consenting to receive SMS messages and emails, including product new feature updates, events, and marketing promotions.
+        </span>
+      </div>
+    </div>
+
+    <div class="bottom-row">
+      <button class="signup-btn">Sign up</button>
+      <p class="login-text">Already have a ccount? <a href="#">Log in</a></p>
+    </div>
+  </div>
+
+  <script>
+    function togglePassword(btn) {
+      const input = document.getElementById('passwordInput');
+      const isText = input.type === 'text';
+      input.type = isText ? 'password' : 'text';
+      btn.innerHTML = isText
+        ? '<span class="eye-icon">👁</span> Show'
+        : '<span class="eye-icon">👁</span> Hide';
+    }
+
+    function toggleCheck(box) {
+      const hasTick = box.querySelector('svg').style.display !== 'none';
+      const svg = box.querySelector('svg');
+      if (hasTick) {
+        svg.style.display = 'none';
+        box.style.background = '#fff';
+        box.style.border = '1.5px solid #ccc';
+      } else {
+        svg.style.display = 'block';
+        box.style.background = '#2d2d2d';
+        box.style.border = 'none';
+      }
+    }
+  </script>
+</body>
+</html>

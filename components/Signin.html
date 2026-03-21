@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CelebrationKart</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --plum: #3d1a47;
+      --plum-dark: #2a1030;
+      --cream: #f0ebe3;
+      --cream-light: #f7f3ed;
+      --white: #ffffff;
+      --text-muted: rgba(240,235,227,0.55);
+      --border-light: rgba(240,235,227,0.15);
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--cream-light);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Backdrop */
+    .backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 8, 28, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    /* Modal Card */
+    .modal {
+      background: var(--plum);
+      border-radius: 20px;
+      padding: 2.5rem 2.25rem 2rem;
+      width: 100%;
+      max-width: 420px;
+      position: relative;
+      box-shadow: 0 32px 80px rgba(10,4,20,0.45), 0 0 0 1px rgba(255,255,255,0.06);
+      animation: slideUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(24px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Close Button */
+    .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: var(--cream);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      line-height: 1;
+    }
+    .close-btn:hover { background: rgba(255,255,255,0.2); }
+
+    /* Logo Area */
+    .logo-area {
+      text-align: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .logo-icon {
+      width: 52px;
+      height: 52px;
+      margin: 0 auto 0.75rem;
+    }
+
+    .brand-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 500;
+      color: var(--cream);
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+    }
+
+    /* Tagline */
+    .tagline {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.55;
+      margin-bottom: 1.75rem;
+    }
+
+    /* Buttons */
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      width: 100%;
+      padding: 0.85rem 1.25rem;
+      border-radius: 50px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 400;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+      border: none;
+      text-decoration: none;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); opacity: 0.9; }
+
+    .btn-primary {
+      background: #0f0c10;
+      color: var(--cream);
+      border: 1.5px solid rgba(240,235,227,0.25);
+      box-shadow: 0 4px 18px rgba(0,0,0,0.35);
+      margin-bottom: 0.85rem;
+    }
+    .btn-primary:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.5); }
+
+    .divider {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      margin-bottom: 0.85rem;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-social {
+      background: var(--white);
+      color: #1a1a1a;
+      font-weight: 400;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+      margin-bottom: 0.7rem;
+    }
+    .btn-social:hover { box-shadow: 0 4px 18px rgba(0,0,0,0.2); }
+
+    .social-icon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    /* Legal */
+    .legal {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      line-height: 1.6;
+      margin-top: 1.25rem;
+    }
+    .legal a {
+      color: var(--cream);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .legal a:hover { opacity: 0.8; }
+
+    .login-line {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-top: 1rem;
+    }
+    .login-line a {
+      color: var(--cream);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      font-weight: 500;
+    }
+    .login-line a:hover { opacity: 0.8; }
+  </style>
+</head>
+<body>
+
+<div class="backdrop">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+
+    <button class="close-btn" aria-label="Close">✕</button>
+
+    <div class="logo-area">
+      <!-- Leaf + sparkle SVG icon -->
+      <img src="../assets/logo-white.png"/>
+      <h1 class="brand-name" id="modal-title">CelebrationKart</h1>
+    </div>
+
+    <p class="tagline">Start planning your celebration in<br>just a few clicks</p>
+
+    <button class="btn btn-primary">Continue with email</button>
+
+    <p class="divider">Sign up to see more</p>
+
+    <!-- Facebook -->
+    <button class="btn btn-social">
+      <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" fill="#1877F2"/>
+      </svg>
+      Continue with Facebook
+    </button>
+
+    <!-- Google -->
+    <button class="btn btn-social">
+      <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+      </svg>
+      Continue with Google
+    </button>
+
+    <p class="legal">
+      By continuing, you agree to the <a href="#">Terms of Service</a><br>
+      and acknowledge you've read our <a href="#">Privacy Policy.</a>
+    </p>
+
+    <p class="login-line">Already a remember? <a href="#">Log in</a></p>
+
+  </div>
+</div>
+
+</body>
+</html>
