@@ -956,5 +956,33 @@
         ></iframe>
         <script src="./scripts/include.js"></script>
         <script src="./scripts/auth-flow.js"></script>
+        <script>
+            function buildSearchResultsUrl(params = {}) {
+                const url = new URL("./pages/searchResults.html", window.location.href);
+                Object.entries(params).forEach(([key, value]) => {
+                    if (value) {
+                        url.searchParams.set(key, value);
+                    }
+                });
+                return url.toString();
+            }
+
+            window.addEventListener("includes:loaded", () => {
+                const navSearchInput = document.querySelector(".search-bar input");
+                if (!navSearchInput) {
+                    return;
+                }
+
+                navSearchInput.addEventListener("keydown", (event) => {
+                    if (event.key !== "Enter") {
+                        return;
+                    }
+
+                    event.preventDefault();
+                    const q = navSearchInput.value.trim();
+                    window.location.href = buildSearchResultsUrl({ q });
+                });
+            });
+        </script>
     </body>
 </html>
