@@ -359,6 +359,20 @@
             // Track selected values
             const state = { vendor: "", city: "" };
 
+            function getSearchResultsUrl(params = {}) {
+                const base =
+                    window.location.pathname.includes("/pages/")
+                        ? "./searchResults.html"
+                        : "./pages/searchResults.html";
+                const url = new URL(base, window.location.href);
+                Object.entries(params).forEach(([key, value]) => {
+                    if (value) {
+                        url.searchParams.set(key, value);
+                    }
+                });
+                return url.toString();
+            }
+
             function toggleSelect(id) {
                 const el = document.getElementById(id);
                 const isOpen = el.classList.contains("open");
@@ -410,13 +424,14 @@
 
                     // Close dropdown
                     selectEl.classList.remove("open");
+
                 });
             });
 
             function handleSearch() {
                 const vendor = state.vendor || "all";
                 const city = state.city || "all";
-                alert(`Searching for: ${vendor} in ${city}`);
+                window.location.href = getSearchResultsUrl({ vendor, city });
             }
         </script>
     </body>

@@ -107,6 +107,17 @@
                 color: #555;
             }
 
+            .sr-chip.is-active,
+            .sr-filter-btn.is-active {
+                background: #320c35;
+                color: #fff;
+                border-color: #320c35;
+            }
+
+            .sr-chip.is-active::after {
+                color: #fff;
+            }
+
             .sr-filter-btn {
                 margin-left: auto;
                 border: 1px solid #cfcfcf;
@@ -321,7 +332,8 @@
             .sr-article {
                 background: var(--ck-white);
                 border-top: 1px solid #e1e1e1;
-                padding: 26px 0 34px;
+                padding: 64px 0 64px 0;
+                margin-bottom: 34px;
             }
 
             .sr-article h2 {
@@ -626,16 +638,16 @@
         <main class="sr-main">
             <section class="sr-top">
                 <div class="sr-container">
-                    <p class="sr-breadcrumb">Home / Wedding Planners / Jaipur</p>
-                    <h1 class="sr-title">Wedding Venues</h1>
-                    <p class="sr-meta">Showing 23965 results as per your search criteria</p>
+                    <p id="sr-breadcrumb" class="sr-breadcrumb">Home / Wedding Planners / Jaipur</p>
+                    <h1 id="sr-title" class="sr-title">Wedding Venues</h1>
+                    <p id="sr-meta" class="sr-meta">Showing 23965 results as per your search criteria</p>
 
                     <div class="sr-filter-row">
-                        <button class="sr-chip" type="button">Budget</button>
-                        <button class="sr-chip" type="button">Services</button>
-                        <button class="sr-chip" type="button">Ratings</button>
-                        <button class="sr-chip" type="button">Shortlisted</button>
-                        <button class="sr-filter-btn" type="button" aria-label="Filter">
+                        <button class="sr-chip" type="button" data-filter="budget">Budget</button>
+                        <button class="sr-chip" type="button" data-filter="services">Services</button>
+                        <button class="sr-chip" type="button" data-filter="ratings">Ratings</button>
+                        <button class="sr-chip" type="button" data-filter="shortlisted">Shortlisted</button>
+                        <button class="sr-filter-btn" type="button" data-filter="advanced" aria-label="Filter">
                             <svg viewBox="0 0 16 16" aria-hidden="true">
                                 <path d="M1.5 3a1 1 0 0 1 1-1h11a1 1 0 1 1 0 2h-11a1 1 0 0 1-1-1zm3 5a1 1 0 0 1 1-1h5a1 1 0 1 1 0 2h-5a1 1 0 0 1-1-1zm2 5a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1z"/>
                             </svg>
@@ -658,17 +670,17 @@
                     <h2 class="sr-quote-title">Get FREE quotes from multiple vendors</h2>
                     <form class="sr-quote-form" action="#" method="post">
                         <input class="sr-field" type="tel" placeholder="Enter mobile number" aria-label="Mobile number" />
-                        <select class="sr-select" aria-label="Select city">
-                            <option>Select City</option>
-                            <option>Jaipur</option>
-                            <option>Delhi</option>
-                            <option>Mumbai</option>
+                        <select id="sr-quote-city" class="sr-select" aria-label="Select city">
+                            <option value="">Select City</option>
+                            <option value="jaipur">Jaipur</option>
+                            <option value="delhi">Delhi</option>
+                            <option value="mumbai">Mumbai</option>
                         </select>
-                        <select class="sr-select" aria-label="Select vendor category">
-                            <option>Select vendor Category</option>
-                            <option>Wedding Venue</option>
-                            <option>Photographer</option>
-                            <option>Decorator</option>
+                        <select id="sr-quote-vendor" class="sr-select" aria-label="Select vendor category">
+                            <option value="">Select vendor Category</option>
+                            <option value="venue">Wedding Venue</option>
+                            <option value="photographer">Photographer</option>
+                            <option value="decorators">Decorator</option>
                         </select>
                         <button class="sr-submit" type="submit">Submit</button>
                     </form>
@@ -685,75 +697,56 @@
             </section>
 
             <section class="sr-article">
-                <div class="sr-container">
-                    <h2>Wedding Decorators in Jaipur</h2>
-                    <p>
-                        Indian weddings are known around the world for their grandiosity, splendid wedding decor and
-                        celebratory ambiance. Its grandeur is mesmerizing to look at. The most important part of this
-                        beautiful picturesque wedding landscape is the wedding decorations. There are many wedding
-                        decorators in Jaipur that you can choose from. Since an Indian wedding involves a lot of
-                        ceremonies, you need proper and unique wedding decorations for your wedding, be it a sangeet
-                        decor, a reception decor or ring ceremony, it all needs to be beautiful and classy. Even if
-                        you want an intimate wedding with a small party, you do need the decorations done nicely. Some
-                        of the questions that might arise this process for you are listed down below.
-                    </p>
+  <div class="sr-container">
+    <h2 id="sr-article-title">Wedding Decorators in Jaipur</h2>
 
-                    <h3>How much wedding decorators typically charge?</h3>
-                    <p>
-                        Usually, wedding decorators charge anything in between Rs. 75,000 - Rs. 5 lakhs with the amount
-                        varying on the style of decor you choose and the extent of decorations. Having firm tent
-                        decorations and the indoor decor to full outdoor decor, Jaipur is known for its grand royal
-                        weddings and hence the price range might go slightly up during peak wedding season. Most Jaipur
-                        wedding decorators offer overall decoration packages, but if you do search a bit, you can find
-                        wedding decorators in budget as well.
-                    </p>
+    <p>
+      Indian weddings are famous around the world for their grandiosity, splendid wedding décor and celebratory ambience. Its grandeur is mesmerizing to look at. The most important part of this beautiful, picturesque wedding landscape is the wedding decorations. There are many wedding decorators in Jaipur that you can choose from. Since an Indian wedding involves a lot of ceremonies, you need proper and unique wedding decorations for your wedding, be it a sangeet décor, a reception décor or ring ceremony, it all needs to be beautiful and classy. Even if you want an intimate wedding with a small party, you do need the decorations done nicely. Some of the questions that might ease this process for you are listed down below.
+    </p>
 
-                    <h3>What are the latest wedding decoration trends?</h3>
-                    <p>
-                        This year has seen some of the best wedding trends and some of them are listed below:
-                    </p>
-                    <ul>
-                        <li>
-                            A Royal Rajasthani wedding: Book your favourite palace right now, because this trend is one
-                            of the favourites for Jaipur Weddings. With a grand palace lights galore and assorted
-                            flower decorations, this wedding decoration trend is perfect for a royal wedding.
-                        </li>
-                        <li>
-                            Bollywood themed wedding: Perfect for all the filmy fans and retro lovers. This wedding
-                            decoration trend starts with some of the best dialogues of Bollywood movies and can even
-                            make it into a Bollywood party with themed props.
-                        </li>
-                        <li>
-                            Bohemian wedding decorations: Layering up with all the bold colours that you have. This
-                            reception decor trend begins with colourful tent decoration, vibrant hangings on the wall
-                            with colourful fabrics and vibrant flowers. Flower decorations are colourful city after all
-                            and the Jaipur wedding decorators can help you make most of the natural surroundings.
-                        </li>
-                    </ul>
+    <h3>How much wedding decorators typically charge?</h3>
+    <p>
+      Usually, wedding decorators charge anything in between Rs. 75,000 - Rs. 6+ lakhs with the amount varying on the style of decor you choose and the extent of decorations, ranging from tent decorations and the indoor décor to full outdoor décor. Jaipur is known for its grand royal weddings and hence the price range might go slightly up during peak wedding season. Most Jaipur wedding decorators offer overall decoration packages, but if you do search a bit, you can find wedding decorators in budget as well.
+    </p>
 
-                    <h3>What are the questions to ask wedding decorators before booking them?</h3>
-                    <p>
-                        Since the outdoor decor is an absolutely irreplaceable part of your entire wedding ensemble,
-                        you cannot miss it up. It is better to know everything before making any decisions. Work
-                        experience: How many years have you been into this business? This question is important because
-                        decorators are all about understanding and utilising the space efficiently, which comes from
-                        experience.
-                    </p>
-                    <p>
-                        Have you done my venue before? If yes, then there is nothing better than it. This way, the
-                        wedding decorator would know how to use the venue efficiently with all the available resources.
-                    </p>
-                    <p>
-                        How many weddings do you do in a day? You want your marriage and sangeet decor to be perfect
-                        and unique. It is better to know if it clashes with any other wedding or not.
-                    </p>
-                    <p>
-                        There are many wedding decorators in Jaipur that will most certainly match your budget and
-                        vision of the wedding. All you need to do is start selecting the theme you want and then
-                        discuss it with the right people, and you are good to go.
-                    </p>
-                </div>
-            </section>
+    <h3>What are the latest wedding decoration trends?</h3>
+    <p>
+      This year has seen some of the best wedding trends and some of them are listed below:
+    </p>
+    <ul class="sr-bullets">
+      <li>
+        <strong>A royal Rajasthani wedding</strong> - Book your favourite palace right now, because this trend is one of the favourites for Jaipur weddings. With a grand palace, lights galore and assorted flower decorations, this wedding decoration trend is perfect for a regal, royal wedding. Fill it up with all the red and golden shades that you have and get your inner royalty out.
+      </li>
+      <li>
+        <strong>Bollywood themed wedding</strong> - Perfect for all the filmy fans and retro lovers. This wedding decoration trend starts with some of the best dialogues of Bollywood movies and an entire venue lit like a Bollywood party with quirky and stylish wedding décor.
+      </li>
+      <li>
+        <strong>Bohemian wedding decorations</strong> - Layering it up with all the bold colours that you have, this reception décor trend begins with colourful tent decorations, vibrant hangings on the wall with colourful fabric and vibrant flower decorations all around. It is a colourful city after all and the Jaipur wedding decorators can help you make most of the natural surroundings.
+      </li>
+    </ul>
+
+    <h3>What are the questions to ask wedding decorators before booking them?</h3>
+    <p>
+      Since the outdoor décor is an absolutely irreplaceable part of your entire wedding ensemble, you cannot mess it up. It’s better to know everything before making any decisions.
+    </p>
+
+    <ul class="sr-bullets">
+      <li>
+        <strong>Work experience</strong> - How many years have you been into this business? This question is important because decorations are all about understanding and utilizing the space efficiently, which comes from experience.
+      </li>
+      <li>
+        <strong>Have you done my venue before?</strong> If yes, then there is nothing better than it. This way, the wedding decorators would know how to use the venue efficiently with the right decorations.
+      </li>
+      <li>
+        <strong>How many weddings do you do in a day?</strong> You want your marriage and sangeet décor to be perfect and unique. It’s better to know if it clashes with any other wedding or not.
+      </li>
+    </ul>
+
+    <p>
+      There are many wedding decorators in Jaipur that will most certainly match your budget and vision of the wedding. All you need to do is start selecting the theme you want and then discuss it with the right people, and you are good to go.
+    </p>
+  </div>
+</section>
 
             <div id="main-card-template" class="sr-card-template" data-include="../components/main-card.html"></div>
         </main>
@@ -762,6 +755,146 @@
 
         <script src="../scripts/include.js"></script>
         <script>
+            const vendorMeta = {
+                all: { navLabel: "Vendors", resultsLabel: "Wedding Vendors", articleLabel: "Wedding Decorators" },
+                venue: { navLabel: "Wedding Venues", resultsLabel: "Wedding Venues", articleLabel: "Wedding Decorators" },
+                photographer: {
+                    navLabel: "Wedding Photographers",
+                    resultsLabel: "Wedding Photographers",
+                    articleLabel: "Wedding Photographers",
+                },
+                makeup: { navLabel: "Bridal Makeup Artists", resultsLabel: "Bridal Makeup Artists", articleLabel: "Bridal Makeup Artists" },
+                decorators: { navLabel: "Wedding Decorators", resultsLabel: "Wedding Decorators", articleLabel: "Wedding Decorators" },
+                caterers: { navLabel: "Wedding Caterers", resultsLabel: "Wedding Caterers", articleLabel: "Wedding Caterers" },
+                mehendi: { navLabel: "Mehendi Artists", resultsLabel: "Mehendi Artists", articleLabel: "Mehendi Artists" },
+            };
+
+            function toTitleCase(text) {
+                return (text || "")
+                    .split(/[\s_-]+/)
+                    .filter(Boolean)
+                    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                    .join(" ");
+            }
+
+            function getCityLabel(cityParam) {
+                if (!cityParam || cityParam === "all") {
+                    return "All Cities";
+                }
+                return toTitleCase(cityParam);
+            }
+
+            function pseudoResultCount(seedText) {
+                let hash = 0;
+                for (let i = 0; i < seedText.length; i += 1) {
+                    hash = (hash * 31 + seedText.charCodeAt(i)) % 40000;
+                }
+                return (6000 + (hash % 32000)).toLocaleString("en-IN");
+            }
+
+            function buildSearchContext() {
+                const params = new URLSearchParams(window.location.search);
+                const q = (params.get("q") || "").trim();
+                const vendorKey = (params.get("vendor") || "all").toLowerCase();
+                const cityKey = (params.get("city") || "all").toLowerCase();
+                const filter = (params.get("filter") || "").toLowerCase();
+                const vendor = vendorMeta[vendorKey] || vendorMeta.all;
+                const cityLabel = getCityLabel(cityKey);
+                const count = pseudoResultCount(`${q}|${vendorKey}|${cityKey}|${filter}`);
+                return { params, q, vendorKey, cityKey, filter, vendor, cityLabel, count };
+            }
+
+            function applyDynamicCopy(context) {
+                const breadcrumb = document.getElementById("sr-breadcrumb");
+                const title = document.getElementById("sr-title");
+                const meta = document.getElementById("sr-meta");
+                const articleTitle = document.getElementById("sr-article-title");
+
+                let heading = context.vendor.resultsLabel;
+                if (context.q) {
+                    heading = `Search results for "${context.q}"`;
+                }
+
+                if (title) {
+                    title.textContent = heading;
+                }
+                if (breadcrumb) {
+                    breadcrumb.textContent = `Home / ${context.vendor.navLabel} / ${context.cityLabel}`;
+                }
+                if (meta) {
+                    const area = context.cityKey === "all" ? "" : ` in ${context.cityLabel}`;
+                    if (context.q) {
+                        meta.textContent = `Showing ${context.count} results for "${context.q}"${area}`;
+                    } else {
+                        meta.textContent = `Showing ${context.count} results for ${context.vendor.resultsLabel}${area}`;
+                    }
+                }
+                if (articleTitle) {
+                    const area = context.cityKey === "all" ? "India" : context.cityLabel;
+                    articleTitle.textContent = `${context.vendor.articleLabel} in ${area}`;
+                }
+
+                document.title = `${heading} | CelebrationKart`;
+            }
+
+            function applyFilterState(context) {
+                const filterButtons = document.querySelectorAll("[data-filter]");
+                filterButtons.forEach((button) => {
+                    const isActive = button.dataset.filter === context.filter;
+                    button.classList.toggle("is-active", isActive);
+                    button.addEventListener("click", () => {
+                        const url = new URL(window.location.href);
+                        url.searchParams.set("filter", button.dataset.filter || "applied");
+                        window.location.href = url.toString();
+                    });
+                });
+            }
+
+            function buildCardData(context) {
+                const locationText = context.cityKey === "all" ? "India" : context.cityLabel;
+
+                const byVendor = {
+                    venue: [
+                        { name: "Royal Weddingz by...", type: "Outdoor", image: "../assets/main-card.jpg", price: "₹35,00,000" },
+                        { name: "Majestic Venue Co...", type: "Outdoor", image: "../assets/royal-palace.jpg", price: "₹28,50,000" },
+                        { name: "Palace Celebration...", type: "Indoor", image: "../assets/main-card.jpg", price: "₹41,00,000" },
+                    ],
+                    photographer: [
+                        { name: "Dream Lens Studio...", type: "Premium", image: "../assets/photographer.jpg", price: "₹1,20,000" },
+                        { name: "Candid Frames Co...", type: "Candid", image: "../assets/photographer.jpg", price: "₹85,000" },
+                        { name: "Wed Visual Stories...", type: "Traditional", image: "../assets/photographer.jpg", price: "₹70,000" },
+                    ],
+                    decorators: [
+                        { name: "Floral Story Decor...", type: "Theme", image: "../assets/main-card.jpg", price: "₹4,50,000" },
+                        { name: "Regal Stage Decor...", type: "Classic", image: "../assets/royal-palace.jpg", price: "₹3,25,000" },
+                        { name: "Aura Event Decor...", type: "Luxury", image: "../assets/main-card.jpg", price: "₹6,10,000" },
+                    ],
+                    makeup: [
+                        { name: "Radiant Bridal Pro...", type: "Bridal", image: "../assets/makeup-artist.jpg", price: "₹45,000" },
+                        { name: "Glow By Experts...", type: "HD", image: "../assets/makeup-artists.jpg", price: "₹32,000" },
+                        { name: "Classic Makeup Co...", type: "Airbrush", image: "../assets/makeup-artist.jpg", price: "₹38,000" },
+                    ],
+                    caterers: [
+                        { name: "Royal Feast Caterers...", type: "Veg + Non-Veg", image: "../assets/entertainment.jpg", price: "₹1,100/plate" },
+                        { name: "Jaipur Banquet Food...", type: "Multi-Cuisine", image: "../assets/gifts.jpg", price: "₹950/plate" },
+                        { name: "Saffron Catering Co...", type: "Premium", image: "../assets/entertainment.jpg", price: "₹1,450/plate" },
+                    ],
+                    mehendi: [
+                        { name: "Henna Artistry Pro...", type: "Bridal", image: "../assets/jewellery.jpg", price: "₹11,000" },
+                        { name: "Mehendi Moments...", type: "Guest", image: "../assets/jewellery.jpg", price: "₹7,500" },
+                        { name: "Heritage Mehendi...", type: "Arabic", image: "../assets/jewellery.jpg", price: "₹9,000" },
+                    ],
+                };
+
+                const set = byVendor[context.vendorKey] || byVendor.venue;
+                return set.map((item, index) => ({
+                    ...item,
+                    location: locationText,
+                    rating: (4.7 + index * 0.1).toFixed(1),
+                    reviews: `${72 + index * 18}`,
+                }));
+            }
+
             function toggleHeartOnCard(card) {
                 const heartBtn = card.querySelector(".heart-btn");
                 if (!heartBtn) {
@@ -829,6 +962,7 @@
                     return;
                 }
 
+                mount.innerHTML = "";
                 for (let i = 0; i < count; i += 1) {
                     const card = templateCard.cloneNode(true);
                     const data = list[i % list.length];
@@ -839,9 +973,44 @@
             }
 
             window.addEventListener("includes:loaded", () => {
+                const context = buildSearchContext();
+                applyDynamicCopy(context);
+                applyFilterState(context);
+
                 const footerLogo = document.querySelector(".ck-footer .ck-brand img");
                 if (footerLogo) {
                     footerLogo.src = "../assets/logo.png";
+                }
+
+                const quoteCity = document.getElementById("sr-quote-city");
+                if (quoteCity && [...quoteCity.options].some((opt) => opt.value === context.cityKey)) {
+                    quoteCity.value = context.cityKey;
+                }
+
+                const quoteVendor = document.getElementById("sr-quote-vendor");
+                if (quoteVendor && [...quoteVendor.options].some((opt) => opt.value === context.vendorKey)) {
+                    quoteVendor.value = context.vendorKey;
+                }
+
+                const navSearchInput = document.querySelector(".search-bar input");
+                if (navSearchInput) {
+                    if (context.q) {
+                        navSearchInput.value = context.q;
+                    }
+                    navSearchInput.addEventListener("keydown", (event) => {
+                        if (event.key !== "Enter") {
+                            return;
+                        }
+                        event.preventDefault();
+                        const url = new URL(window.location.href);
+                        const q = navSearchInput.value.trim();
+                        if (q) {
+                            url.searchParams.set("q", q);
+                        } else {
+                            url.searchParams.delete("q");
+                        }
+                        window.location.href = url.toString();
+                    });
                 }
 
                 const templateCard = document.querySelector("#main-card-template .vendor-card");
@@ -850,35 +1019,7 @@
                     return;
                 }
 
-                const cardData = [
-                    {
-                        name: "Royal Weddingz by...",
-                        price: "₹35,00,000",
-                        location: "Jaipur, Rajasthan",
-                        type: "Outdoor",
-                        rating: "4.9",
-                        reviews: "90",
-                        image: "../assets/main-card.jpg",
-                    },
-                    {
-                        name: "Majestic Venue Co...",
-                        price: "₹28,50,000",
-                        location: "Jaipur, Rajasthan",
-                        type: "Outdoor",
-                        rating: "4.8",
-                        reviews: "82",
-                        image: "../assets/royal-palace.jpg",
-                    },
-                    {
-                        name: "Palace Celebration...",
-                        price: "₹41,00,000",
-                        location: "Jaipur, Rajasthan",
-                        type: "Indoor",
-                        rating: "4.9",
-                        reviews: "124",
-                        image: "../assets/main-card.jpg",
-                    },
-                ];
+                const cardData = buildCardData(context);
 
                 renderCardsFromTemplate(templateCard, "#results-grid-primary", 9, cardData);
                 renderCardsFromTemplate(templateCard, "#results-grid-secondary", 6, cardData);
