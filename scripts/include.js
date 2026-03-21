@@ -55,7 +55,7 @@ async function runEmbeddedScripts(container) {
 async function loadIncludes() {
   const includeTargets = document.querySelectorAll('[data-include]');
 
-  await Promise.all(
+  const results = await Promise.allSettled(
     Array.from(includeTargets, async (element) => {
       const includePath = element.getAttribute('data-include');
 
@@ -76,13 +76,15 @@ async function loadIncludes() {
       await runEmbeddedScripts(element);
     })
   );
+
+  results.forEach((result) => {
+    if (result.status === 'rejected') {
+      console.error(result.reason);
+    }
+  });
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-  try {
-    await loadIncludes();
-    window.dispatchEvent(new CustomEvent('includes:loaded'));
-  } catch (error) {
-    console.error(error);
-  }
+  await loadIncludes();
+  window.dispatchEvent(new CustomEvent('includes:loaded'));
 });
