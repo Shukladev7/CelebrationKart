@@ -24,13 +24,25 @@
                 min-height: 100vh;
             }
 
+            :root {
+                --container-max: 1200px;
+                --container-padding: 20px;
+            }
+
             /* ── NAVBAR ── */
             nav {
                 background: #320c35;
-                height: 64px;
+                min-height: 64px;
+                display: flex;
+                justify-content: center;
+                padding: 0 var(--container-padding);
+            }
+
+            .nav-inner {
+                width: min(100%, var(--container-max));
+                min-height: 64px;
                 display: flex;
                 align-items: center;
-                padding: 0 48px;
             }
 
             /* ── LOGO ── */
@@ -155,46 +167,87 @@
                 user-select: none;
                 font-weight: 300;
             }
+
+            @media (max-width: 768px) {
+                :root {
+                    --container-padding: 16px;
+                }
+
+                nav {
+                    padding-top: 12px;
+                    padding-bottom: 12px;
+                }
+
+                .nav-inner {
+                    min-height: auto;
+                    flex-wrap: wrap;
+                    gap: 16px;
+                }
+
+                .logo {
+                    margin-right: 0;
+                }
+
+                .search-bar {
+                    order: 3;
+                    width: 100%;
+                    max-width: none;
+                }
+
+                .nav-links {
+                    margin-left: auto;
+                    gap: 12px;
+                    flex-wrap: wrap;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .nav-links {
+                    margin-left: 0;
+                }
+            }
         </style>
     </head>
     <body>
         <nav>
-            <!-- Logo -->
-            <a href="#" class="logo">
-                <img src="../assets/logo-white.png"/>
-                <span class="logo-text">CelebrationKart</span>
-            </a>
+            <div class="nav-inner">
+                <!-- Logo -->
+                <a href="#" class="logo">
+                    <img src="../assets/logo-white.png"/>
+                    <span class="logo-text">CelebrationKart</span>
+                </a>
 
-            <!-- Search bar -->
-            <div class="search-bar">
-                <span class="search-icon">
-                    <svg
-                        width="15"
-                        height="15"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                <!-- Search bar -->
+                <div class="search-bar">
+                    <span class="search-icon">
+                        <svg
+                            width="15"
+                            height="15"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <circle cx="11" cy="11" r="8" />
+                            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                        </svg>
+                    </span>
+                    <input type="text" placeholder="Search" />
+                </div>
+
+                <!-- Nav links -->
+                <div class="nav-links">
+                    <a href="#" class="nav-link active" id="link-vendors"
+                        >Vendors</a
                     >
-                        <circle cx="11" cy="11" r="8" />
-                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                    </svg>
-                </span>
-                <input type="text" placeholder="Search" />
-            </div>
-
-            <!-- Nav links -->
-            <div class="nav-links">
-                <a href="#" class="nav-link active" id="link-vendors"
-                    >Vendors</a
-                >
-                <a href="#" class="nav-link" id="link-login">Login</a>
-                <span class="divider">|</span>
-                <a href="#" class="nav-link" id="link-vendor-login"
-                    >Log in as a Vendor</a
-                >
+                    <a href="#" class="nav-link" id="link-login">Login</a>
+                    <span class="divider">|</span>
+                    <a href="#" class="nav-link" id="link-vendor-login"
+                        >Log in as a Vendor</a
+                    >
+                </div>
             </div>
         </nav>
 
