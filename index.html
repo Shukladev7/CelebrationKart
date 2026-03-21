@@ -7,11 +7,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Bacasime+Antique&family=Quicksand:wght@300..700&display=swap"
-            rel="stylesheet"
-        />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Bacasime+Antique&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
             rel="stylesheet"
         />
         <style>
@@ -958,7 +954,10 @@
         <script src="./scripts/auth-flow.js"></script>
         <script>
             function buildSearchResultsUrl(params = {}) {
-                const url = new URL("./pages/searchResults.html", window.location.href);
+                const url = new URL(
+                    "./pages/searchResults.html",
+                    window.location.href,
+                );
                 Object.entries(params).forEach(([key, value]) => {
                     if (value) {
                         url.searchParams.set(key, value);
@@ -968,7 +967,8 @@
             }
 
             window.addEventListener("includes:loaded", () => {
-                const navSearchInput = document.querySelector(".search-bar input");
+                const navSearchInput =
+                    document.querySelector(".search-bar input");
                 if (!navSearchInput) {
                     return;
                 }
