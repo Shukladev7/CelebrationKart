@@ -3,556 +3,409 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>CelebrationKart - Plan Your Perfect Wedding</title>
+        <title>Wedding Venues Search Results | CelebrationKart</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Bacasime+Antique&family=Quicksand:wght@300..700&display=swap"
-            rel="stylesheet"
-        />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Bacasime+Antique&family=Montserrat:wght@300;400;500;600;700&display=swap"
             rel="stylesheet"
         />
         <style>
+            :root {
+                --ck-plum: #320c35;
+                --ck-plum-dark: #2a082d;
+                --ck-bg: #efefee;
+                --ck-surface: #f6f6f6;
+                --ck-text: #1f1f1f;
+                --ck-subtle: #6d6d6d;
+                --ck-border: #d7d7d7;
+                --ck-white: #ffffff;
+                --container-max: 1180px;
+                --container-pad: 22px;
+            }
+
             *,
             *::before,
             *::after {
                 box-sizing: border-box;
+            }
+
+            body.search-results-page {
                 margin: 0;
+                font-family: "Montserrat", sans-serif;
+                color: var(--ck-text);
+                background: var(--ck-bg);
+                display: block;
+                min-height: 100vh;
                 padding: 0;
             }
 
-            :root {
-                --deep-plum: #2d1b4e;
-                --plum: #4a1d6b;
-                --rose-gold: #c9836a;
-                --warm-cream: #faf6f1;
-                --light-cream: #f5f0e8;
-                --text-dark: #1a1a2e;
-                --text-mid: #555566;
-                --text-light: #888899;
-                --white: #ffffff;
-                --gold: #d4a953;
-                --card-shadow: 0 4px 20px rgba(45, 27, 78, 0.1);
-                --border: #e8e0f0;
-                --container-max: 1200px;
-                --container-padding: 20px;
-                --section-space: clamp(48px, 7vw, 80px);
-                --grid-gap: 24px;
+            .sr-main {
+                padding-bottom: 0;
             }
 
-            body {
-                font-family: "Montserrat", sans-serif;
-                background: var(--warm-cream);
-                color: var(--text-dark);
-                line-height: 1.6;
-                overflow-x: hidden;
+            .sr-container {
+                width: min(100%, calc(var(--container-max) + (var(--container-pad) * 2)));
+                margin: 0 auto;
+                padding: 0 var(--container-pad);
             }
 
-            nav {
-                background: var(--deep-plum);
+            .sr-top {
+                background: #f3f3f3;
+                border-top: 1px solid #e1e1e1;
+                border-bottom: 1px solid #dedede;
+                padding: 20px 0 16px;
+            }
+
+            .sr-breadcrumb {
+                margin: 0;
+                font-size: 11px;
+                color: #777;
+            }
+
+            .sr-title {
+                margin: 12px 0 8px;
+                font-size: clamp(28px, 3vw, 40px);
+                font-weight: 500;
+                color: #171717;
+                line-height: 1.1;
+            }
+
+            .sr-meta {
+                margin: 0;
+                font-size: 13px;
+                color: #555;
+            }
+
+            .sr-filter-row {
+                margin-top: 18px;
                 display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                align-items: center;
+            }
+
+            .sr-chip {
+                border: 1px solid #d0d0d0;
+                border-radius: 20px;
+                background: #e9e9e9;
+                font-size: 12px;
+                font-weight: 500;
+                color: #2e2e2e;
+                padding: 8px 14px;
+                min-width: 90px;
+                display: inline-flex;
                 align-items: center;
                 justify-content: space-between;
-                padding-inline: max(
-                    var(--container-padding),
-                    calc((100vw - var(--container-max)) / 2)
-                );
-                height: 52px;
-                position: sticky;
-                top: 0;
-                z-index: 100;
-            }
-            .nav-logo {
-                display: flex;
-                align-items: center;
                 gap: 8px;
-                color: var(--white);
-                font-family: "Montserrat", serif;
-                font-size: 18px;
-                font-weight: 700;
-                text-decoration: none;
+                cursor: pointer;
             }
-            .nav-search {
-                flex: 1;
-                max-width: 360px;
-                margin: 0 40px;
-                position: relative;
+
+            .sr-chip::after {
+                content: "▾";
+                font-size: 10px;
+                color: #555;
             }
-            .nav-search input {
+
+            .sr-filter-btn {
+                margin-left: auto;
+                border: 1px solid #cfcfcf;
+                border-radius: 18px;
+                background: #ebebeb;
+                color: #222;
+                font-size: 12px;
+                font-weight: 600;
+                padding: 8px 16px;
+                display: inline-flex;
+                align-items: center;
+                gap: 7px;
+                cursor: pointer;
+            }
+
+            .sr-filter-btn svg {
+                width: 12px;
+                height: 12px;
+                fill: currentColor;
+            }
+
+            .sr-city-strip {
+                margin-top: 14px;
+            }
+
+            .sr-city-strip .cities-row {
+                gap: 14px;
+                padding: 8px 0 0;
+            }
+
+            .sr-city-strip .city-circle,
+            .sr-city-strip .city-circle-more {
+                width: 58px;
+                height: 58px;
+            }
+
+            .sr-city-strip .city-name {
+                font-size: 10px;
+            }
+
+            .sr-city-strip .city-item {
+                gap: 7px;
+            }
+
+            .sr-results-block {
+                padding: 20px 0 24px;
+            }
+
+            .results-grid {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 18px;
+            }
+
+            .results-grid .vendor-card {
                 width: 100%;
-                padding: 7px 16px 7px 36px;
-                border-radius: 20px;
-                border: none;
-                background: rgba(255, 255, 255, 0.12);
-                color: var(--white);
-                font-size: 13px;
-                outline: none;
+                height: auto;
+                border-radius: 10px;
+                border: 1px solid #d7d7d7;
+                box-shadow: none;
+                background: #f8f8f8;
             }
-            .nav-search input::placeholder {
-                color: rgba(255, 255, 255, 0.5);
+
+            .results-grid .vendor-card .card-image-wrap {
+                padding: 10px 10px 0;
             }
-            .nav-search svg {
-                position: absolute;
-                left: 12px;
-                top: 50%;
-                transform: translateY(-50%);
+
+            .results-grid .vendor-card .card-img {
+                height: 170px;
+                border-radius: 8px;
+            }
+
+            .results-grid .vendor-card .heart-btn {
+                top: 16px;
+                right: 16px;
+                width: 28px;
+                height: 28px;
+            }
+
+            .results-grid .vendor-card .heart-btn svg {
                 width: 14px;
                 height: 14px;
-                fill: rgba(255, 255, 255, 0.5);
-            }
-            .nav-links {
-                display: flex;
-                align-items: center;
-                gap: 24px;
-            }
-            .nav-links a {
-                color: rgba(255, 255, 255, 0.85);
-                text-decoration: none;
-                font-size: 13.5px;
-                font-weight: 500;
-                transition: color 0.2s;
-            }
-            .nav-links a:hover {
-                color: var(--rose-gold);
-            }
-            .nav-links .divider {
-                color: rgba(255, 255, 255, 0.3);
             }
 
-            .hero {
-                position: relative;
-                height: 420px;
-                overflow: hidden;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
+            .results-grid .vendor-card .card-body {
+                padding: 8px 10px 0;
             }
-            .hero-bg {
-                position: absolute;
-                inset: 0;
-                background:
-                    linear-gradient(
-                        135deg,
-                        #c9836a44 0%,
-                        #4a1d6b55 50%,
-                        #2d1b4e88 100%
-                    ),
-                    url("https://images.unsplash.com/photo-1519741497674-611481863552?w=1400&q=80")
-                        center/cover no-repeat;
-                filter: brightness(0.78);
-            }
-            .hero-content {
-                position: relative;
-                z-index: 2;
-                width: min(100%, var(--container-max));
-                padding-inline: var(--container-padding);
-            }
-            .hero-content h1 {
-                font-family: "Montserrat", serif;
-                font-size: 46px;
-                font-weight: 700;
-                color: var(--white);
-                text-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
-                margin-bottom: 6px;
-                letter-spacing: -0.5px;
-            }
-            .hero-content p {
-                color: rgba(255, 255, 255, 0.78);
-                font-size: 15px;
-                margin-bottom: 28px;
-                letter-spacing: 0.5px;
-            }
-            .hero-search {
-                display: flex;
-                align-items: center;
-                gap: 0;
-                background: var(--white);
-                border-radius: 8px;
-                overflow: hidden;
-                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-                max-width: 560px;
-                margin: 0 auto;
-            }
-            .hero-search select {
-                border: none;
-                outline: none;
-                padding: 14px 18px;
-                font-size: 13.5px;
-                color: var(--text-mid);
-                background: var(--white);
-                cursor: pointer;
-                flex: 1;
-                border-right: 1px solid var(--border);
-                font-family: "Montserrat", sans-serif;
-            }
-            .hero-search button {
-                background: var(--deep-plum);
-                color: var(--white);
-                border: none;
-                padding: 14px 26px;
+
+            .results-grid .vendor-card .card-name,
+            .results-grid .vendor-card .card-price {
                 font-size: 14px;
-                font-weight: 600;
-                cursor: pointer;
-                transition: background 0.2s;
-                font-family: "Montserrat", sans-serif;
-                white-space: nowrap;
-            }
-            .hero-search button:hover {
-                background: var(--plum);
             }
 
-            .section {
-                width: min(
-                    100%,
-                    calc(var(--container-max) + (var(--container-padding) * 2))
-                );
-                margin: 0 auto;
-                padding: var(--section-space) var(--container-padding);
-            }
-            .section-alt {
-                background: var(--white);
-            }
-            .section-header {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                gap: 20px;
-                margin-bottom: 28px;
-            }
-            .section-header h2 {
-                font-family: "Montserrat", serif;
-                font-size: 26px;
-                font-weight: 700;
-                color: var(--text-dark);
-            }
-            .view-all {
-                color: var(--plum);
-                text-decoration: none;
-                font-size: 13.5px;
-                font-weight: 500;
-                transition: color 0.2s;
-            }
-            .view-all:hover {
-                color: var(--rose-gold);
+            .results-grid .vendor-card .card-location,
+            .results-grid .vendor-card .card-type {
+                font-size: 11px;
+                color: #555;
             }
 
-            .popular-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: var(--grid-gap);
-                align-items: stretch;
-            }
-            .popular-card {
-                border-radius: 12px;
-                overflow: hidden;
-                box-shadow: var(--card-shadow);
-                cursor: pointer;
-                position: relative;
-                aspect-ratio: 1/0.75;
-                transition:
-                    transform 0.25s,
-                    box-shadow 0.25s;
-            }
-            .popular-card:hover {
-                transform: translateY(-4px);
-                box-shadow: 0 12px 32px rgba(45, 27, 78, 0.18);
-            }
-            .popular-card img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                display: block;
-                transition: transform 0.4s;
-            }
-            .popular-card:hover img {
-                transform: scale(1.05);
-            }
-            .popular-card-label {
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                background: linear-gradient(
-                    transparent,
-                    rgba(45, 27, 78, 0.85)
-                );
-                color: var(--white);
-                font-size: 13.5px;
-                font-weight: 600;
-                padding: 28px 12px 10px;
+            .results-grid .vendor-card .card-rating {
+                margin-top: 4px;
+                font-size: 11px;
+                color: #333;
             }
 
-            .categories-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-                gap: 20px;
-            }
-            .category-card {
-                background: var(--white);
-                border-radius: 12px;
-                overflow: hidden;
-                box-shadow: var(--card-shadow);
-                cursor: pointer;
-                text-align: center;
-                border: 1px solid var(--border);
-                transition:
-                    transform 0.2s,
-                    box-shadow 0.2s;
-            }
-            .category-card:hover {
-                transform: translateY(-3px);
-                box-shadow: 0 8px 24px rgba(45, 27, 78, 0.15);
-            }
-            .category-card img {
-                width: 100%;
-                aspect-ratio: 1/0.8;
-                object-fit: cover;
-                display: block;
-            }
-            .category-card span {
-                display: block;
-                padding: 8px 6px;
-                font-size: 12px;
-                font-weight: 600;
-                color: var(--text-dark);
-            }
-
-            .vendors-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: var(--grid-gap);
-                align-items: stretch;
-            }
-            .vendor-card {
-                background: var(--white);
-                border-radius: 14px;
-                overflow: hidden;
-                box-shadow: var(--card-shadow);
-                border: 1px solid var(--border);
-                transition:
-                    transform 0.25s,
-                    box-shadow 0.25s;
-                cursor: pointer;
-            }
-            .vendor-card:hover {
-                transform: translateY(-4px);
-                box-shadow: 0 12px 32px rgba(45, 27, 78, 0.15);
-            }
-            .vendor-card-img {
-                width: 100%;
-                aspect-ratio: 1/0.75;
-                object-fit: cover;
-                display: block;
-            }
-            .vendor-card-body {
-                padding: 14px 16px;
-            }
-            .vendor-card-body h4 {
-                font-size: 14px;
-                font-weight: 700;
-                color: var(--text-dark);
-                margin-bottom: 3px;
-            }
-            .vendor-card-body .sub {
-                font-size: 12px;
-                color: var(--text-light);
-                margin-bottom: 6px;
-            }
-            .vendor-rating {
-                display: flex;
-                align-items: center;
-                gap: 5px;
-                margin-bottom: 4px;
-            }
-            .vendor-rating .star {
-                color: var(--gold);
-                font-size: 13px;
-            }
-            .vendor-rating span {
-                font-size: 12px;
-                font-weight: 600;
-                color: var(--text-mid);
-            }
-            .vendor-price {
-                font-size: 12px;
-                color: var(--text-mid);
-            }
-            .vendor-price strong {
-                color: var(--plum);
-                font-weight: 700;
-            }
-
-            .moments-sub {
-                font-size: 14px;
-                color: var(--text-mid);
-                margin-bottom: 26px;
-                margin-top: -16px;
-            }
-            .moments-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                gap: var(--grid-gap);
-            }
-            .moment-card {
-                border-radius: 14px;
-                overflow: hidden;
-                box-shadow: var(--card-shadow);
-                cursor: pointer;
-                transition: transform 0.25s;
-            }
-            .moment-card:hover {
-                transform: translateY(-4px);
-            }
-            .moment-card img {
-                width: 100%;
-                aspect-ratio: 16/10;
-                object-fit: cover;
-                display: block;
-                transition: transform 0.4s;
-            }
-            .moment-card:hover img {
-                transform: scale(1.04);
-            }
-            .moment-card-body {
-                background: var(--white);
-                padding: 14px 16px;
-            }
-            .moment-card-body h4 {
-                font-size: 14.5px;
-                font-weight: 700;
-                color: var(--text-dark);
-                margin-bottom: 4px;
-            }
-            .moment-card-body p {
-                font-size: 12.5px;
-                color: var(--text-mid);
-                margin-bottom: 6px;
-                line-height: 1.5;
-            }
-            .moment-card-body .date {
-                font-size: 11.5px;
-                color: var(--text-light);
-            }
-
-            .gallery-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: var(--grid-gap);
-            }
-            .gallery-card {
-                border-radius: 12px;
-                overflow: hidden;
-                box-shadow: var(--card-shadow);
-                cursor: pointer;
-                position: relative;
-                transition: transform 0.25s;
-            }
-            .gallery-card:hover {
-                transform: translateY(-4px);
-            }
-            .gallery-card img {
-                width: 100%;
-                aspect-ratio: 3/4;
-                object-fit: cover;
-                display: block;
-                transition: transform 0.4s;
-            }
-            .gallery-card:hover img {
-                transform: scale(1.05);
-            }
-            .gallery-badge {
-                position: absolute;
-                top: 10px;
-                left: 10px;
-                background: var(--deep-plum);
-                color: var(--white);
+            .results-grid .vendor-card .card-rating .reviews {
                 font-size: 10px;
-                font-weight: 700;
-                padding: 3px 9px;
-                border-radius: 20px;
-                letter-spacing: 0.5px;
-            }
-            .gallery-label {
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                background: linear-gradient(
-                    transparent,
-                    rgba(45, 27, 78, 0.85)
-                );
-                color: var(--white);
-                font-size: 12.5px;
-                font-weight: 600;
-                padding: 30px 12px 10px;
             }
 
-            :root {
-                --ck-plum: #3f0c44;
-                --ck-plum-dark: #320735;
-                --ck-text: #4d3554;
-                --ck-muted: #6b5a6d;
-                --ck-line: #bfb3bf;
-                --ck-white: #ffffff;
+            .results-grid .vendor-card .card-actions {
+                padding: 8px 10px 10px;
+                gap: 6px;
+            }
+
+            .results-grid .vendor-card .btn-enquiry,
+            .results-grid .vendor-card .btn-details {
+                height: 26px;
+                padding: 0 10px;
+                border-radius: 4px;
+                font-size: 10px;
+                font-weight: 500;
+            }
+
+            .results-grid .vendor-card .btn-enquiry {
+                width: 42%;
+                border-color: #c7c7c7;
+            }
+
+            .results-grid .vendor-card .btn-details {
+                border-color: var(--ck-plum);
+                background: var(--ck-plum);
+            }
+
+            .results-grid .vendor-card .btn-details:hover {
+                color: #fff;
+                background: #4a134f;
+            }
+
+            .sr-quote-strip {
+                background: var(--ck-white);
+                border-top: 1px solid #d8d8d8;
+                border-bottom: 1px solid #d8d8d8;
+                padding: 30px 0;
+            }
+
+            .sr-quote-title {
+                margin: 0 0 14px;
+                font-size: clamp(24px, 2.8vw, 38px);
+                font-weight: 500;
+                color: #231025;
+                line-height: 1.2;
+            }
+
+            .sr-quote-form {
+                display: grid;
+                grid-template-columns: 1.1fr 1fr 1fr 1fr;
+                gap: 10px;
+            }
+
+            .sr-field,
+            .sr-select {
+                height: 38px;
+                border-radius: 4px;
+                border: 1px solid #c7c7c7;
+                background: #fff;
+                font-family: "Montserrat", sans-serif;
+                font-size: 12px;
+                color: #444;
+                padding: 0 12px;
+                width: 100%;
+            }
+
+            .sr-submit {
+                border: none;
+                border-radius: 4px;
+                height: 38px;
+                background: var(--ck-plum);
+                color: #fff;
+                font-family: "Montserrat", sans-serif;
+                font-size: 12px;
+                font-weight: 600;
+                cursor: pointer;
+            }
+
+            .sr-submit:hover {
+                background: #4a134f;
+            }
+
+            .sr-results-block.alt {
+                padding-top: 16px;
+                padding-bottom: 30px;
+            }
+
+            .sr-view-more-wrap {
+                margin-top: 24px;
+                text-align: center;
+            }
+
+            .sr-view-more {
+                min-width: 220px;
+                height: 48px;
+                border: 1px solid var(--ck-plum);
+                border-radius: 2px;
+                background: transparent;
+                color: #231025;
+                font-size: 21px;
+                font-weight: 400;
+                font-family: "Bacasime Antique", serif;
+                cursor: pointer;
+            }
+
+            .sr-article {
+                background: var(--ck-white);
+                border-top: 1px solid #e1e1e1;
+                padding: 26px 0 34px;
+            }
+
+            .sr-article h2 {
+                margin: 0 0 12px;
+                font-size: 24px;
+                font-weight: 500;
+                color: #251327;
+            }
+
+            .sr-article h3 {
+                margin: 14px 0 8px;
+                font-size: 17px;
+                font-weight: 600;
+                color: #211423;
+            }
+
+            .sr-article p,
+            .sr-article li {
+                margin: 0;
+                font-size: 12px;
+                line-height: 1.55;
+                color: #3f3f3f;
+            }
+
+            .sr-article ul {
+                margin: 8px 0;
+                padding-left: 18px;
+            }
+
+            .sr-card-template {
+                display: none;
             }
 
             .ck-footer {
+                margin-top: 0;
                 background: #fff;
-                color: var(--ck-text);
+                color: #4d3554;
                 font-family: "Montserrat", sans-serif;
-                margin-top: var(--section-space);
             }
 
             .ck-footer-inner {
-                width: min(100%, var(--container-max));
+                width: min(100%, calc(var(--container-max) + (var(--container-pad) * 2)));
                 margin: 0 auto;
-                padding: 56px var(--container-padding) 0;
+                padding: 46px var(--container-pad) 0;
             }
 
             .ck-brand {
-                font-family: "Montserrat";
                 display: flex;
                 align-items: center;
                 gap: 10px;
-                margin-bottom: 12px;
+                margin-bottom: 10px;
             }
 
             .ck-brand span {
-                font-family: "Montserrat", serif;
-                font-size: 32px;
-                font-weight: 700;
-                color: var(--ck-text);
+                font-family: "Bacasime Antique", serif;
+                font-size: 44px;
                 line-height: 1;
+                color: #422448;
             }
 
             .ck-tagline {
+                margin: 0 0 12px;
                 font-size: 13px;
-                color: var(--ck-text);
-                margin: 0 0 14px;
+                color: #4d3554;
             }
 
             .ck-desc {
-                max-width: 960px;
+                max-width: 980px;
+                margin: 0 0 26px;
                 font-size: 12.5px;
-                line-height: 1.45;
-                color: var(--ck-muted);
-                margin: 0 0 28px;
+                color: #6b5a6d;
+                line-height: 1.5;
             }
 
             .ck-contact-title {
+                margin: 0 0 14px;
                 font-size: 14px;
-                font-weight: 700;
-                color: var(--ck-text);
-                margin: 0 0 16px;
+                color: #4d3554;
             }
 
             .ck-contact-row {
                 display: grid;
-                grid-template-columns: 1fr 1fr 1fr;
-                gap: 24px 40px;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 26px;
             }
 
             .ck-contact-col {
@@ -562,108 +415,83 @@
             .ck-contact-col:not(:last-child)::after {
                 content: "";
                 position: absolute;
-                top: 6px;
-                bottom: 6px;
-                right: -20px;
+                top: 4px;
+                bottom: 4px;
+                right: -13px;
                 width: 1px;
                 background: #2d2d2d;
-                opacity: 0.55;
+                opacity: 0.45;
             }
 
             .ck-contact-col h4,
             .ck-address-block h4,
             .ck-newsletter-block h4 {
-                font-size: 13px;
-                font-weight: 700;
-                color: var(--ck-text);
                 margin: 0 0 7px;
+                font-size: 13px;
+                color: #4d3554;
             }
 
             .ck-contact-col a,
-            .ck-address-block p {
-                display: block;
+            .ck-address-block p,
+            .ck-social-grid a {
                 font-size: 12.5px;
-                line-height: 1.35;
-                color: var(--ck-muted);
+                line-height: 1.45;
+                color: #6b5a6d;
                 text-decoration: none;
-                margin: 0;
-            }
-
-            .ck-contact-col a:hover,
-            .ck-social-grid a:hover {
-                color: var(--ck-plum);
             }
 
             .ck-social-grid {
                 display: grid;
                 grid-template-columns: repeat(2, max-content);
-                column-gap: 22px;
-                row-gap: 4px;
-            }
-
-            .ck-social-grid a {
-                display: flex;
-                align-items: center;
-                gap: 7px;
-                font-size: 12.5px;
-                color: var(--ck-muted);
-                text-decoration: none;
+                gap: 4px 18px;
             }
 
             .ck-social-icon {
                 width: 15px;
                 height: 15px;
                 border-radius: 50%;
-                background: var(--ck-plum);
+                background: #320c35;
                 color: #fff;
                 display: inline-flex;
                 align-items: center;
                 justify-content: center;
                 font-size: 9px;
-                font-weight: 700;
-                flex: 0 0 15px;
+                margin-right: 6px;
             }
 
             .ck-address-block {
-                max-width: 520px;
-                margin-top: 8px;
+                margin-top: 22px;
             }
 
             .ck-newsletter-block {
-                margin-top: 18px;
+                margin-top: 16px;
             }
 
             .ck-newsletter-form {
                 display: flex;
-                width: 320px;
-                height: 28px;
-                overflow: hidden;
-                border: 1px solid #cbbccc;
+                width: 290px;
+                max-width: 100%;
+                border: 1px solid #320c35;
                 border-radius: 4px;
-                margin-bottom: 14px;
+                overflow: hidden;
+                margin-bottom: 10px;
             }
 
             .ck-newsletter-form input {
-                flex: 1;
                 border: 0;
-                outline: 0;
-                padding: 0 12px;
+                flex: 1;
+                height: 34px;
+                padding: 0 10px;
                 font-size: 12px;
-                color: var(--ck-text);
-                background: #fff;
-            }
-
-            .ck-newsletter-form input::placeholder {
-                color: #b7aab7;
+                outline: none;
             }
 
             .ck-newsletter-form button {
-                width: 82px;
                 border: 0;
-                background: var(--ck-plum);
+                background: #320c35;
                 color: #fff;
-                font-size: 12px;
-                font-weight: 600;
+                width: 84px;
+                font-size: 11px;
                 cursor: pointer;
             }
 
@@ -671,239 +499,90 @@
                 display: inline-flex;
                 align-items: center;
                 justify-content: center;
-                width: 160px;
-                height: 30px;
-                border: 1px solid #917196;
+                width: 190px;
+                height: 32px;
+                border: 1px solid #320c35;
                 border-radius: 4px;
-                text-decoration: none;
-                color: var(--ck-text);
+                color: #320c35;
                 font-size: 12px;
-                font-weight: 600;
-                background: #fff;
+                text-decoration: none;
             }
 
             .ck-divider {
-                width: min(100%, var(--container-max));
+                width: min(100%, calc(var(--container-max) + (var(--container-pad) * 2)));
                 height: 1px;
-                background: #bdb2be;
-                margin: 56px auto 46px;
-                opacity: 0.85;
+                background: #d5d5d5;
+                margin: 40px auto 20px;
             }
 
             .ck-links-grid {
-                width: min(100%, var(--container-max));
+                width: min(100%, calc(var(--container-max) + (var(--container-pad) * 2)));
                 margin: 0 auto;
-                padding: 0 var(--container-padding) 26px;
+                padding: 0 var(--container-pad) 28px;
                 display: grid;
                 grid-template-columns: repeat(5, minmax(0, 1fr));
-                gap: 28px 24px;
+                gap: 26px;
             }
 
             .ck-links-col h5 {
-                font-size: 12.5px;
-                font-weight: 700;
-                color: var(--ck-text);
-                margin: 0 0 12px;
-                text-transform: none;
-                letter-spacing: 0;
+                margin: 0 0 8px;
+                font-size: 12px;
+                color: #4d3554;
             }
 
             .ck-links-col a {
                 display: block;
                 font-size: 12px;
-                line-height: 1.95;
-                color: var(--ck-muted);
+                line-height: 1.45;
+                color: #6b5a6d;
                 text-decoration: none;
             }
 
-            .ck-links-col a:hover {
-                color: var(--ck-plum);
-            }
-
             .ck-bottom-bar {
-                background: var(--ck-plum);
+                height: 42px;
+                background: #320c35;
                 color: #fff;
-                text-align: left;
-                padding: 16px
-                    max(
-                        var(--container-padding),
-                        calc((100vw - var(--container-max)) / 2)
-                    );
-                font-size: 12px;
-                border-top: 1px solid rgba(255, 255, 255, 0.12);
-            }
-
-            [data-include] {
-                display: block;
-            }
-
-            [data-include="./components/popular-searches.html"]
-                .popular-searches,
-            [data-include="./components/vendor-categories.html"]
-                .vendor-categories,
-            [data-include="./components/featured-vendors.html"]
-                .featured-vendors,
-            [data-include="./components/moments.html"] .moments-section {
-                width: min(
-                    100%,
-                    calc(var(--container-max) + (var(--container-padding) * 2))
-                );
-                margin: 0 auto;
-                padding: var(--section-space) var(--container-padding);
-            }
-
-            [data-include="./components/popular-searches.html"] .section-header,
-            [data-include="./components/vendor-categories.html"]
-                .section-header,
-            [data-include="./components/featured-vendors.html"] .section-header,
-            [data-include="./components/moments.html"] .section-header {
+                display: flex;
                 align-items: center;
-                gap: 20px;
-                margin-bottom: 28px;
-            }
-
-            [data-include="./components/popular-searches.html"] .cards-grid,
-            [data-include="./components/featured-vendors.html"] .cards-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: var(--grid-gap);
-                align-items: stretch;
-            }
-
-            [data-include="./components/vendor-categories.html"] .cards-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-                gap: 20px;
-                align-items: stretch;
-            }
-
-            [data-include="./components/moments.html"] .cards-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                gap: var(--grid-gap);
-                align-items: stretch;
-            }
-
-            [data-include="./components/popular-searches.html"] .card,
-            [data-include="./components/vendor-categories.html"] .card,
-            [data-include="./components/featured-vendors.html"] .card,
-            [data-include="./components/moments.html"] .card,
-            .vendor-card,
-            .moment-card,
-            .gallery-card {
-                height: 100%;
-            }
-
-            [data-include="./components/popular-searches.html"] .card-img,
-            [data-include="./components/vendor-categories.html"] .card-img,
-            [data-include="./components/featured-vendors.html"] .card-img,
-            [data-include="./components/moments.html"] .card-img,
-            .popular-card img,
-            .category-card img,
-            .vendor-card-img,
-            .moment-card img,
-            .gallery-card img {
-                width: 100%;
-                height: auto;
-                object-fit: cover;
-            }
-
-            [data-include="./components/moments.html"] .section-subtitle {
-                margin-bottom: 28px;
-            }
-
-            #welcome-modal-frame {
-                display: none;
-                position: fixed;
-                inset: 0;
-                width: 100%;
-                height: 100%;
-                border: 0;
-                background: transparent;
-                z-index: 1200;
-            }
-
-            #welcome-modal-frame.active {
-                display: block;
+                justify-content: center;
+                font-size: 11px;
             }
 
             @media (max-width: 1024px) {
-                .nav-search {
-                    margin: 0 24px;
-                }
-
-                .hero-content h1 {
-                    font-size: 40px;
-                }
-
-                .ck-contact-row,
-                .ck-links-grid {
+                .results-grid {
                     grid-template-columns: repeat(2, minmax(0, 1fr));
+                }
+
+                .sr-quote-form {
+                    grid-template-columns: 1fr 1fr;
+                }
+
+                .ck-links-grid {
+                    grid-template-columns: repeat(3, minmax(0, 1fr));
                 }
             }
 
             @media (max-width: 768px) {
                 :root {
-                    --container-padding: 16px;
-                    --grid-gap: 20px;
+                    --container-pad: 16px;
                 }
 
-                nav {
-                    gap: 16px;
-                    flex-wrap: wrap;
-                    height: auto;
-                    padding-top: 12px;
-                    padding-bottom: 12px;
+                .sr-filter-btn {
+                    margin-left: 0;
                 }
 
-                .nav-search {
-                    max-width: none;
-                    margin: 0;
-                    order: 3;
-                    width: 100%;
+                .sr-title {
+                    font-size: 32px;
                 }
 
-                .nav-links {
-                    gap: 16px;
-                    flex-wrap: wrap;
+                .sr-quote-title {
+                    font-size: 30px;
                 }
 
-                .hero {
-                    height: auto;
-                    min-height: 420px;
-                    padding: 72px 0;
-                }
-
-                .hero-content h1 {
-                    font-size: 34px;
-                }
-
-                .hero-search {
-                    width: 100%;
-                    flex-direction: column;
-                    border-radius: 12px;
-                }
-
-                .hero-search select,
-                .hero-search button {
-                    width: 100%;
-                    border-right: none;
-                }
-
-                .hero-search select {
-                    border-bottom: 1px solid var(--border);
-                }
-
-                .section-header,
-                [data-include="./components/popular-searches.html"]
-                    .section-header,
-                [data-include="./components/vendor-categories.html"]
-                    .section-header,
-                [data-include="./components/featured-vendors.html"]
-                    .section-header,
-                [data-include="./components/moments.html"] .section-header {
-                    align-items: flex-start;
-                    flex-direction: column;
+                .sr-view-more {
+                    min-width: 180px;
+                    height: 42px;
+                    font-size: 18px;
                 }
 
                 .ck-contact-row,
@@ -915,45 +594,295 @@
                     display: none;
                 }
 
-                .ck-newsletter-form {
-                    width: 100%;
-                    max-width: 320px;
+                .ck-brand span {
+                    font-size: 34px;
                 }
             }
 
-            @media (max-width: 480px) {
-                .hero-content h1 {
-                    font-size: 28px;
+            @media (max-width: 560px) {
+                .results-grid {
+                    grid-template-columns: 1fr;
                 }
 
-                .section-header h2,
-                [data-include="./components/popular-searches.html"]
-                    .section-title,
-                [data-include="./components/vendor-categories.html"]
-                    .section-title,
-                [data-include="./components/featured-vendors.html"]
-                    .section-title,
-                [data-include="./components/moments.html"] .section-title {
-                    font-size: 24px;
+                .sr-quote-form {
+                    grid-template-columns: 1fr;
+                }
+
+                .sr-chip {
+                    min-width: 84px;
+                    font-size: 11px;
+                    padding: 7px 10px;
+                }
+
+                .results-grid .vendor-card .card-img {
+                    height: 184px;
                 }
             }
         </style>
     </head>
-    <body>
+    <body class="search-results-page">
         <div data-include="../components/navbar.html"></div>
-        <!-- <div data-include="../components/hero.html"></div> -->
-        
-        <!-- <div data-include="../components/popular-searches.html"></div>
-        <div data-include="../components/vendor-categories.html"></div> -->
-        <!-- <div data-include="../components/featured-vendors.html"></div>
-        <div data-include="../components/moments.html"></div> -->
+
+        <main class="sr-main">
+            <section class="sr-top">
+                <div class="sr-container">
+                    <p class="sr-breadcrumb">Home / Wedding Planners / Jaipur</p>
+                    <h1 class="sr-title">Wedding Venues</h1>
+                    <p class="sr-meta">Showing 23965 results as per your search criteria</p>
+
+                    <div class="sr-filter-row">
+                        <button class="sr-chip" type="button">Budget</button>
+                        <button class="sr-chip" type="button">Services</button>
+                        <button class="sr-chip" type="button">Ratings</button>
+                        <button class="sr-chip" type="button">Shortlisted</button>
+                        <button class="sr-filter-btn" type="button" aria-label="Filter">
+                            <svg viewBox="0 0 16 16" aria-hidden="true">
+                                <path d="M1.5 3a1 1 0 0 1 1-1h11a1 1 0 1 1 0 2h-11a1 1 0 0 1-1-1zm3 5a1 1 0 0 1 1-1h5a1 1 0 1 1 0 2h-5a1 1 0 0 1-1-1zm2 5a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1z"/>
+                            </svg>
+                            Filter
+                        </button>
+                    </div>
+
+                    <div class="sr-city-strip" data-include="../components/cities.html"></div>
+                </div>
+            </section>
+
+            <section class="sr-results-block">
+                <div class="sr-container">
+                    <div id="results-grid-primary" class="results-grid"></div>
+                </div>
+            </section>
+
+            <section class="sr-quote-strip">
+                <div class="sr-container">
+                    <h2 class="sr-quote-title">Get FREE quotes from multiple vendors</h2>
+                    <form class="sr-quote-form" action="#" method="post">
+                        <input class="sr-field" type="tel" placeholder="Enter mobile number" aria-label="Mobile number" />
+                        <select class="sr-select" aria-label="Select city">
+                            <option>Select City</option>
+                            <option>Jaipur</option>
+                            <option>Delhi</option>
+                            <option>Mumbai</option>
+                        </select>
+                        <select class="sr-select" aria-label="Select vendor category">
+                            <option>Select vendor Category</option>
+                            <option>Wedding Venue</option>
+                            <option>Photographer</option>
+                            <option>Decorator</option>
+                        </select>
+                        <button class="sr-submit" type="submit">Submit</button>
+                    </form>
+                </div>
+            </section>
+
+            <section class="sr-results-block alt">
+                <div class="sr-container">
+                    <div id="results-grid-secondary" class="results-grid"></div>
+                    <div class="sr-view-more-wrap">
+                        <button class="sr-view-more" type="button">View More</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="sr-article">
+                <div class="sr-container">
+                    <h2>Wedding Decorators in Jaipur</h2>
+                    <p>
+                        Indian weddings are known around the world for their grandiosity, splendid wedding decor and
+                        celebratory ambiance. Its grandeur is mesmerizing to look at. The most important part of this
+                        beautiful picturesque wedding landscape is the wedding decorations. There are many wedding
+                        decorators in Jaipur that you can choose from. Since an Indian wedding involves a lot of
+                        ceremonies, you need proper and unique wedding decorations for your wedding, be it a sangeet
+                        decor, a reception decor or ring ceremony, it all needs to be beautiful and classy. Even if
+                        you want an intimate wedding with a small party, you do need the decorations done nicely. Some
+                        of the questions that might arise this process for you are listed down below.
+                    </p>
+
+                    <h3>How much wedding decorators typically charge?</h3>
+                    <p>
+                        Usually, wedding decorators charge anything in between Rs. 75,000 - Rs. 5 lakhs with the amount
+                        varying on the style of decor you choose and the extent of decorations. Having firm tent
+                        decorations and the indoor decor to full outdoor decor, Jaipur is known for its grand royal
+                        weddings and hence the price range might go slightly up during peak wedding season. Most Jaipur
+                        wedding decorators offer overall decoration packages, but if you do search a bit, you can find
+                        wedding decorators in budget as well.
+                    </p>
+
+                    <h3>What are the latest wedding decoration trends?</h3>
+                    <p>
+                        This year has seen some of the best wedding trends and some of them are listed below:
+                    </p>
+                    <ul>
+                        <li>
+                            A Royal Rajasthani wedding: Book your favourite palace right now, because this trend is one
+                            of the favourites for Jaipur Weddings. With a grand palace lights galore and assorted
+                            flower decorations, this wedding decoration trend is perfect for a royal wedding.
+                        </li>
+                        <li>
+                            Bollywood themed wedding: Perfect for all the filmy fans and retro lovers. This wedding
+                            decoration trend starts with some of the best dialogues of Bollywood movies and can even
+                            make it into a Bollywood party with themed props.
+                        </li>
+                        <li>
+                            Bohemian wedding decorations: Layering up with all the bold colours that you have. This
+                            reception decor trend begins with colourful tent decoration, vibrant hangings on the wall
+                            with colourful fabrics and vibrant flowers. Flower decorations are colourful city after all
+                            and the Jaipur wedding decorators can help you make most of the natural surroundings.
+                        </li>
+                    </ul>
+
+                    <h3>What are the questions to ask wedding decorators before booking them?</h3>
+                    <p>
+                        Since the outdoor decor is an absolutely irreplaceable part of your entire wedding ensemble,
+                        you cannot miss it up. It is better to know everything before making any decisions. Work
+                        experience: How many years have you been into this business? This question is important because
+                        decorators are all about understanding and utilising the space efficiently, which comes from
+                        experience.
+                    </p>
+                    <p>
+                        Have you done my venue before? If yes, then there is nothing better than it. This way, the
+                        wedding decorator would know how to use the venue efficiently with all the available resources.
+                    </p>
+                    <p>
+                        How many weddings do you do in a day? You want your marriage and sangeet decor to be perfect
+                        and unique. It is better to know if it clashes with any other wedding or not.
+                    </p>
+                    <p>
+                        There are many wedding decorators in Jaipur that will most certainly match your budget and
+                        vision of the wedding. All you need to do is start selecting the theme you want and then
+                        discuss it with the right people, and you are good to go.
+                    </p>
+                </div>
+            </section>
+
+            <div id="main-card-template" class="sr-card-template" data-include="../components/main-card.html"></div>
+        </main>
+
         <div data-include="../components/footer.html"></div>
-        <iframe
-            id="welcome-modal-frame"
-            title="Welcome"
-            src="../components/welcome.html"
-        ></iframe>
+
         <script src="../scripts/include.js"></script>
-        <script src="../scripts/auth-flow.js"></script>
+        <script>
+            function toggleHeartOnCard(card) {
+                const heartBtn = card.querySelector(".heart-btn");
+                if (!heartBtn) {
+                    return;
+                }
+
+                let liked = false;
+                const outline = heartBtn.querySelector(".heart-outline");
+                const filled = heartBtn.querySelector(".heart-filled");
+
+                heartBtn.removeAttribute("id");
+
+                heartBtn.addEventListener("click", () => {
+                    liked = !liked;
+                    if (outline && filled) {
+                        outline.style.display = liked ? "none" : "";
+                        filled.style.display = liked ? "block" : "";
+                    }
+                });
+
+                heartBtn.addEventListener("mouseleave", () => {
+                    if (outline && filled) {
+                        outline.style.display = liked ? "none" : "";
+                        filled.style.display = liked ? "block" : "";
+                    }
+                });
+            }
+
+            function applyCardData(card, data) {
+                const image = card.querySelector(".card-img");
+                const name = card.querySelector(".card-name");
+                const price = card.querySelector(".card-price");
+                const location = card.querySelector(".card-location");
+                const type = card.querySelector(".card-type");
+                const rating = card.querySelector(".card-rating");
+                const reviews = card.querySelector(".reviews");
+
+                if (image) {
+                    image.src = data.image;
+                    image.alt = data.name;
+                }
+                if (name) {
+                    name.textContent = data.name;
+                }
+                if (price) {
+                    price.textContent = data.price;
+                }
+                if (location) {
+                    location.textContent = data.location;
+                }
+                if (type) {
+                    type.textContent = data.type;
+                }
+                if (rating) {
+                    rating.firstChild.textContent = `⭐ ${data.rating} `;
+                }
+                if (reviews) {
+                    reviews.textContent = `${data.reviews} Reviews`;
+                }
+            }
+
+            function renderCardsFromTemplate(templateCard, mountSelector, count, list) {
+                const mount = document.querySelector(mountSelector);
+                if (!mount || !templateCard) {
+                    return;
+                }
+
+                for (let i = 0; i < count; i += 1) {
+                    const card = templateCard.cloneNode(true);
+                    const data = list[i % list.length];
+                    applyCardData(card, data);
+                    toggleHeartOnCard(card);
+                    mount.appendChild(card);
+                }
+            }
+
+            window.addEventListener("includes:loaded", () => {
+                const footerLogo = document.querySelector(".ck-footer .ck-brand img");
+                if (footerLogo) {
+                    footerLogo.src = "../assets/logo.png";
+                }
+
+                const templateCard = document.querySelector("#main-card-template .vendor-card");
+
+                if (!templateCard) {
+                    return;
+                }
+
+                const cardData = [
+                    {
+                        name: "Royal Weddingz by...",
+                        price: "₹35,00,000",
+                        location: "Jaipur, Rajasthan",
+                        type: "Outdoor",
+                        rating: "4.9",
+                        reviews: "90",
+                        image: "../assets/main-card.jpg",
+                    },
+                    {
+                        name: "Majestic Venue Co...",
+                        price: "₹28,50,000",
+                        location: "Jaipur, Rajasthan",
+                        type: "Outdoor",
+                        rating: "4.8",
+                        reviews: "82",
+                        image: "../assets/royal-palace.jpg",
+                    },
+                    {
+                        name: "Palace Celebration...",
+                        price: "₹41,00,000",
+                        location: "Jaipur, Rajasthan",
+                        type: "Indoor",
+                        rating: "4.9",
+                        reviews: "124",
+                        image: "../assets/main-card.jpg",
+                    },
+                ];
+
+                renderCardsFromTemplate(templateCard, "#results-grid-primary", 9, cardData);
+                renderCardsFromTemplate(templateCard, "#results-grid-secondary", 6, cardData);
+            });
+        </script>
     </body>
 </html>
