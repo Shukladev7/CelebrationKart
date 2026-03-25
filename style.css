@@ -610,14 +610,14 @@ body.search-results-page {
 
     .sr-title {
         margin: 0;
-        font-size: 36px;
+        font-size: 30px;
         line-height: 1.1;
     }
 
     .sr-mobile-count {
         display: block;
         margin: 2px 0 0;
-        font-size: 14px;
+        font-size: 12px;
         color: #3c2c3f;
     }
 
@@ -641,7 +641,7 @@ body.search-results-page {
         top: 50%;
         transform: translateY(-50%);
         pointer-events: none;
-        font-size: 13px;
+        font-size: 11px;
         color: #320c35;
     }
 
@@ -653,7 +653,7 @@ body.search-results-page {
         background: #fff;
         height: 48px;
         padding: 0 36px 0 16px;
-        font-size: 16px;
+        font-size: 14px;
         color: #320c35;
         outline: none;
     }
@@ -712,7 +712,7 @@ body.search-results-page {
     }
 
     .sr-mobile-category-item span {
-        font-size: 12px;
+        font-size: 11px;
         line-height: 1.15;
         text-align: center;
         color: #1d1d1d;
@@ -732,14 +732,14 @@ body.search-results-page {
 
     .sr-mobile-section-head h2 {
         margin: 0;
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 500;
         color: #320c35;
         line-height: 1.15;
     }
 
     .sr-mobile-section-head a {
-        font-size: 14px;
+        font-size: 12px;
         color: #320c35;
         opacity: 0.85;
     }
@@ -760,7 +760,7 @@ body.search-results-page {
     .sr-view-more {
         min-width: 180px;
         height: 42px;
-        font-size: 18px;
+        font-size: 15px;
     }
 
     .ck-contact-row,
@@ -773,7 +773,7 @@ body.search-results-page {
     }
 
     .ck-brand span {
-        font-size: 34px;
+        font-size: 30px;
     }
 
     .results-grid .vendor-card {
@@ -805,7 +805,7 @@ body.search-results-page {
 
     .results-grid .vendor-card .card-name,
     .results-grid .vendor-card .card-price {
-        font-size: 18px;
+        font-size: 16px;
     }
 
     .results-grid .vendor-card .card-name {
@@ -814,16 +814,16 @@ body.search-results-page {
 
     .results-grid .vendor-card .card-location,
     .results-grid .vendor-card .card-type {
-        font-size: 14px;
+        font-size: 12px;
     }
 
     .results-grid .vendor-card .card-rating {
         margin-top: 8px;
-        font-size: 15px;
+        font-size: 13px;
     }
 
     .results-grid .vendor-card .card-rating .reviews {
-        font-size: 14px;
+        font-size: 12px;
     }
 
     .results-grid .vendor-card .card-actions {
@@ -835,7 +835,7 @@ body.search-results-page {
     .results-grid .vendor-card .btn-details {
         height: 40px;
         border-radius: 7px;
-        font-size: 15px;
+        font-size: 13px;
     }
 
     .results-grid .vendor-card .btn-enquiry {
@@ -876,7 +876,7 @@ body.search-results-page {
 
     .sr-quote-title {
         margin: 0 0 12px;
-        font-size: 20px;
+        font-size: 18px;
         line-height: 1.25;
     }
 
@@ -889,7 +889,7 @@ body.search-results-page {
     .sr-select,
     .sr-submit {
         height: 42px;
-        font-size: 14px;
+        font-size: 13px;
         border-radius: 8px;
     }
 
@@ -900,18 +900,18 @@ body.search-results-page {
     }
 
     .sr-article h2 {
-        font-size: 21px;
+        font-size: 18px;
         margin-bottom: 10px;
     }
 
     .sr-article h3 {
-        font-size: 16px;
+        font-size: 14px;
         margin: 12px 0 8px;
     }
 
     .sr-article p,
     .sr-article li {
-        font-size: 13px;
+        font-size: 12px;
         line-height: 1.55;
     }
 
@@ -954,7 +954,7 @@ body.search-results-page {
         align-items: center;
         justify-content: center;
         gap: 4px;
-        font-size: 12px;
+        font-size: 11px;
         font-weight: 500;
     }
 
@@ -976,7 +976,7 @@ body.search-results-page {
 
     .sr-chip {
         min-width: 84px;
-        font-size: 11px;
+        font-size: 10px;
         padding: 7px 10px;
     }
 

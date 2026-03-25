@@ -849,7 +849,7 @@
             }
 
             .home-mobile-city-wrap {
-                padding: 14px 16px 10px;
+                padding: 12px 16px 8px;
                 border-bottom: 1px solid #ebe8ef;
             }
 
@@ -859,14 +859,14 @@
                 border: 1px solid #cfc7d6;
                 border-radius: 12px;
                 padding: 0 14px;
-                font-size: 16px;
+                font-size: 14px;
                 color: #320c35;
                 background: #fff;
                 outline: none;
             }
 
             .home-mobile-categories {
-                padding: 12px 16px 16px;
+                padding: 10px 16px 12px;
                 border-bottom: 1px solid #ebe8ef;
             }
 
@@ -903,24 +903,24 @@
 
             .home-mobile-cat-item span {
                 display: block;
-                font-size: 12px;
+                font-size: 11px;
                 line-height: 1.2;
             }
 
             .home-mobile-section {
-                padding: 14px 16px 6px;
+                padding: 12px 16px 2px;
             }
 
             .home-mobile-section-head {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                margin-bottom: 10px;
+                margin-bottom: 8px;
             }
 
             .home-mobile-section-head h2 {
                 margin: 0;
-                font-size: 16px;
+                font-size: 14px;
                 font-weight: 500;
                 color: #320c35;
                 line-height: 1.2;
@@ -928,7 +928,7 @@
 
             .home-mobile-section-head a {
                 color: #320c35;
-                font-size: 10.14px;
+                font-size: 10px;
                 font-weight: 400;
                 text-decoration: underline;
                 text-underline-offset: 2px;
@@ -947,7 +947,7 @@
                 margin-right: -16px;
                 padding-left: 16px;
                 padding-right: 16px;
-                padding-bottom: 4px;
+                padding-bottom: 2px;
             }
             .moments-section {
             }
@@ -996,7 +996,7 @@
 
             .home-mobile-card-title,
             .home-mobile-card-price {
-                font-size: 17px;
+                font-size: 15px;
                 color: #151515;
             }
 
@@ -1013,12 +1013,12 @@
 
             .home-mobile-card-sub {
                 margin-bottom: 6px;
-                font-size: 14px;
+                font-size: 12px;
                 color: #4e4e4e;
             }
 
             .home-mobile-card-rating {
-                font-size: 15px;
+                font-size: 13px;
                 color: #222;
                 margin-bottom: 10px;
             }
@@ -1035,7 +1035,7 @@
             .home-mobile-btn {
                 height: 40px;
                 border-radius: 8px;
-                font-size: 15px;
+                font-size: 13px;
                 font-weight: 500;
                 cursor: pointer;
                 flex: 1;
@@ -1077,7 +1077,7 @@
                 align-items: center;
                 justify-content: center;
                 gap: 4px;
-                font-size: 12px;
+                font-size: 11px;
                 font-weight: 500;
             }
 
@@ -1120,7 +1120,7 @@
                     display: flex;
                     flex-direction: column;
                     background: #f5f4ef;
-                    padding-bottom: 90px;
+                    padding-bottom: 82px;
                 }
 
                 .home-mobile-bottom-nav {
@@ -1154,7 +1154,7 @@
                 }
 
                 .hero-content h1 {
-                    font-size: 34px;
+                    font-size: 30px;
                 }
 
                 .hero-search {
@@ -1202,7 +1202,7 @@
 
             @media (max-width: 480px) {
                 .hero-content h1 {
-                    font-size: 28px;
+                    font-size: 24px;
                 }
 
                 .section-header h2,
@@ -1213,7 +1213,7 @@
                 [data-include="./components/featured-vendors.html"]
                     .section-title,
                 [data-include="./components/moments.html"] .section-title {
-                    font-size: 24px;
+                    font-size: 20px;
                 }
             }
             .moments-section {
@@ -1261,25 +1261,37 @@
 
             <section class="home-mobile-categories">
                 <div class="home-mobile-categories-row">
-                    <a class="home-mobile-cat-item" href="#">
+                    <a
+                        class="home-mobile-cat-item"
+                        href="./pages/searchResults.html?vendor=all"
+                    >
                         <img src="./assets/jaipur.png" alt="Wedding Planners" />
                         <span>Wedding Planners</span>
                     </a>
-                    <a class="home-mobile-cat-item" href="#">
+                    <a
+                        class="home-mobile-cat-item"
+                        href="./pages/searchResults.html?vendor=photographer"
+                    >
                         <img
                             src="./assets/photographer.jpg"
                             alt="Photographer"
                         />
                         <span>Photographer</span>
                     </a>
-                    <a class="home-mobile-cat-item" href="#">
+                    <a
+                        class="home-mobile-cat-item"
+                        href="./pages/searchResults.html?vendor=makeup"
+                    >
                         <img
                             src="./assets/makeup-artist.jpg"
                             alt="Makeup Artist"
                         />
                         <span>Makeup Artist</span>
                     </a>
-                    <a class="home-mobile-cat-item" href="#">
+                    <a
+                        class="home-mobile-cat-item"
+                        href="./pages/searchResults.html?vendor=venue"
+                    >
                         <img src="./assets/delhi.png" alt="Wedding Venues" />
                         <span>Wedding Venues</span>
                     </a>
@@ -1287,27 +1299,28 @@
             </section>
 
             <section class="home-mobile-section">
-                <section class="home-mobile-section">
-                    <div class="home-mobile-section-head">
-                        <h2>Venues in your city</h2>
-                        <a href="#">View All</a>
-                    </div>
-                    <div class="home-mobile-card-list" id="venues-card-list"></div>
-                </section>
-                <section class="home-mobile-section">
-                    <div class="home-mobile-section-head">
-                        <h2>Featured Vendors</h2>
-                        <a href="#">View All</a>
-                    </div>
-                    <div class="home-mobile-card-list" id="featured-card-list"></div>
-                </section>
-                <section class="home-mobile-section">
-                    <div class="home-mobile-section-head">
-                        <h2>Moments We Made Magical</h2>
-                        <a href="#">View All</a>
-                    </div>
-                    <section class=" home-mobile-section home-mobile-card-list">
-                        <div class="cards-grid">
+                <div class="home-mobile-section-head">
+                    <h2>Venues in your city</h2>
+                    <a href="#">View All</a>
+                </div>
+                <div class="home-mobile-card-list" id="venues-card-list"></div>
+            </section>
+
+            <section class="home-mobile-section">
+                <div class="home-mobile-section-head">
+                    <h2>Featured Vendors</h2>
+                    <a href="#">View All</a>
+                </div>
+                <div class="home-mobile-card-list" id="featured-card-list"></div>
+            </section>
+
+            <section class="home-mobile-section">
+                <div class="home-mobile-section-head">
+                    <h2>Moments We Made Magical</h2>
+                    <a href="#">View All</a>
+                </div>
+                <div class="home-mobile-card-list">
+                    <div class="cards-grid">
                             <div class="card home-mobile-card" >
                                 <img
                                     class="card-img"
@@ -1355,19 +1368,17 @@
                                     <p class="card-date">12 March 2026</p>
                                 </div>
                             </div>
-                        </div>
-                    </section>
-                </section>
-
-                <section class="home-mobile-section">
-                    <div class="home-mobile-section-head">
-                        <h2>Photo Gallery</h2>
-                        <a href="#">View All</a>
                     </div>
+                </div>
+            </section>
 
-                    <section class=" home-mobile-section home-mobile-card-list">
-
-                        <div class="lehenga cards-grid">
+            <section class="home-mobile-section">
+                <div class="home-mobile-section-head">
+                    <h2>Photo Gallery</h2>
+                    <a href="#">View All</a>
+                </div>
+                <div class="home-mobile-card-list">
+                    <div class="lehenga cards-grid">
                             <div class="card home-mobile-card">
                                 <img
                                     class="card-img"
@@ -1406,10 +1417,11 @@
                                 <p class="card-label">Bridal Lehenga</p>
                             </div>
 
-                        </div>
-                    </section>
-                </section>
-                <div data-include="./components/footer.html"></div>
+                    </div>
+                </div>
+            </section>
+
+            <div data-include="./components/footer.html"></div>
         </main>
 
         <div class="home-desktop-content">
