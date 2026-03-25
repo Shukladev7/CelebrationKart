@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="../style.css" />
         <title>Wedding Venues Search Results | CelebrationKart</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="../assets/logo-white.png">
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -44,11 +45,7 @@
                             aria-label="Open filters"
                             data-filter="advanced"
                         >
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <path
-                                    d="M4 6.25a1.25 1.25 0 1 1 0-2.5h8.5a1.25 1.25 0 1 1 0 2.5H4Zm13.75 2.5a2 2 0 1 0-2.5 0V19a1.25 1.25 0 1 0 2.5 0V8.75ZM11.5 12a1.25 1.25 0 1 1 0 2.5H4a1.25 1.25 0 1 1 0-2.5h7.5Zm8.5 7a1.25 1.25 0 1 0 0-2.5h-7.5a1.25 1.25 0 1 0 0 2.5H20ZM8.75 4a2 2 0 1 0-2.5 0v14.25a1.25 1.25 0 0 0 2.5 0V4Z"
-                                />
-                            </svg>
+                            <img src="../assets/filter.png"/>
                         </button>
                     </div>
 
@@ -103,44 +100,9 @@
                 </div>
             </section>
 
-            <section class="sr-mobile-categories-section">
-                <div class="sr-container">
-                    <div class="sr-mobile-categories-row">
-                        <a class="sr-mobile-category-item" href="#">
-                            <img
-                                src="../assets/jaipur.png"
-                                alt="Wedding Planners"
-                            />
-                            <span>Wedding Planners</span>
-                        </a>
-                        <a class="sr-mobile-category-item" href="#">
-                            <img
-                                src="../assets/photographer.jpg"
-                                alt="Wedding Photographer"
-                            />
-                            <span>Wedding Photographer</span>
-                        </a>
-                        <a class="sr-mobile-category-item" href="#">
-                            <img
-                                src="../assets/makeup-artist.jpg"
-                                alt="Makeup Artist"
-                            />
-                            <span>Makeup Artist</span>
-                        </a>
-                        <a class="sr-mobile-category-item" href="#">
-                            <img src="../assets/delhi.png" alt="Wedding Venues" />
-                            <span>Wedding Venues</span>
-                        </a>
-                    </div>
-                </div>
-            </section>
-
+ 
             <section class="sr-results-block">
                 <div class="sr-container">
-                    <div class="sr-mobile-section-head">
-                        <h2>Venues in your city</h2>
-                        <a href="#">View All</a>
-                    </div>
                     <div id="results-grid-primary" class="results-grid"></div>
                 </div>
             </section>
@@ -184,10 +146,6 @@
 
             <section class="sr-results-block alt">
                 <div class="sr-container">
-                    <div class="sr-mobile-section-head">
-                        <h2>Featured Vendors</h2>
-                        <a href="#">View All</a>
-                    </div>
                     <div id="results-grid-secondary" class="results-grid"></div>
                     <div class="sr-view-more-wrap">
                         <button class="sr-view-more" type="button">
@@ -321,7 +279,7 @@
         </main>
 
         <nav class="sr-mobile-bottom-nav" aria-label="Bottom navigation">
-            <a href="#" class="sr-mobile-tab is-active">
+            <a href="../index.html" class="sr-mobile-tab">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path
                         d="M4 10.5 12 4l8 6.5V19a1 1 0 0 1-1 1h-5v-5h-4v5H5a1 1 0 0 1-1-1v-8.5Z"
@@ -337,7 +295,11 @@
                 </svg>
                 <span>Send Enquiry</span>
             </a>
-            <a href="#" class="sr-mobile-tab">
+            <a
+                href="#"
+                class="sr-mobile-tab is-active"
+                data-open-mobile-search
+            >
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path
                         d="M10.5 3a7.5 7.5 0 0 1 5.91 12.12l3.24 3.23a1 1 0 1 1-1.42 1.42L15 16.54A7.5 7.5 0 1 1 10.5 3Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z"
@@ -724,6 +686,10 @@
                 }
             }
 
+            function isMobileViewport() {
+                return window.matchMedia("(max-width: 768px)").matches;
+            }
+
             window.addEventListener("includes:loaded", () => {
                 const context = buildSearchContext();
                 applyDynamicCopy(context);
@@ -805,17 +771,20 @@
                 }
 
                 const cardData = buildCardData(context);
+                const mobileView = isMobileViewport();
+                const primaryCount = mobileView ? 15 : 9;
+                const secondaryCount = mobileView ? 0 : 6;
 
                 renderCardsFromTemplate(
                     templateCard,
                     "#results-grid-primary",
-                    9,
+                    primaryCount,
                     cardData,
                 );
                 renderCardsFromTemplate(
                     templateCard,
                     "#results-grid-secondary",
-                    6,
+                    secondaryCount,
                     cardData,
                 );
             });
