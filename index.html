@@ -1,11 +1,15 @@
 <!doctype html>
 <html lang="en">
     <head>
-
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>CelebrationKart - Plan Your Perfect Wedding</title>
-        <link rel="icon" type="image/png" sizes="32x32" href="./assets/logo-white.png">
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="./assets/logo-white.png"
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -36,7 +40,7 @@
                 --border: #e8e0f0;
                 --container-max: 1200px;
                 --container-padding: 20px;
-                --section-space: clamp(48px, 7vw, 80px);
+                --section-space: 40px;
                 --grid-gap: 24px;
             }
 
@@ -690,6 +694,11 @@
                 background: #fff;
             }
 
+            .ck-vendor-btn:hover {
+                background: #320c35;
+                color: #ffffff;
+            }
+
             .ck-divider {
                 width: min(100%, var(--container-max));
                 height: 1px;
@@ -815,7 +824,6 @@
                 height: auto;
                 object-fit: cover;
                 object-position: center;
-
             }
 
             [data-include="./components/moments.html"] .section-subtitle {
@@ -971,7 +979,7 @@
             .home-mobile-card img {
                 width: auto;
                 height: 150px;
-                object-fit:cover;
+                object-fit: cover;
                 object-position: center;
                 display: block;
             }
@@ -1219,7 +1227,6 @@
             .moments-section {
             }
 
-
             .section-subtitle {
                 font-size: 14px;
                 font-weight: 500;
@@ -1227,7 +1234,6 @@
                 margin-bottom: 32px;
                 line-height: 1.5;
             }
-
 
             .card {
                 background: #ffffff;
@@ -1244,7 +1250,6 @@
                 box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
             }
         </style>
-
     </head>
     <body>
         <div data-include="./components/navbar.html"></div>
@@ -1311,7 +1316,10 @@
                     <h2>Featured Vendors</h2>
                     <a href="#">View All</a>
                 </div>
-                <div class="home-mobile-card-list" id="featured-card-list"></div>
+                <div
+                    class="home-mobile-card-list"
+                    id="featured-card-list"
+                ></div>
             </section>
 
             <section class="home-mobile-section">
@@ -1321,53 +1329,59 @@
                 </div>
                 <div class="home-mobile-card-list">
                     <div class="cards-grid">
-                            <div class="card home-mobile-card" >
-                                <img
-                                    class="card-img"
-                                    src="/assets/royal-palace.jpg"
-                                    alt="Royal Palace Wedding in Jaipur"
-                                />
-                                <div class="card-body">
-                                    <p class="card-title">Royal Palace Wedding in Jaipur</p>
-                                    <p class="card-desc">
-                                        A stunning royal themed wedding with traditional
-                                        décor and modern lighting.
-                                    </p>
-                                    <p class="card-date">12 March 2026</p>
-                                </div>
+                        <div class="card home-mobile-card">
+                            <img
+                                class="card-img"
+                                src="/assets/royal-palace.jpg"
+                                alt="Royal Palace Wedding in Jaipur"
+                            />
+                            <div class="card-body">
+                                <p class="card-title">
+                                    Royal Palace Wedding in Jaipur
+                                </p>
+                                <p class="card-desc">
+                                    A stunning royal themed wedding with
+                                    traditional décor and modern lighting.
+                                </p>
+                                <p class="card-date">12 March 2026</p>
                             </div>
+                        </div>
 
-                            <div class="card home-mobile-card">
-                                <img
-                                    class="card-img"
-                                    src="/assets/royal-palace.jpg"
-                                    alt="Royal Palace Wedding in Jaipur"
-                                />
-                                <div class="card-body">
-                                    <p class="card-title">Royal Palace Wedding in Jaipur</p>
-                                    <p class="card-desc">
-                                        A stunning royal themed wedding with traditional
-                                        décor and modern lighting.
-                                    </p>
-                                    <p class="card-date">12 March 2026</p>
-                                </div>
+                        <div class="card home-mobile-card">
+                            <img
+                                class="card-img"
+                                src="/assets/royal-palace.jpg"
+                                alt="Royal Palace Wedding in Jaipur"
+                            />
+                            <div class="card-body">
+                                <p class="card-title">
+                                    Royal Palace Wedding in Jaipur
+                                </p>
+                                <p class="card-desc">
+                                    A stunning royal themed wedding with
+                                    traditional décor and modern lighting.
+                                </p>
+                                <p class="card-date">12 March 2026</p>
                             </div>
+                        </div>
 
-                            <div class="card home-mobile-card">
-                                <img
-                                    class="card-img"
-                                    src="/assets/royal-palace.jpg"
-                                    alt="Royal Palace Wedding in Jaipur"
-                                />
-                                <div class="card-body">
-                                    <p class="card-title">Royal Palace Wedding in Jaipur</p>
-                                    <p class="card-desc">
-                                        A stunning royal themed wedding with traditional
-                                        décor and modern lighting.
-                                    </p>
-                                    <p class="card-date">12 March 2026</p>
-                                </div>
+                        <div class="card home-mobile-card">
+                            <img
+                                class="card-img"
+                                src="/assets/royal-palace.jpg"
+                                alt="Royal Palace Wedding in Jaipur"
+                            />
+                            <div class="card-body">
+                                <p class="card-title">
+                                    Royal Palace Wedding in Jaipur
+                                </p>
+                                <p class="card-desc">
+                                    A stunning royal themed wedding with
+                                    traditional décor and modern lighting.
+                                </p>
+                                <p class="card-date">12 March 2026</p>
                             </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -1379,44 +1393,43 @@
                 </div>
                 <div class="home-mobile-card-list">
                     <div class="lehenga cards-grid">
-                            <div class="card home-mobile-card">
-                                <img
-                                    class="card-img"
-                                    src="/assets/bridal-lehenga.jpg"
-                                    alt="Bridal Lehenga"
-                                />
-                                <p class="card-label">Bridal Lehenga</p>
-                            </div>
+                        <div class="card home-mobile-card">
+                            <img
+                                class="card-img"
+                                src="/assets/bridal-lehenga.jpg"
+                                alt="Bridal Lehenga"
+                            />
+                            <p class="card-label">Bridal Lehenga</p>
+                        </div>
 
-                            <div class="card home-mobile-card">
-                                <img
-                                    class="card-img"
-                                    src="/assets/bridal-lehenga.jpg"
-                                    alt="Bridal Lehenga"
-                                />
-                                <p class="card-label">Bridal Lehenga</p>
-                            </div>
+                        <div class="card home-mobile-card">
+                            <img
+                                class="card-img"
+                                src="/assets/bridal-lehenga.jpg"
+                                alt="Bridal Lehenga"
+                            />
+                            <p class="card-label">Bridal Lehenga</p>
+                        </div>
 
-                            <!-- Card 3 — odd image -->
-                            <div class="card home-mobile-card">
-                                <img
-                                    class="card-img"
-                                    src="/assets/bridal-lehenga.jpg"
-                                    alt="Bridal Lehenga"
-                                />
-                                <p class="card-label">Bridal Lehenga</p>
-                            </div>
+                        <!-- Card 3 — odd image -->
+                        <div class="card home-mobile-card">
+                            <img
+                                class="card-img"
+                                src="/assets/bridal-lehenga.jpg"
+                                alt="Bridal Lehenga"
+                            />
+                            <p class="card-label">Bridal Lehenga</p>
+                        </div>
 
-                            <!-- Card 4 — even image -->
-                            <div class="card home-mobile-card">
-                                <img
-                                    class="card-img"
-                                    src="/assets/bridal-lehenga.jpg"
-                                    alt="Bridal Lehenga"
-                                />
-                                <p class="card-label">Bridal Lehenga</p>
-                            </div>
-
+                        <!-- Card 4 — even image -->
+                        <div class="card home-mobile-card">
+                            <img
+                                class="card-img"
+                                src="/assets/bridal-lehenga.jpg"
+                                alt="Bridal Lehenga"
+                            />
+                            <p class="card-label">Bridal Lehenga</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -1477,7 +1490,15 @@
         <script src="./scripts/include.js"></script>
         <script src="./scripts/auth-flow.js"></script>
         <script>
-            function makeCard({ image, name, price, location, type, rating, reviews }) {
+            function makeCard({
+                image,
+                name,
+                price,
+                location,
+                type,
+                rating,
+                reviews,
+            }) {
                 return `
                 <article class="home-mobile-card">
                     <img src="${image}" alt="${name}" />
@@ -1502,15 +1523,63 @@
             }
 
             const venueCards = [
-                { image: "./assets/main-card.jpg",    name: "Royal Weddingz by...", price: "₹35,00,000", location: "Jaipur, Rajasthan", type: "Outdoor", rating: "4.9", reviews: "90"  },
-                { image: "./assets/royal-palace.jpg", name: "Majestic Palace...",   price: "₹28,50,000", location: "Jaipur, Rajasthan", type: "Indoor",  rating: "4.7", reviews: "72"  },
-                { image: "./assets/main-card.jpg",    name: "Grand Celebrations",   price: "₹41,00,000", location: "Jaipur, Rajasthan", type: "Outdoor", rating: "4.8", reviews: "108" },
+                {
+                    image: "./assets/main-card.jpg",
+                    name: "Royal Weddingz by...",
+                    price: "₹35,00,000",
+                    location: "Jaipur, Rajasthan",
+                    type: "Outdoor",
+                    rating: "4.9",
+                    reviews: "90",
+                },
+                {
+                    image: "./assets/royal-palace.jpg",
+                    name: "Majestic Palace...",
+                    price: "₹28,50,000",
+                    location: "Jaipur, Rajasthan",
+                    type: "Indoor",
+                    rating: "4.7",
+                    reviews: "72",
+                },
+                {
+                    image: "./assets/main-card.jpg",
+                    name: "Grand Celebrations",
+                    price: "₹41,00,000",
+                    location: "Jaipur, Rajasthan",
+                    type: "Outdoor",
+                    rating: "4.8",
+                    reviews: "108",
+                },
             ];
 
             const featuredCards = [
-                { image: "./assets/makeup-artist.jpg",  name: "Makeup Artists",    price: "₹50,000+", location: "Jaipur, Rajasthan", type: "Bridal",   rating: "4.8", reviews: "120" },
-                { image: "./assets/makeup-artists.jpg", name: "Makeup Artists",    price: "₹45,000+", location: "Jaipur, Rajasthan", type: "Bridal",   rating: "4.8", reviews: "98"  },
-                { image: "./assets/makeup-artist.jpg",  name: "Classic Makeup Co", price: "₹38,000+", location: "Jaipur, Rajasthan", type: "Airbrush", rating: "4.6", reviews: "84"  },
+                {
+                    image: "./assets/makeup-artist.jpg",
+                    name: "Makeup Artists",
+                    price: "₹50,000+",
+                    location: "Jaipur, Rajasthan",
+                    type: "Bridal",
+                    rating: "4.8",
+                    reviews: "120",
+                },
+                {
+                    image: "./assets/makeup-artists.jpg",
+                    name: "Makeup Artists",
+                    price: "₹45,000+",
+                    location: "Jaipur, Rajasthan",
+                    type: "Bridal",
+                    rating: "4.8",
+                    reviews: "98",
+                },
+                {
+                    image: "./assets/makeup-artist.jpg",
+                    name: "Classic Makeup Co",
+                    price: "₹38,000+",
+                    location: "Jaipur, Rajasthan",
+                    type: "Airbrush",
+                    rating: "4.6",
+                    reviews: "84",
+                },
             ];
 
             function renderCards(mountId, dataList) {
@@ -1520,11 +1589,14 @@
             }
 
             // runs immediately — no includes:loaded wait needed
-            renderCards("venues-card-list",   venueCards);
+            renderCards("venues-card-list", venueCards);
             renderCards("featured-card-list", featuredCards);
 
             function buildSearchResultsUrl(params = {}) {
-                const url = new URL("./pages/searchResults.html", window.location.href);
+                const url = new URL(
+                    "./pages/searchResults.html",
+                    window.location.href,
+                );
                 Object.entries(params).forEach(([key, value]) => {
                     if (value) url.searchParams.set(key, value);
                 });
@@ -1532,7 +1604,8 @@
             }
 
             window.addEventListener("includes:loaded", () => {
-                const navSearchInput = document.querySelector(".search-bar input");
+                const navSearchInput =
+                    document.querySelector(".search-bar input");
                 if (!navSearchInput) return;
                 navSearchInput.addEventListener("keydown", (event) => {
                     if (event.key !== "Enter") return;

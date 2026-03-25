@@ -530,6 +530,10 @@ body.search-results-page {
     font-size: 12px;
     text-decoration: none;
 }
+.ck-vendor-btn:hover {
+    background: #320c35;
+    color: #ffffff;
+}
 
 .ck-divider {
     width: min(100%, calc(var(--container-max) + (var(--container-pad) * 2)));
