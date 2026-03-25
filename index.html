@@ -904,7 +904,7 @@
 
             .home-mobile-section-head h2 {
                 margin: 0;
-                font-size: 18px;
+                font-size: 16px;
                 font-weight: 500;
                 color: #320c35;
                 line-height: 1.2;
@@ -912,30 +912,50 @@
 
             .home-mobile-section-head a {
                 color: #320c35;
-                font-size: 14px;
+                font-size: 10.14px;
+                font-weight: 400;
                 text-decoration: underline;
                 text-underline-offset: 2px;
                 opacity: 0.8;
             }
 
             .home-mobile-card-list {
-                display: grid;
-                grid-template-columns: 1fr;
-                gap: 14px;
+                font-size: 8.25px;
+                display: flex;
+                flex-direction: row;
+                gap: 12px;
+                overflow-x: auto;
+                scrollbar-width: none;
+                /* bleed to screen edges so first card aligns with padding */
+                margin-left: -16px;
+                margin-right: -16px;
+                padding-left: 16px;
+                padding-right: 16px;
+                padding-bottom: 4px;
+            }
+            .moments-section {
+            }
+
+            .home-mobile-card-list::-webkit-scrollbar {
+                display: none;
             }
 
             .home-mobile-card {
-                background: #fff;
-                border: 1px solid #e3dde8;
+                width: 255px;
+                height: auto;
+                background: #ffffff;
                 border-radius: 14px;
-                box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.09);
+                display: flex;
+                flex-direction: column;
                 overflow: hidden;
+                flex-shrink: 0;
             }
 
             .home-mobile-card img {
-                width: 100%;
-                height: 206px;
-                object-fit: cover;
+                width: auto;
+                height: 150px;
+                object-fit:cover;
                 display: block;
             }
 
@@ -1077,7 +1097,8 @@
                 }
 
                 .home-mobile-shell {
-                    display: block;
+                    display: flex;
+                    flex-direction: column;
                     background: #f5f4ef;
                     padding-bottom: 90px;
                 }
@@ -1175,6 +1196,36 @@
                     font-size: 24px;
                 }
             }
+            .moments-section {
+            }
+
+
+            .section-subtitle {
+                font-size: 14px;
+                font-weight: 500;
+                color: #320c35;
+                margin-bottom: 32px;
+                line-height: 1.5;
+            }
+
+
+            .card {
+                background: #ffffff;
+                border-radius: 14px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+                cursor: pointer;
+                transition:
+                    transform 0.2s,
+                    box-shadow 0.2s;
+            }
+
+            .card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            }
+
+        </style>
+
         </style>
     </head>
     <body>
@@ -1197,11 +1248,17 @@
                         <span>Wedding Planners</span>
                     </a>
                     <a class="home-mobile-cat-item" href="#">
-                        <img src="./assets/photographer.jpg" alt="Photographer" />
+                        <img
+                            src="./assets/photographer.jpg"
+                            alt="Photographer"
+                        />
                         <span>Photographer</span>
                     </a>
                     <a class="home-mobile-cat-item" href="#">
-                        <img src="./assets/makeup-artist.jpg" alt="Makeup Artist" />
+                        <img
+                            src="./assets/makeup-artist.jpg"
+                            alt="Makeup Artist"
+                        />
                         <span>Makeup Artist</span>
                     </a>
                     <a class="home-mobile-cat-item" href="#">
@@ -1212,58 +1269,129 @@
             </section>
 
             <section class="home-mobile-section">
-                <div class="home-mobile-section-head">
-                    <h2>Venues in your city</h2>
-                    <a href="#">View All</a>
-                </div>
-                <div class="home-mobile-card-list">
-                    <article class="home-mobile-card">
-                        <img src="./assets/main-card.jpg" alt="Royal Weddingz by..." />
-                        <div class="home-mobile-card-body">
-                            <div class="home-mobile-card-top">
-                                <div class="home-mobile-card-title">Royal Weddingz by...</div>
-                                <div class="home-mobile-card-price">₹35,00,000</div>
+                <section class="home-mobile-section">
+                    <div class="home-mobile-section-head">
+                        <h2>Venues in your city</h2>
+                        <a href="#">View All</a>
+                    </div>
+                    <div class="home-mobile-card-list" id="venues-card-list"></div>
+                </section>
+                <section class="home-mobile-section">
+                    <div class="home-mobile-section-head">
+                        <h2>Featured Vendors</h2>
+                        <a href="#">View All</a>
+                    </div>
+                    <div class="home-mobile-card-list" id="featured-card-list"></div>
+                </section>
+                <section class="home-mobile-section">
+                    <div class="home-mobile-section-head">
+                        <h2>Moments We Made Magical</h2>
+                        <a href="#">View All</a>
+                    </div>
+                    <section class=" home-mobile-section home-mobile-card-list">
+                        <div class="cards-grid">
+                            <div class="card home-mobile-card" >
+                                <img
+                                    class="card-img"
+                                    src="/assets/royal-palace.jpg"
+                                    alt="Royal Palace Wedding in Jaipur"
+                                />
+                                <div class="card-body">
+                                    <p class="card-title">Royal Palace Wedding in Jaipur</p>
+                                    <p class="card-desc">
+                                        A stunning royal themed wedding with traditional
+                                        décor and modern lighting.
+                                    </p>
+                                    <p class="card-date">12 March 2026</p>
+                                </div>
                             </div>
-                            <div class="home-mobile-card-sub">
-                                <span>Jaipur, Rajasthan</span>
-                                <span>Outdoor</span>
-                            </div>
-                            <div class="home-mobile-card-rating">⭐ 4.9 <span class="reviews">90 Reviews</span></div>
-                            <div class="home-mobile-card-actions">
-                                <button class="home-mobile-btn home-mobile-btn-outline">Send Enquiry</button>
-                                <button class="home-mobile-btn home-mobile-btn-primary">View Details</button>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </section>
 
-            <section class="home-mobile-section">
-                <div class="home-mobile-section-head">
-                    <h2>Featured Vendors</h2>
-                    <a href="#">View All</a>
-                </div>
-                <div class="home-mobile-card-list">
-                    <article class="home-mobile-card">
-                        <img src="./assets/makeup-artist.jpg" alt="Makeup Artists" />
-                        <div class="home-mobile-card-body">
-                            <div class="home-mobile-card-top">
-                                <div class="home-mobile-card-title">Makeup Artists</div>
-                                <div class="home-mobile-card-price">₹50,000+</div>
+                            <div class="card home-mobile-card">
+                                <img
+                                    class="card-img"
+                                    src="/assets/royal-palace.jpg"
+                                    alt="Royal Palace Wedding in Jaipur"
+                                />
+                                <div class="card-body">
+                                    <p class="card-title">Royal Palace Wedding in Jaipur</p>
+                                    <p class="card-desc">
+                                        A stunning royal themed wedding with traditional
+                                        décor and modern lighting.
+                                    </p>
+                                    <p class="card-date">12 March 2026</p>
+                                </div>
                             </div>
-                            <div class="home-mobile-card-sub">
-                                <span>Jaipur, Rajasthan</span>
-                                <span>Bridal</span>
-                            </div>
-                            <div class="home-mobile-card-rating">⭐ 4.8 <span class="reviews">120 Reviews</span></div>
-                            <div class="home-mobile-card-actions">
-                                <button class="home-mobile-btn home-mobile-btn-outline">Send Enquiry</button>
-                                <button class="home-mobile-btn home-mobile-btn-primary">View Details</button>
+
+                            <div class="card home-mobile-card">
+                                <img
+                                    class="card-img"
+                                    src="/assets/royal-palace.jpg"
+                                    alt="Royal Palace Wedding in Jaipur"
+                                />
+                                <div class="card-body">
+                                    <p class="card-title">Royal Palace Wedding in Jaipur</p>
+                                    <p class="card-desc">
+                                        A stunning royal themed wedding with traditional
+                                        décor and modern lighting.
+                                    </p>
+                                    <p class="card-date">12 March 2026</p>
+                                </div>
                             </div>
                         </div>
-                    </article>
-                </div>
-            </section>
+                    </section>
+                </section>
+
+                <section class="home-mobile-section">
+                    <div class="home-mobile-section-head">
+                        <h2>Photo Gallery</h2>
+                        <a href="#">View All</a>
+                    </div>
+
+                    <section class=" home-mobile-section home-mobile-card-list">
+
+                        <div class="cards-grid">
+                            <div class="card home-mobile-card">
+                                <img
+                                    class="card-img"
+                                    src="/assets/bridal-lehenga.jpg"
+                                    alt="Bridal Lehenga"
+                                />
+                                <p class="card-label">Bridal Lehenga</p>
+                            </div>
+
+                            <div class="card home-mobile-card">
+                                <img
+                                    class="card-img"
+                                    src="/assets/bridal-lehenga.jpg"
+                                    alt="Bridal Lehenga"
+                                />
+                                <p class="card-label">Bridal Lehenga</p>
+                            </div>
+
+                            <!-- Card 3 — odd image -->
+                            <div class="card home-mobile-card">
+                                <img
+                                    class="card-img"
+                                    src="/assets/bridal-lehenga.jpg"
+                                    alt="Bridal Lehenga"
+                                />
+                                <p class="card-label">Bridal Lehenga</p>
+                            </div>
+
+                            <!-- Card 4 — even image -->
+                            <div class="card home-mobile-card">
+                                <img
+                                    class="card-img"
+                                    src="/assets/bridal-lehenga.jpg"
+                                    alt="Bridal Lehenga"
+                                />
+                                <p class="card-label">Bridal Lehenga</p>
+                            </div>
+
+                        </div>
+                    </section>
+                </section>
+                <div data-include="./components/footer.html"></div>
         </main>
 
         <div class="home-desktop-content">
@@ -1272,6 +1400,7 @@
             <div data-include="./components/vendor-categories.html"></div>
             <div data-include="./components/featured-vendors.html"></div>
             <div data-include="./components/moments.html"></div>
+            <div data-include="./components/photo-gallery.html"></div>
             <main data-include="./pages/index.html"></main>
             <div data-include="./components/footer.html"></div>
         </div>
@@ -1279,25 +1408,33 @@
         <nav class="home-mobile-bottom-nav" aria-label="Bottom navigation">
             <a href="#" class="home-mobile-tab is-active">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M4 10.5 12 4l8 6.5V19a1 1 0 0 1-1 1h-5v-5h-4v5H5a1 1 0 0 1-1-1v-8.5Z" />
+                    <path
+                        d="M4 10.5 12 4l8 6.5V19a1 1 0 0 1-1 1h-5v-5h-4v5H5a1 1 0 0 1-1-1v-8.5Z"
+                    />
                 </svg>
                 <span>Home</span>
             </a>
             <a href="#" class="home-mobile-tab">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M5 5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9l-4 3v-3H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" />
+                    <path
+                        d="M5 5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9l-4 3v-3H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"
+                    />
                 </svg>
                 <span>Send Enquiry</span>
             </a>
             <a href="#" class="home-mobile-tab">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M10.5 3a7.5 7.5 0 0 1 5.91 12.12l3.24 3.23a1 1 0 1 1-1.42 1.42L15 16.54A7.5 7.5 0 1 1 10.5 3Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z" />
+                    <path
+                        d="M10.5 3a7.5 7.5 0 0 1 5.91 12.12l3.24 3.23a1 1 0 1 1-1.42 1.42L15 16.54A7.5 7.5 0 1 1 10.5 3Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z"
+                    />
                 </svg>
                 <span>Search</span>
             </a>
             <a href="#" class="home-mobile-tab">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2c-4.42 0-8 2.02-8 4.5A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5c0-2.48-3.58-4.5-8-4.5Z" />
+                    <path
+                        d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2c-4.42 0-8 2.02-8 4.5A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5c0-2.48-3.58-4.5-8-4.5Z"
+                    />
                 </svg>
                 <span>Profile</span>
             </a>
@@ -1310,6 +1447,71 @@
         <script src="./scripts/include.js"></script>
         <script src="./scripts/auth-flow.js"></script>
         <script>
+            function makeCard({ image, name, price, location, type, rating, reviews }) {
+                return `
+                <article class="home-mobile-card">
+                    <img src="${image}" alt="${name}" />
+                    <div class="home-mobile-card-body">
+                        <div class="home-mobile-card-top">
+                            <div class="home-mobile-card-title">${name}</div>
+                            <div class="home-mobile-card-price">${price}</div>
+                        </div>
+                        <div class="home-mobile-card-sub">
+                            <span>${location}</span>
+                            <span>${type}</span>
+                        </div>
+                        <div class="home-mobile-card-rating">
+                            ⭐ ${rating} <span class="reviews">${reviews} Reviews</span>
+                        </div>
+                        <div class="home-mobile-card-actions">
+                            <button class="home-mobile-btn home-mobile-btn-outline">Send Enquiry</button>
+                            <button class="home-mobile-btn home-mobile-btn-primary">View Details</button>
+                        </div>
+                    </div>
+                </article>`;
+            }
+
+            const venueCards = [
+                { image: "./assets/main-card.jpg",    name: "Royal Weddingz by...", price: "₹35,00,000", location: "Jaipur, Rajasthan", type: "Outdoor", rating: "4.9", reviews: "90"  },
+                { image: "./assets/royal-palace.jpg", name: "Majestic Palace...",   price: "₹28,50,000", location: "Jaipur, Rajasthan", type: "Indoor",  rating: "4.7", reviews: "72"  },
+                { image: "./assets/main-card.jpg",    name: "Grand Celebrations",   price: "₹41,00,000", location: "Jaipur, Rajasthan", type: "Outdoor", rating: "4.8", reviews: "108" },
+            ];
+
+            const featuredCards = [
+                { image: "./assets/makeup-artist.jpg",  name: "Makeup Artists",    price: "₹50,000+", location: "Jaipur, Rajasthan", type: "Bridal",   rating: "4.8", reviews: "120" },
+                { image: "./assets/makeup-artists.jpg", name: "Makeup Artists",    price: "₹45,000+", location: "Jaipur, Rajasthan", type: "Bridal",   rating: "4.8", reviews: "98"  },
+                { image: "./assets/makeup-artist.jpg",  name: "Classic Makeup Co", price: "₹38,000+", location: "Jaipur, Rajasthan", type: "Airbrush", rating: "4.6", reviews: "84"  },
+            ];
+
+            function renderCards(mountId, dataList) {
+                const mount = document.getElementById(mountId);
+                if (!mount) return;
+                mount.innerHTML = dataList.map(makeCard).join("");
+            }
+
+            // runs immediately — no includes:loaded wait needed
+            renderCards("venues-card-list",   venueCards);
+            renderCards("featured-card-list", featuredCards);
+
+            function buildSearchResultsUrl(params = {}) {
+                const url = new URL("./pages/searchResults.html", window.location.href);
+                Object.entries(params).forEach(([key, value]) => {
+                    if (value) url.searchParams.set(key, value);
+                });
+                return url.toString();
+            }
+
+            window.addEventListener("includes:loaded", () => {
+                const navSearchInput = document.querySelector(".search-bar input");
+                if (!navSearchInput) return;
+                navSearchInput.addEventListener("keydown", (event) => {
+                    if (event.key !== "Enter") return;
+                    event.preventDefault();
+                    const q = navSearchInput.value.trim();
+                    window.location.href = buildSearchResultsUrl({ q });
+                });
+            });
+
             function buildSearchResultsUrl(params = {}) {
                 const url = new URL(
                     "./pages/searchResults.html",
