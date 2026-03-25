@@ -823,6 +823,234 @@
                 display: block;
             }
 
+            .home-mobile-shell,
+            .home-mobile-bottom-nav {
+                display: none;
+            }
+
+            .home-mobile-city-wrap,
+            .home-mobile-categories,
+            .home-mobile-section {
+                background: #fff;
+            }
+
+            .home-mobile-city-wrap {
+                padding: 14px 16px 10px;
+                border-bottom: 1px solid #ebe8ef;
+            }
+
+            .home-mobile-city-select {
+                width: 100%;
+                height: 46px;
+                border: 1px solid #cfc7d6;
+                border-radius: 12px;
+                padding: 0 14px;
+                font-size: 16px;
+                color: #320c35;
+                background: #fff;
+                outline: none;
+            }
+
+            .home-mobile-categories {
+                padding: 12px 16px 16px;
+                border-bottom: 1px solid #ebe8ef;
+            }
+
+            .home-mobile-categories-row {
+                display: flex;
+                gap: 14px;
+                overflow-x: auto;
+                scrollbar-width: none;
+            }
+
+            .home-mobile-categories-row::-webkit-scrollbar {
+                display: none;
+            }
+
+            .home-mobile-cat-item {
+                flex: 0 0 auto;
+                width: 88px;
+                text-decoration: none;
+                text-align: center;
+                color: #1d1d1d;
+            }
+
+            .home-mobile-cat-item img {
+                width: 88px;
+                height: 88px;
+                border-radius: 50%;
+                object-fit: cover;
+                display: block;
+                margin-bottom: 8px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            }
+
+            .home-mobile-cat-item span {
+                display: block;
+                font-size: 12px;
+                line-height: 1.2;
+            }
+
+            .home-mobile-section {
+                padding: 14px 16px 6px;
+            }
+
+            .home-mobile-section-head {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 10px;
+            }
+
+            .home-mobile-section-head h2 {
+                margin: 0;
+                font-size: 18px;
+                font-weight: 500;
+                color: #320c35;
+                line-height: 1.2;
+            }
+
+            .home-mobile-section-head a {
+                color: #320c35;
+                font-size: 14px;
+                text-decoration: underline;
+                text-underline-offset: 2px;
+                opacity: 0.8;
+            }
+
+            .home-mobile-card-list {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+
+            .home-mobile-card {
+                background: #fff;
+                border: 1px solid #e3dde8;
+                border-radius: 14px;
+                box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+                overflow: hidden;
+            }
+
+            .home-mobile-card img {
+                width: 100%;
+                height: 206px;
+                object-fit: cover;
+                display: block;
+            }
+
+            .home-mobile-card-body {
+                padding: 12px;
+            }
+
+            .home-mobile-card-top,
+            .home-mobile-card-sub {
+                display: flex;
+                justify-content: space-between;
+                gap: 8px;
+            }
+
+            .home-mobile-card-top {
+                margin-bottom: 2px;
+            }
+
+            .home-mobile-card-title,
+            .home-mobile-card-price {
+                font-size: 17px;
+                color: #151515;
+            }
+
+            .home-mobile-card-title {
+                max-width: 65%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .home-mobile-card-price {
+                font-weight: 600;
+            }
+
+            .home-mobile-card-sub {
+                margin-bottom: 6px;
+                font-size: 14px;
+                color: #4e4e4e;
+            }
+
+            .home-mobile-card-rating {
+                font-size: 15px;
+                color: #222;
+                margin-bottom: 10px;
+            }
+
+            .home-mobile-card-rating .reviews {
+                color: #8a8a8a;
+            }
+
+            .home-mobile-card-actions {
+                display: flex;
+                gap: 10px;
+            }
+
+            .home-mobile-btn {
+                height: 40px;
+                border-radius: 8px;
+                font-size: 15px;
+                font-weight: 500;
+                cursor: pointer;
+                flex: 1;
+            }
+
+            .home-mobile-btn-outline {
+                background: #fff;
+                border: 1px solid #1a1a1a;
+                color: #1a1a1a;
+                max-width: 42%;
+            }
+
+            .home-mobile-btn-primary {
+                background: #320c35;
+                border: 1px solid #320c35;
+                color: #fff;
+            }
+
+            .home-mobile-bottom-nav {
+                position: fixed;
+                left: 0;
+                right: 0;
+                top: auto;
+                bottom: 0;
+                height: 74px;
+                background: #fff;
+                border-top: 1px solid #dfd9e5;
+                border-radius: 18px 18px 0 0;
+                padding: 8px 8px max(8px, env(safe-area-inset-bottom));
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                z-index: 1000;
+            }
+
+            .home-mobile-tab {
+                text-decoration: none;
+                color: #9e9aa4;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 4px;
+                font-size: 12px;
+                font-weight: 500;
+            }
+
+            .home-mobile-tab svg {
+                width: 20px;
+                height: 20px;
+                fill: currentColor;
+            }
+
+            .home-mobile-tab.is-active {
+                color: #320c35;
+            }
+
             @media (max-width: 1024px) {
                 .nav-search {
                     margin: 0 24px;
@@ -842,6 +1070,20 @@
                 :root {
                     --container-padding: 16px;
                     --grid-gap: 20px;
+                }
+
+                .home-desktop-content {
+                    display: none;
+                }
+
+                .home-mobile-shell {
+                    display: block;
+                    background: #f5f4ef;
+                    padding-bottom: 90px;
+                }
+
+                .home-mobile-bottom-nav {
+                    display: grid;
                 }
 
                 nav {
@@ -937,14 +1179,129 @@
     </head>
     <body>
         <div data-include="./components/navbar.html"></div>
-        <div data-include="./components/hero.html"></div>
 
-        <div data-include="./components/popular-searches.html"></div>
-        <div data-include="./components/vendor-categories.html"></div>
-        <div data-include="./components/featured-vendors.html"></div>
-        <div data-include="./components/moments.html"></div>
-        <main data-include="./pages/index.html"></main>
-        <div data-include="./components/footer.html"></div>
+        <main class="home-mobile-shell">
+            <section class="home-mobile-city-wrap">
+                <select class="home-mobile-city-select" aria-label="All cities">
+                    <option>All cities</option>
+                    <option>Jaipur</option>
+                    <option>Delhi</option>
+                    <option>Mumbai</option>
+                </select>
+            </section>
+
+            <section class="home-mobile-categories">
+                <div class="home-mobile-categories-row">
+                    <a class="home-mobile-cat-item" href="#">
+                        <img src="./assets/jaipur.png" alt="Wedding Planners" />
+                        <span>Wedding Planners</span>
+                    </a>
+                    <a class="home-mobile-cat-item" href="#">
+                        <img src="./assets/photographer.jpg" alt="Photographer" />
+                        <span>Photographer</span>
+                    </a>
+                    <a class="home-mobile-cat-item" href="#">
+                        <img src="./assets/makeup-artist.jpg" alt="Makeup Artist" />
+                        <span>Makeup Artist</span>
+                    </a>
+                    <a class="home-mobile-cat-item" href="#">
+                        <img src="./assets/delhi.png" alt="Wedding Venues" />
+                        <span>Wedding Venues</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="home-mobile-section">
+                <div class="home-mobile-section-head">
+                    <h2>Venues in your city</h2>
+                    <a href="#">View All</a>
+                </div>
+                <div class="home-mobile-card-list">
+                    <article class="home-mobile-card">
+                        <img src="./assets/main-card.jpg" alt="Royal Weddingz by..." />
+                        <div class="home-mobile-card-body">
+                            <div class="home-mobile-card-top">
+                                <div class="home-mobile-card-title">Royal Weddingz by...</div>
+                                <div class="home-mobile-card-price">₹35,00,000</div>
+                            </div>
+                            <div class="home-mobile-card-sub">
+                                <span>Jaipur, Rajasthan</span>
+                                <span>Outdoor</span>
+                            </div>
+                            <div class="home-mobile-card-rating">⭐ 4.9 <span class="reviews">90 Reviews</span></div>
+                            <div class="home-mobile-card-actions">
+                                <button class="home-mobile-btn home-mobile-btn-outline">Send Enquiry</button>
+                                <button class="home-mobile-btn home-mobile-btn-primary">View Details</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="home-mobile-section">
+                <div class="home-mobile-section-head">
+                    <h2>Featured Vendors</h2>
+                    <a href="#">View All</a>
+                </div>
+                <div class="home-mobile-card-list">
+                    <article class="home-mobile-card">
+                        <img src="./assets/makeup-artist.jpg" alt="Makeup Artists" />
+                        <div class="home-mobile-card-body">
+                            <div class="home-mobile-card-top">
+                                <div class="home-mobile-card-title">Makeup Artists</div>
+                                <div class="home-mobile-card-price">₹50,000+</div>
+                            </div>
+                            <div class="home-mobile-card-sub">
+                                <span>Jaipur, Rajasthan</span>
+                                <span>Bridal</span>
+                            </div>
+                            <div class="home-mobile-card-rating">⭐ 4.8 <span class="reviews">120 Reviews</span></div>
+                            <div class="home-mobile-card-actions">
+                                <button class="home-mobile-btn home-mobile-btn-outline">Send Enquiry</button>
+                                <button class="home-mobile-btn home-mobile-btn-primary">View Details</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </main>
+
+        <div class="home-desktop-content">
+            <div data-include="./components/hero.html"></div>
+            <div data-include="./components/popular-searches.html"></div>
+            <div data-include="./components/vendor-categories.html"></div>
+            <div data-include="./components/featured-vendors.html"></div>
+            <div data-include="./components/moments.html"></div>
+            <main data-include="./pages/index.html"></main>
+            <div data-include="./components/footer.html"></div>
+        </div>
+
+        <nav class="home-mobile-bottom-nav" aria-label="Bottom navigation">
+            <a href="#" class="home-mobile-tab is-active">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4 10.5 12 4l8 6.5V19a1 1 0 0 1-1 1h-5v-5h-4v5H5a1 1 0 0 1-1-1v-8.5Z" />
+                </svg>
+                <span>Home</span>
+            </a>
+            <a href="#" class="home-mobile-tab">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M5 5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9l-4 3v-3H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" />
+                </svg>
+                <span>Send Enquiry</span>
+            </a>
+            <a href="#" class="home-mobile-tab">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M10.5 3a7.5 7.5 0 0 1 5.91 12.12l3.24 3.23a1 1 0 1 1-1.42 1.42L15 16.54A7.5 7.5 0 1 1 10.5 3Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z" />
+                </svg>
+                <span>Search</span>
+            </a>
+            <a href="#" class="home-mobile-tab">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2c-4.42 0-8 2.02-8 4.5A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5c0-2.48-3.58-4.5-8-4.5Z" />
+                </svg>
+                <span>Profile</span>
+            </a>
+        </nav>
         <iframe
             id="welcome-modal-frame"
             title="Welcome"

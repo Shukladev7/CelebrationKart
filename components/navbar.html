@@ -163,14 +163,14 @@
             }
 
             nav {
-                padding-top: 12px;
-                padding-bottom: 12px;
+                padding-top: 0;
+                padding-bottom: 0;
+                min-height: 56px;
             }
 
             .nav-inner {
-                min-height: auto;
-                flex-wrap: wrap;
-                gap: 16px;
+                min-height: 56px;
+                justify-content: center;
             }
 
             .logo {
@@ -178,21 +178,17 @@
             }
 
             .search-bar {
-                order: 3;
-                width: 100%;
-                max-width: none;
+                display: none;
             }
 
             .nav-links {
-                margin-left: auto;
-                gap: 12px;
-                flex-wrap: wrap;
+                display: none;
             }
         }
 
         @media (max-width: 480px) {
-            .nav-links {
-                margin-left: 0;
+            .logo-text {
+                font-size: 18px;
             }
         }
     </style>

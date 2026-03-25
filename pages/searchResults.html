@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="/style.css" />
+        <link rel="stylesheet" href="../style.css" />
         <title>Wedding Venues Search Results | CelebrationKart</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,9 +22,35 @@
                         Home / Wedding Planners / <span>Jaipur</span>Jaipur
                     </p>
                     <h1 id="sr-title" class="sr-title">Wedding Venues</h1>
+                    <p id="sr-mobile-count" class="sr-mobile-count"></p>
                     <p id="sr-meta" class="sr-meta">
                         Showing 23965 results as per your search criteria
                     </p>
+                    <div class="sr-mobile-filter-row">
+                        <label class="sr-mobile-city-select" for="sr-mobile-city">
+                            <select
+                                id="sr-mobile-city"
+                                aria-label="Select city"
+                            >
+                                <option value="all">All cities</option>
+                                <option value="jaipur">Jaipur</option>
+                                <option value="delhi">Delhi</option>
+                                <option value="mumbai">Mumbai</option>
+                            </select>
+                        </label>
+                        <button
+                            class="sr-mobile-filter-btn"
+                            type="button"
+                            aria-label="Open filters"
+                            data-filter="advanced"
+                        >
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M4 6.25a1.25 1.25 0 1 1 0-2.5h8.5a1.25 1.25 0 1 1 0 2.5H4Zm13.75 2.5a2 2 0 1 0-2.5 0V19a1.25 1.25 0 1 0 2.5 0V8.75ZM11.5 12a1.25 1.25 0 1 1 0 2.5H4a1.25 1.25 0 1 1 0-2.5h7.5Zm8.5 7a1.25 1.25 0 1 0 0-2.5h-7.5a1.25 1.25 0 1 0 0 2.5H20ZM8.75 4a2 2 0 1 0-2.5 0v14.25a1.25 1.25 0 0 0 2.5 0V4Z"
+                                />
+                            </svg>
+                        </button>
+                    </div>
 
                     <div class="sr-filter-row">
                         <button
@@ -77,8 +103,44 @@
                 </div>
             </section>
 
+            <section class="sr-mobile-categories-section">
+                <div class="sr-container">
+                    <div class="sr-mobile-categories-row">
+                        <a class="sr-mobile-category-item" href="#">
+                            <img
+                                src="../assets/jaipur.png"
+                                alt="Wedding Planners"
+                            />
+                            <span>Wedding Planners</span>
+                        </a>
+                        <a class="sr-mobile-category-item" href="#">
+                            <img
+                                src="../assets/photographer.jpg"
+                                alt="Wedding Photographer"
+                            />
+                            <span>Wedding Photographer</span>
+                        </a>
+                        <a class="sr-mobile-category-item" href="#">
+                            <img
+                                src="../assets/makeup-artist.jpg"
+                                alt="Makeup Artist"
+                            />
+                            <span>Makeup Artist</span>
+                        </a>
+                        <a class="sr-mobile-category-item" href="#">
+                            <img src="../assets/delhi.png" alt="Wedding Venues" />
+                            <span>Wedding Venues</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
             <section class="sr-results-block">
                 <div class="sr-container">
+                    <div class="sr-mobile-section-head">
+                        <h2>Venues in your city</h2>
+                        <a href="#">View All</a>
+                    </div>
                     <div id="results-grid-primary" class="results-grid"></div>
                 </div>
             </section>
@@ -122,6 +184,10 @@
 
             <section class="sr-results-block alt">
                 <div class="sr-container">
+                    <div class="sr-mobile-section-head">
+                        <h2>Featured Vendors</h2>
+                        <a href="#">View All</a>
+                    </div>
                     <div id="results-grid-secondary" class="results-grid"></div>
                     <div class="sr-view-more-wrap">
                         <button class="sr-view-more" type="button">
@@ -254,6 +320,41 @@
             ></div>
         </main>
 
+        <nav class="sr-mobile-bottom-nav" aria-label="Bottom navigation">
+            <a href="#" class="sr-mobile-tab is-active">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                        d="M4 10.5 12 4l8 6.5V19a1 1 0 0 1-1 1h-5v-5h-4v5H5a1 1 0 0 1-1-1v-8.5Z"
+                    />
+                </svg>
+                <span>Home</span>
+            </a>
+            <a href="#" class="sr-mobile-tab">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                        d="M5 5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9l-4 3v-3H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"
+                    />
+                </svg>
+                <span>Send Enquiry</span>
+            </a>
+            <a href="#" class="sr-mobile-tab">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                        d="M10.5 3a7.5 7.5 0 0 1 5.91 12.12l3.24 3.23a1 1 0 1 1-1.42 1.42L15 16.54A7.5 7.5 0 1 1 10.5 3Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z"
+                    />
+                </svg>
+                <span>Search</span>
+            </a>
+            <a href="#" class="sr-mobile-tab">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                        d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2c-4.42 0-8 2.02-8 4.5A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5c0-2.48-3.58-4.5-8-4.5Z"
+                    />
+                </svg>
+                <span>Profile</span>
+            </a>
+        </nav>
+
         <div data-include="../components/footer.html"></div>
 
         <script src="../scripts/include.js"></script>
@@ -350,6 +451,7 @@
                 const breadcrumb = document.getElementById("sr-breadcrumb");
                 const title = document.getElementById("sr-title");
                 const meta = document.getElementById("sr-meta");
+                const mobileCount = document.getElementById("sr-mobile-count");
                 const articleTitle =
                     document.getElementById("sr-article-title");
 
@@ -374,6 +476,9 @@
                     } else {
                         meta.textContent = `Showing ${context.count} results for ${context.vendor.resultsLabel}${area}`;
                     }
+                }
+                if (mobileCount) {
+                    mobileCount.textContent = `(${context.count})`;
                 }
                 if (articleTitle) {
                     const area =
@@ -649,6 +754,24 @@
                     )
                 ) {
                     quoteVendor.value = context.vendorKey;
+                }
+
+                const mobileCity = document.getElementById("sr-mobile-city");
+                if (
+                    mobileCity &&
+                    [...mobileCity.options].some(
+                        (opt) => opt.value === context.cityKey,
+                    )
+                ) {
+                    mobileCity.value = context.cityKey;
+                }
+                if (mobileCity) {
+                    mobileCity.addEventListener("change", (event) => {
+                        const nextCity = event.target.value || "all";
+                        const url = new URL(window.location.href);
+                        url.searchParams.set("city", nextCity);
+                        window.location.href = url.toString();
+                    });
                 }
 
                 const navSearchInput =
