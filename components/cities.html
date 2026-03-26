@@ -1,205 +1,76 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>City Selector</title>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap"
-            rel="stylesheet"
-        />
-        <style>
-            *,
-            *::before,
-            *::after {
-                box-sizing: border-box;
-                margin: 0;
-                padding: 0;
-            }
+<div class="cities-row">
+    <!-- City 1 -->
+    <div class="city-item">
+        <img class="city-circle" src="/assets/jaipur.png" alt="Jaipur" />
+        <span class="city-name">Jaipur</span>
+    </div>
 
-            /* ── SCROLL CONTAINER ── */
-            .cities-row {
-                display: flex;
-                align-items: flex-start;
-                gap: 20px;
-                overflow-x: auto;
-                padding: 8px 4px 12px;
-                scrollbar-width: none;
-            }
+    <!-- City 2 -->
+    <div class="city-item">
+        <img class="city-circle" src="/assets/delhi.png" alt="Delhi" />
+        <span class="city-name">Delhi</span>
+    </div>
 
-            .cities-row::-webkit-scrollbar {
-                display: none;
-            }
+    <!-- City 3 -->
+    <div class="city-item">
+        <img class="city-circle" src="/assets/mumbai.png" alt="Mumbai" />
+        <span class="city-name">Mumbai</span>
+    </div>
 
-            /* ── CITY ITEM ── */
-            .city-item {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 8px;
-                cursor: pointer;
-                flex-shrink: 0;
-                transition: transform 0.2s;
-            }
+    <!-- City 4 -->
+    <div class="city-item">
+        <img class="city-circle" src="/assets/jaipur.png" alt="Jaipur" />
+        <span class="city-name">Jaipur</span>
+    </div>
 
-            .city-item:hover {
-                transform: translateY(-3px);
-            }
+    <!-- City 5 -->
+    <div class="city-item">
+        <img class="city-circle" src="/assets/delhi.png" alt="Delhi" />
+        <span class="city-name">Delhi</span>
+    </div>
 
-            /* ── CIRCLE IMAGE ── */
-            .city-circle {
-                width: 84px;
-                height: 84px;
-                border-radius: 50%;
-                object-fit: cover;
-                box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.06);
-                display: block;
-                background: #ddd;
-            }
+    <!-- City 6 -->
+    <div class="city-item">
+        <img class="city-circle" src="/assets/delhi.png" alt="Delhi" />
+        <span class="city-name">Delhi</span>
+    </div>
 
-            /* ── +50 OVERLAY CIRCLE ── */
-            .city-circle-more {
-                width: 84px;
-                height: 84px;
-                border-radius: 50%;
-                box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.06);
-                background: #3a3a3a;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-shrink: 0;
-                position: relative;
-                overflow: hidden;
-            }
+    <!-- City 7 -->
+    <div class="city-item">
+        <img class="city-circle" src="/assets/jaipur.png" alt="Jaipur" />
+        <span class="city-name">Jaipur</span>
+    </div>
 
-            .city-circle-more img {
-                position: absolute;
-                inset: 0;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                border-radius: 50%;
-                filter: brightness(0.35);
-            }
+    <!-- City 8 -->
+    <div class="city-item">
+        <img class="city-circle" src="/assets/delhi.png" alt="Delhi" />
+        <span class="city-name">Delhi</span>
+    </div>
 
-            .more-label {
-                position: relative;
-                z-index: 1;
-                font-family: "Montserrat", sans-serif;
-                font-size: 12px;
-                font-weight: 500;
-                color: #ffffff;
-                line-height: 1;
-            }
+    <!-- City 9 -->
+    <div class="city-item">
+        <img class="city-circle" src="/assets/delhi.png" alt="Delhi" />
+        <span class="city-name">Delhi</span>
+    </div>
 
-            /* ── CITY NAME ── */
-            .city-name {
-                font-family: "Montserrat", sans-serif;
-                font-weight: 500;
-                font-size: 12px;
-                line-height: 100%;
-                letter-spacing: 0%;
-                text-align: center;
-                color: #000000;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="cities-row">
-            <!-- City 1 -->
-            <div class="city-item">
-                <img
-                    class="city-circle"
-                    src="/assets/jaipur.png"
-                    alt="Jaipur"
-                />
-                <span class="city-name">Jaipur</span>
-            </div>
+    <!-- City 10 -->
+    <div class="city-item">
+        <img class="city-circle" src="/assets/jaipur.png" alt="Jaipur" />
+        <span class="city-name">Jaipur</span>
+    </div>
 
-            <!-- City 2 -->
-            <div class="city-item">
-                <img class="city-circle" src="/assets/delhi.png" alt="Delhi" />
-                <span class="city-name">Delhi</span>
-            </div>
+    <!-- City 11 -->
+    <div class="city-item">
+        <img class="city-circle" src="/assets/delhi.png" alt="Delhi" />
+        <span class="city-name">Delhi</span>
+    </div>
 
-            <!-- City 3 -->
-            <div class="city-item">
-                <img
-                    class="city-circle"
-                    src="/assets/mumbai.png"
-                    alt="Mumbai"
-                />
-                <span class="city-name">Mumbai</span>
-            </div>
-
-            <!-- City 4 -->
-            <div class="city-item">
-                <img
-                    class="city-circle"
-                    src="/assets/jaipur.png"
-                    alt="Jaipur"
-                />
-                <span class="city-name">Jaipur</span>
-            </div>
-
-            <!-- City 5 -->
-            <div class="city-item">
-                <img class="city-circle" src="/assets/delhi.png" alt="Delhi" />
-                <span class="city-name">Delhi</span>
-            </div>
-
-            <!-- City 6 -->
-            <div class="city-item">
-                <img class="city-circle" src="/assets/delhi.png" alt="Delhi" />
-                <span class="city-name">Delhi</span>
-            </div>
-
-            <!-- City 7 -->
-            <div class="city-item">
-                <img
-                    class="city-circle"
-                    src="/assets/jaipur.png"
-                    alt="Jaipur"
-                />
-                <span class="city-name">Jaipur</span>
-            </div>
-
-            <!-- City 8 -->
-            <div class="city-item">
-                <img class="city-circle" src="/assets/delhi.png" alt="Delhi" />
-                <span class="city-name">Delhi</span>
-            </div>
-
-            <!-- City 9 -->
-            <div class="city-item">
-                <img class="city-circle" src="/assets/delhi.png" alt="Delhi" />
-                <span class="city-name">Delhi</span>
-            </div>
-
-            <!-- City 10 -->
-            <div class="city-item">
-                <img
-                    class="city-circle"
-                    src="/assets/jaipur.png"
-                    alt="Jaipur"
-                />
-                <span class="city-name">Jaipur</span>
-            </div>
-
-            <!-- City 11 -->
-            <div class="city-item">
-                <img class="city-circle" src="/assets/delhi.png" alt="Delhi" />
-                <span class="city-name">Delhi</span>
-            </div>
-
-            <!-- City 12 — +50 overlay -->
-            <div class="city-item">
-                <div class="city-circle-more">
-                    <img src="/assets/delhi.png" alt="More cities" />
-                    <span class="more-label">+50</span>
-                </div>
-                <span class="city-name">Delhi</span>
-            </div>
+    <!-- City 12 — +50 overlay -->
+    <div class="city-item">
+        <div class="city-circle-more">
+            <img src="/assets/delhi.png" alt="More cities" />
+            <span class="more-label">+50</span>
         </div>
-    </body>
-</html>
+        <span class="city-name">Delhi</span>
+    </div>
+</div>
