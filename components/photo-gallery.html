@@ -1,159 +1,48 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Photo Gallery</title>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
-            rel="stylesheet"
-        />
-        <style>
-            *,
-            *::before,
-            *::after {
-                box-sizing: border-box;
-                margin: 0;
-                padding: 0;
-            }
+<section class="photo-gallery">
+    <div class="section-header">
+        <h2 class="section-title">Photo Gallery</h2>
+        <span class="view-all">View All</span>
+    </div>
 
-            body {
-                font-family: "Montserrat", sans-serif;
-                background: #f5f2ee;
-            }
+    <div class="cards-grid">
+        <!-- Card 1 — odd image -->
+        <div class="card">
+            <img
+                class="card-img"
+                src="/assets/bridal-lehenga.jpg"
+                alt="Bridal Lehenga"
+            />
+            <p class="card-label">Bridal Lehenga</p>
+        </div>
 
-            /* ── SECTION ── */
-            .photo-gallery {
-                padding: 40px 20px;
-                max-width: 1200px;
-                margin: 0 auto;
-            }
+        <!-- Card 2 — even image -->
+        <div class="card">
+            <img
+                class="card-img"
+                src="/assets/bridal-lehenga.jpg"
+                alt="Bridal Lehenga"
+            />
+            <p class="card-label">Bridal Lehenga</p>
+        </div>
 
-            /* ── HEADER ROW ── */
-            .section-header {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                margin-bottom: 28px;
-            }
+        <!-- Card 3 — odd image -->
+        <div class="card">
+            <img
+                class="card-img"
+                src="/assets/bridal-lehenga.jpg"
+                alt="Bridal Lehenga"
+            />
+            <p class="card-label">Bridal Lehenga</p>
+        </div>
 
-            .section-title {
-                font-size: 32px;
-                font-weight: 600;
-                color: #320c35;
-                letter-spacing: 0.1px;
-            }
-
-            .view-all {
-                font-size: 18px;
-                font-weight: 400;
-                color: #320c35;
-                text-decoration: underline;
-                text-underline-offset: 3px;
-                cursor: pointer;
-                opacity: 0.7;
-                white-space: nowrap;
-                margin-top: 6px;
-                transition: opacity 0.2s;
-            }
-
-            .view-all:hover {
-                opacity: 0.7;
-            }
-
-            /* ── CARDS GRID ── */
-            .cards-grid {
-                display: grid;
-                grid-template-columns: repeat(4, 1fr);
-                gap: 20px;
-            }
-
-            /* ── CARD ── */
-            .card {
-                background: #ffffff;
-                border-radius: 12px;
-                padding: 10px 10px 14px;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-                cursor: pointer;
-                transition:
-                    transform 0.2s,
-                    box-shadow 0.2s;
-            }
-
-            .card:hover {
-                transform: translateY(-4px);
-                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-            }
-
-            /* ── IMAGE ── */
-            .card-img {
-                width: 100%;
-                aspect-ratio: 1;
-                object-fit: cover;
-                object-position: bottom;
-                border-radius: 10px;
-                background: #e8e2f0;
-                display: block;
-            }
-
-            /* ── LABEL ── */
-            .card-label {
-                margin-top: 10px;
-                font-size: 18px;
-                font-weight: 500;
-                color: #000000;
-                padding: 0 2px;
-            }
-        </style>
-    </head>
-    <body>
-        <section class="photo-gallery">
-            <div class="section-header">
-                <h2 class="section-title">Photo Gallery</h2>
-                <span class="view-all">View All</span>
-            </div>
-
-            <div class="cards-grid">
-                <!-- Card 1 — odd image -->
-                <div class="card">
-                    <img
-                        class="card-img"
-                        src="/assets/bridal-lehenga.jpg"
-                        alt="Bridal Lehenga"
-                    />
-                    <p class="card-label">Bridal Lehenga</p>
-                </div>
-
-                <!-- Card 2 — even image -->
-                <div class="card">
-                    <img
-                        class="card-img"
-                        src="/assets/bridal-lehenga.jpg"
-                        alt="Bridal Lehenga"
-                    />
-                    <p class="card-label">Bridal Lehenga</p>
-                </div>
-
-                <!-- Card 3 — odd image -->
-                <div class="card">
-                    <img
-                        class="card-img"
-                        src="/assets/bridal-lehenga.jpg"
-                        alt="Bridal Lehenga"
-                    />
-                    <p class="card-label">Bridal Lehenga</p>
-                </div>
-
-                <!-- Card 4 — even image -->
-                <div class="card">
-                    <img
-                        class="card-img"
-                        src="/assets/bridal-lehenga.jpg"
-                        alt="Bridal Lehenga"
-                    />
-                    <p class="card-label">Bridal Lehenga</p>
-                </div>
-            </div>
-        </section>
-    </body>
-</html>
+        <!-- Card 4 — even image -->
+        <div class="card">
+            <img
+                class="card-img"
+                src="/assets/bridal-lehenga.jpg"
+                alt="Bridal Lehenga"
+            />
+            <p class="card-label">Bridal Lehenga</p>
+        </div>
+    </div>
+</section>

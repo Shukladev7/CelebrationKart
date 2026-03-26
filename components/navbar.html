@@ -1,52 +1,81 @@
-<head>
-    <style></style>
-</head>
-<body>
-    <nav>
-        <div class="nav-inner">
-            <!-- Logo -->
-            <a href="/" class="nav-logo">
-                <img src="../assets/logo-white.png" />
-                <span class="logo-text">CelebrationKart</span>
-            </a>
+<nav>
+    <div class="nav-inner">
+        <!-- Logo -->
+        <a href="/" class="nav-logo">
+            <img src="../assets/logo-white.png" />
+            <span class="logo-text">CelebrationKart</span>
+        </a>
 
-            <!-- Search bar -->
-            <div class="search-bar">
-                <span class="search-icon">
-                    <svg
-                        width="15"
-                        height="15"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    >
-                        <circle cx="11" cy="11" r="8" />
-                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                    </svg>
-                </span>
-                <input type="text" placeholder="Search" />
-            </div>
-
-            <!-- Nav links -->
-            <div class="nav-links">
-                <a href="#" class="nav-link active" id="link-vendors"
-                    >Vendors</a
+        <!-- Search bar -->
+        <div class="search-bar">
+            <span class="search-icon">
+                <svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
                 >
-                <a href="#" class="nav-link" id="link-login">Login</a>
-                <span class="divider">|</span>
-                <a href="#" class="nav-link" id="link-vendor-login"
-                    >Log in as a Vendor</a
-                >
-            </div>
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+            </span>
+            <input type="text" placeholder="Search" />
+        </div>
 
-            <button
-                class="mobile-search-trigger"
-                type="button"
-                aria-label="Open search"
+        <!-- Nav links -->
+        <div class="nav-links">
+            <a href="#" class="nav-link active" id="link-vendors">Vendors</a>
+            <a href="#" class="nav-link" id="link-login">Login</a>
+            <span class="divider">|</span>
+            <a href="#" class="nav-link" id="link-vendor-login"
+                >Log in as a Vendor</a
             >
+        </div>
+
+        <button
+            class="mobile-search-trigger"
+            type="button"
+            aria-label="Open search"
+        >
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+        </button>
+    </div>
+</nav>
+
+<div class="mobile-search-overlay" aria-hidden="true">
+    <div class="mobile-search-sheet">
+        <div class="mobile-search-topbar">
+            <button
+                class="mobile-search-close"
+                type="button"
+                aria-label="Close search"
+            >
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+            </button>
+
+            <label class="mobile-search-field" for="mobile-search-input">
                 <svg
                     viewBox="0 0 24 24"
                     fill="none"
@@ -57,162 +86,122 @@
                     <circle cx="11" cy="11" r="8" />
                     <line x1="21" y1="21" x2="16.65" y2="16.65" />
                 </svg>
-            </button>
+                <input
+                    id="mobile-search-input"
+                    class="mobile-search-input"
+                    type="text"
+                    placeholder="Search vendors, venues, makeup artists..."
+                    autocomplete="off"
+                />
+            </label>
         </div>
-    </nav>
 
-    <div class="mobile-search-overlay" aria-hidden="true">
-        <div class="mobile-search-sheet">
-            <div class="mobile-search-topbar">
-                <button
-                    class="mobile-search-close"
-                    type="button"
-                    aria-label="Close search"
-                >
-                    <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    >
-                        <line x1="18" y1="6" x2="6" y2="18" />
-                        <line x1="6" y1="6" x2="18" y2="18" />
-                    </svg>
-                </button>
-
-                <label class="mobile-search-field" for="mobile-search-input">
-                    <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    >
-                        <circle cx="11" cy="11" r="8" />
-                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                    </svg>
-                    <input
-                        id="mobile-search-input"
-                        class="mobile-search-input"
-                        type="text"
-                        placeholder="Search vendors, venues, makeup artists..."
-                        autocomplete="off"
-                    />
-                </label>
-            </div>
-
-            <div class="mobile-search-copy">
-                <h3>Find the right celebration partner</h3>
-                <p>
-                    Search instantly across venues, planners, photographers and
-                    more.
-                </p>
-            </div>
+        <div class="mobile-search-copy">
+            <h3>Find the right celebration partner</h3>
+            <p>
+                Search instantly across venues, planners, photographers and
+                more.
+            </p>
         </div>
     </div>
+</div>
 
-    <script>
-        // Active link switching on click
-        document.querySelectorAll(".nav-link").forEach((link) => {
-            link.addEventListener("click", (e) => {
-                e.preventDefault();
-                document
-                    .querySelectorAll(".nav-link")
-                    .forEach((l) => l.classList.remove("active"));
-                link.classList.add("active");
+<script>
+    // Active link switching on click
+    document.querySelectorAll(".nav-link").forEach((link) => {
+        link.addEventListener("click", (e) => {
+            e.preventDefault();
+            document
+                .querySelectorAll(".nav-link")
+                .forEach((l) => l.classList.remove("active"));
+            link.classList.add("active");
+        });
+    });
+
+    const mobileSearchTrigger = document.querySelector(
+        ".mobile-search-trigger",
+    );
+    const mobileSearchOverlay = document.querySelector(
+        ".mobile-search-overlay",
+    );
+    const mobileSearchClose = document.querySelector(".mobile-search-close");
+    const mobileSearchInput = document.querySelector(".mobile-search-input");
+    const desktopSearchInput = document.querySelector(".search-bar input");
+
+    function isMobileSearchMode() {
+        return window.matchMedia("(max-width: 768px)").matches;
+    }
+
+    function openMobileSearch() {
+        if (!mobileSearchOverlay || !isMobileSearchMode()) {
+            return;
+        }
+
+        if (desktopSearchInput && mobileSearchInput) {
+            mobileSearchInput.value = desktopSearchInput.value;
+        }
+
+        mobileSearchOverlay.classList.add("is-open");
+        mobileSearchOverlay.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+
+        window.requestAnimationFrame(() => {
+            mobileSearchInput?.focus();
+            mobileSearchInput?.select();
+        });
+    }
+
+    function closeMobileSearch() {
+        if (!mobileSearchOverlay) {
+            return;
+        }
+
+        mobileSearchOverlay.classList.remove("is-open");
+        mobileSearchOverlay.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+    }
+
+    mobileSearchTrigger?.addEventListener("click", openMobileSearch);
+    mobileSearchClose?.addEventListener("click", closeMobileSearch);
+
+    document
+        .querySelectorAll("[data-open-mobile-search]")
+        .forEach((trigger) => {
+            trigger.addEventListener("click", (event) => {
+                event.preventDefault();
+                openMobileSearch();
             });
         });
 
-        const mobileSearchTrigger = document.querySelector(
-            ".mobile-search-trigger",
-        );
-        const mobileSearchOverlay = document.querySelector(
-            ".mobile-search-overlay",
-        );
-        const mobileSearchClose = document.querySelector(
-            ".mobile-search-close",
-        );
-        const mobileSearchInput = document.querySelector(
-            ".mobile-search-input",
-        );
-        const desktopSearchInput = document.querySelector(".search-bar input");
-
-        function isMobileSearchMode() {
-            return window.matchMedia("(max-width: 768px)").matches;
-        }
-
-        function openMobileSearch() {
-            if (!mobileSearchOverlay || !isMobileSearchMode()) {
-                return;
-            }
-
-            if (desktopSearchInput && mobileSearchInput) {
-                mobileSearchInput.value = desktopSearchInput.value;
-            }
-
-            mobileSearchOverlay.classList.add("is-open");
-            mobileSearchOverlay.setAttribute("aria-hidden", "false");
-            document.body.style.overflow = "hidden";
-
-            window.requestAnimationFrame(() => {
-                mobileSearchInput?.focus();
-                mobileSearchInput?.select();
-            });
-        }
-
-        function closeMobileSearch() {
-            if (!mobileSearchOverlay) {
-                return;
-            }
-
-            mobileSearchOverlay.classList.remove("is-open");
-            mobileSearchOverlay.setAttribute("aria-hidden", "true");
-            document.body.style.overflow = "";
-        }
-
-        mobileSearchTrigger?.addEventListener("click", openMobileSearch);
-        mobileSearchClose?.addEventListener("click", closeMobileSearch);
-
-        document
-            .querySelectorAll("[data-open-mobile-search]")
-            .forEach((trigger) => {
-                trigger.addEventListener("click", (event) => {
-                    event.preventDefault();
-                    openMobileSearch();
-                });
-            });
-
-        mobileSearchOverlay?.addEventListener("click", (event) => {
-            if (event.target === mobileSearchOverlay) {
-                closeMobileSearch();
-            }
-        });
-
-        mobileSearchInput?.addEventListener("keydown", (event) => {
-            if (event.key === "Escape") {
-                closeMobileSearch();
-                return;
-            }
-
-            if (event.key !== "Enter" || !desktopSearchInput) {
-                return;
-            }
-
-            desktopSearchInput.value = mobileSearchInput.value.trim();
-            desktopSearchInput.dispatchEvent(
-                new KeyboardEvent("keydown", {
-                    key: "Enter",
-                    bubbles: true,
-                }),
-            );
+    mobileSearchOverlay?.addEventListener("click", (event) => {
+        if (event.target === mobileSearchOverlay) {
             closeMobileSearch();
-        });
+        }
+    });
 
-        window.addEventListener("resize", () => {
-            if (!isMobileSearchMode()) {
-                closeMobileSearch();
-            }
-        });
-    </script>
-</body>
+    mobileSearchInput?.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            closeMobileSearch();
+            return;
+        }
+
+        if (event.key !== "Enter" || !desktopSearchInput) {
+            return;
+        }
+
+        desktopSearchInput.value = mobileSearchInput.value.trim();
+        desktopSearchInput.dispatchEvent(
+            new KeyboardEvent("keydown", {
+                key: "Enter",
+                bubbles: true,
+            }),
+        );
+        closeMobileSearch();
+    });
+
+    window.addEventListener("resize", () => {
+        if (!isMobileSearchMode()) {
+            closeMobileSearch();
+        }
+    });
+</script>
