@@ -296,7 +296,6 @@
 /* ── SECTION ── */
 .featured-vendors {
     padding: 48px 60px;
-    background: #f5f2ee;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -1213,7 +1212,6 @@ nav {
 
 .photo-gallery {
     padding: 40px 20px;
-    background: #f5f2ee;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -1363,7 +1361,6 @@ nav {
     margin-top: 12px;
     font-size: 18px;
     font-weight: 600;
-    background: #f5f2ee;
     color: #000000;
     letter-spacing: 0.1px;
 }

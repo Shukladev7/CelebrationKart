@@ -13,6 +13,122 @@
             rel="stylesheet"
         />
         <link rel="stylesheet" href="/components/components.css"/>
+        <style>
+            /* ── Filter panel drop-down ── */
+            .sr-filter-panel {
+                display: none;
+                position: absolute;
+                top: calc(100% + 12px);
+                left: 0;
+                z-index: 90;
+                width: min(760px, 100%);
+            }
+
+            .sr-filter-panel.is-visible {
+                display: block;
+            }
+
+            .sr-filter-panel-body {
+                width: 100%;
+                padding: 18px 20px 16px;
+                border-radius: 16px;
+                background: #ffffff;
+                border: 1px solid #e4dde7;
+                box-shadow: 0 28px 60px rgba(46, 20, 48, 0.2);
+                max-height: min(520px, calc(100vh - 220px));
+                overflow: auto;
+            }
+
+            .sr-filter-panel-body::-webkit-scrollbar { width: 8px; }
+            .sr-filter-panel-body::-webkit-scrollbar-thumb {
+                background: rgba(50, 12, 53, 0.22);
+                border-radius: 999px;
+            }
+
+            .sr-filter-panel-head {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 12px;
+                margin-bottom: 14px;
+            }
+
+            .sr-filter-panel-head h2 {
+                margin: 0;
+                font-size: 16px;
+                line-height: 1.2;
+                color: #241225;
+                font-weight: 600;
+            }
+
+            .sr-filter-anchor { position: relative; }
+
+            .sr-filter-clear {
+                border: 0;
+                background: transparent;
+                color: #7a657d;
+                font-size: 12px;
+                font-weight: 500;
+                cursor: pointer;
+                padding: 0;
+            }
+
+            /* ── Shared pill / choice styles ── */
+            .sr-filter-pill {
+                border: 1px solid #cec4d3;
+                background: #fff;
+                color: #3b2b3f;
+                border-radius: 8px;
+                min-height: 36px;
+                padding: 8px 14px;
+                font-size: 12px;
+                font-weight: 500;
+                cursor: pointer;
+                transition: border-color 0.2s, background 0.2s, color 0.2s, transform 0.2s;
+            }
+
+            .sr-filter-pill:hover {
+                border-color: #320c35;
+                color: #320c35;
+                transform: translateY(-1px);
+            }
+
+            .sr-filter-pill.is-active {
+                background: #320c35;
+                border-color: #320c35;
+                color: #ffffff;
+            }
+
+            .sr-filter-pill-grid {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            @media (max-width: 768px) {
+                .sr-filter-panel {
+                    top: calc(100% + 10px);
+                    right: 0;
+                    width: auto;
+                }
+
+                .sr-filter-panel-body {
+                    padding: 14px 14px 12px;
+                    border-radius: 16px;
+                    max-height: min(460px, calc(100vh - 180px));
+                }
+
+                .sr-filter-panel-head h2 { font-size: 15px; }
+
+                .sr-filter-pill-grid { gap: 8px; }
+
+                .sr-filter-pill {
+                    min-height: 34px;
+                    padding: 7px 12px;
+                    font-size: 11px;
+                }
+            }
+        </style>
     </head>
     <body class="search-results-page">
         <div data-include="../components/navbar.html"></div>
@@ -28,12 +144,10 @@
                     <p id="sr-meta" class="sr-meta">
                         Showing 23965 results as per your search criteria
                     </p>
+
                     <div class="sr-mobile-filter-row">
                         <label class="sr-mobile-city-select" for="sr-mobile-city">
-                            <select
-                                id="sr-mobile-city"
-                                aria-label="Select city"
-                            >
+                            <select id="sr-mobile-city" aria-label="Select city">
                                 <option value="all">All cities</option>
                                 <option value="jaipur">Jaipur</option>
                                 <option value="delhi">Delhi</option>
@@ -50,58 +164,104 @@
                         </button>
                     </div>
 
-                    <div class="sr-filter-row">
-                        <button
-                            class="sr-chip"
-                            type="button"
-                            data-filter="budget"
-                        >
-                            Budget
-                        </button>
-                        <button
-                            class="sr-chip"
-                            type="button"
-                            data-filter="services"
-                        >
-                            Services
-                        </button>
-                        <button
-                            class="sr-chip"
-                            type="button"
-                            data-filter="ratings"
-                        >
-                            Ratings
-                        </button>
-                        <button
-                            class="sr-chip"
-                            type="button"
-                            data-filter="shortlisted"
-                        >
-                            Shortlisted
-                        </button>
-                        <button
-                            class="sr-filter-btn"
-                            type="button"
-                            data-filter="advanced"
-                            aria-label="Filter"
-                        >
-                            <svg viewBox="0 0 16 16" aria-hidden="true">
-                                <path
-                                    d="M1.5 3a1 1 0 0 1 1-1h11a1 1 0 1 1 0 2h-11a1 1 0 0 1-1-1zm3 5a1 1 0 0 1 1-1h5a1 1 0 1 1 0 2h-5a1 1 0 0 1-1-1zm2 5a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1z"
-                                />
-                            </svg>
-                            Filter
-                        </button>
+                    <div class="sr-filter-anchor">
+                        <!-- ── Filter trigger buttons ── -->
+                        <div class="sr-filter-row">
+                            <button class="sr-chip" type="button" data-filter="budget">Budget</button>
+                            <button class="sr-chip" type="button" data-filter="services">Services</button>
+                            <button class="sr-chip" type="button" data-filter="ratings">Ratings</button>
+                            <button class="sr-chip" type="button" data-filter="shortlisted">Shortlisted</button>
+                            <button class="sr-filter-btn" type="button" data-filter="advanced" aria-label="Filter">
+                                <svg viewBox="0 0 16 16" aria-hidden="true">
+                                    <path d="M1.5 3a1 1 0 0 1 1-1h11a1 1 0 1 1 0 2h-11a1 1 0 0 1-1-1zm3 5a1 1 0 0 1 1-1h5a1 1 0 1 1 0 2h-5a1 1 0 0 1-1-1zm2 5a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1z"/>
+                                </svg>
+                                Filter
+                            </button>
+                        </div>
+
+                        <!-- ── Budget panel ── -->
+                        <div class="sr-filter-panel" data-filter-panel="budget" aria-hidden="true">
+                            <div class="sr-filter-panel-body">
+                                <div class="sr-filter-panel-head">
+                                    <h2>Budget</h2>
+                                    <button class="sr-filter-clear" type="button" data-filter-clear="budget">Clear all</button>
+                                </div>
+                                <div class="sr-filter-pill-grid" role="group" aria-label="Budget filters">
+                                    <button class="sr-filter-pill" type="button" data-filter-option="budget" data-value="upto-1l">Upto ₹1 Lakh</button>
+                                    <button class="sr-filter-pill" type="button" data-filter-option="budget" data-value="1l-2l">₹1 Lakh – ₹2 Lakh</button>
+                                    <button class="sr-filter-pill" type="button" data-filter-option="budget" data-value="2l-3l">₹2 Lakh – ₹3 Lakh</button>
+                                    <button class="sr-filter-pill" type="button" data-filter-option="budget" data-value="3l-4l">₹3 Lakh – ₹4 Lakh</button>
+                                    <button class="sr-filter-pill" type="button" data-filter-option="budget" data-value="over-4l">Over ₹4 Lakh</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ── Services panel ── -->
+                        <div class="sr-filter-panel" data-filter-panel="services" aria-hidden="true">
+                            <div class="sr-filter-panel-body">
+                                <div class="sr-filter-panel-head">
+                                    <h2>Services</h2>
+                                    <button class="sr-filter-clear" type="button" data-filter-clear="services">Clear all</button>
+                                </div>
+                                <div class="sr-filter-pill-grid" role="group" aria-label="Service filters">
+                                    <button class="sr-filter-pill" type="button" data-filter-option="services" data-value="venue">Venue</button>
+                                    <button class="sr-filter-pill" type="button" data-filter-option="services" data-value="photography">Photography</button>
+                                    <button class="sr-filter-pill" type="button" data-filter-option="services" data-value="makeup">Makeup</button>
+                                    <button class="sr-filter-pill" type="button" data-filter-option="services" data-value="decor">Decor</button>
+                                    <button class="sr-filter-pill" type="button" data-filter-option="services" data-value="catering">Catering</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ── Ratings panel ── -->
+                        <div class="sr-filter-panel" data-filter-panel="ratings" aria-hidden="true">
+                            <div class="sr-filter-panel-body">
+                                <div class="sr-filter-panel-head">
+                                    <h2>Ratings</h2>
+                                    <button class="sr-filter-clear" type="button" data-filter-clear="ratings">Clear all</button>
+                                </div>
+                                <div class="sr-filter-pill-grid" role="group" aria-label="Rating filters">
+                                    <button class="sr-filter-pill" type="button" data-filter-option="ratings" data-value="4plus">4.0 &amp; above</button>
+                                    <button class="sr-filter-pill" type="button" data-filter-option="ratings" data-value="4_5plus">4.5 &amp; above</button>
+                                    <button class="sr-filter-pill" type="button" data-filter-option="ratings" data-value="5star">5 Star</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ── Shortlisted panel ── -->
+                        <div class="sr-filter-panel" data-filter-panel="shortlisted" aria-hidden="true">
+                            <div class="sr-filter-panel-body">
+                                <div class="sr-filter-panel-head">
+                                    <h2>Shortlisted</h2>
+                                    <button class="sr-filter-clear" type="button" data-filter-clear="shortlisted">Clear all</button>
+                                </div>
+                                <div class="sr-filter-pill-grid" role="group" aria-label="Shortlisted filters">
+                                    <button class="sr-filter-pill" type="button" data-filter-option="shortlisted" data-value="only">Only shortlisted</button>
+                                    <button class="sr-filter-pill" type="button" data-filter-option="shortlisted" data-value="all">Show all</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ── Advanced panel ── -->
+                        <div class="sr-filter-panel" data-filter-panel="advanced" aria-hidden="true">
+                            <div class="sr-filter-panel-body">
+                                <div class="sr-filter-panel-head">
+                                    <h2>Advanced Filters</h2>
+                                    <button class="sr-filter-clear" type="button" data-filter-clear="advanced">Clear all</button>
+                                </div>
+                                <div class="sr-filter-pill-grid" role="group" aria-label="Advanced filters">
+                                    <button class="sr-filter-pill" type="button" data-filter-option="advanced" data-value="verified">Verified vendors</button>
+                                    <button class="sr-filter-pill" type="button" data-filter-option="advanced" data-value="top-rated">Top rated</button>
+                                    <button class="sr-filter-pill" type="button" data-filter-option="advanced" data-value="instant">Instant response</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div
-                        class="sr-city-strip"
-                        data-include="../components/cities.html"
-                    ></div>
+                    <div class="sr-city-strip" data-include="../components/cities.html"></div>
                 </div>
             </section>
 
- 
             <section class="sr-results-block">
                 <div class="sr-container">
                     <div id="results-grid-primary" class="results-grid"></div>
@@ -110,31 +270,16 @@
 
             <section class="sr-quote-strip">
                 <div class="sr-container">
-                    <h2 class="sr-quote-title">
-                        Get FREE quotes from multiple vendors
-                    </h2>
+                    <h2 class="sr-quote-title">Get FREE quotes from multiple vendors</h2>
                     <form class="sr-quote-form" action="#" method="post">
-                        <input
-                            class="sr-field"
-                            type="tel"
-                            placeholder="Enter mobile number"
-                            aria-label="Mobile number"
-                        />
-                        <select
-                            id="sr-quote-city"
-                            class="sr-select"
-                            aria-label="Select city"
-                        >
+                        <input class="sr-field" type="tel" placeholder="Enter mobile number" aria-label="Mobile number"/>
+                        <select id="sr-quote-city" class="sr-select" aria-label="Select city">
                             <option value="">Select City</option>
                             <option value="jaipur">Jaipur</option>
                             <option value="delhi">Delhi</option>
                             <option value="mumbai">Mumbai</option>
                         </select>
-                        <select
-                            id="sr-quote-vendor"
-                            class="sr-select"
-                            aria-label="Select vendor category"
-                        >
+                        <select id="sr-quote-vendor" class="sr-select" aria-label="Select vendor category">
                             <option value="">Select vendor Category</option>
                             <option value="venue">Wedding Venue</option>
                             <option value="photographer">Photographer</option>
@@ -149,9 +294,7 @@
                 <div class="sr-container">
                     <div id="results-grid-secondary" class="results-grid"></div>
                     <div class="sr-view-more-wrap">
-                        <button class="sr-view-more" type="button">
-                            View More
-                        </button>
+                        <button class="sr-view-more" type="button">View More</button>
                     </div>
                 </div>
             </section>
@@ -159,161 +302,97 @@
             <section class="sr-article">
                 <div class="sr-container">
                     <h2 id="sr-article-title">Wedding Decorators in Jaipur</h2>
-
                     <p>
-                        Indian weddings are famous around the world for their
-                        grandiosity, splendid wedding décor and celebratory
-                        ambience. Its grandeur is mesmerizing to look at. The
-                        most important part of this beautiful, picturesque
-                        wedding landscape is the wedding decorations. There are
-                        many wedding decorators in Jaipur that you can choose
-                        from. Since an Indian wedding involves a lot of
-                        ceremonies, you need proper and unique wedding
-                        decorations for your wedding, be it a sangeet décor, a
-                        reception décor or ring ceremony, it all needs to be
-                        beautiful and classy. Even if you want an intimate
-                        wedding with a small party, you do need the decorations
-                        done nicely. Some of the questions that might ease this
-                        process for you are listed down below.
+                        Indian weddings are famous around the world for their grandiosity, splendid wedding décor and
+                        celebratory ambience. Its grandeur is mesmerizing to look at. The most important part of this
+                        beautiful, picturesque wedding landscape is the wedding decorations. There are many wedding
+                        decorators in Jaipur that you can choose from. Since an Indian wedding involves a lot of
+                        ceremonies, you need proper and unique wedding decorations for your wedding, be it a sangeet
+                        décor, a reception décor or ring ceremony, it all needs to be beautiful and classy. Even if you
+                        want an intimate wedding with a small party, you do need the decorations done nicely. Some of
+                        the questions that might ease this process for you are listed down below.
                     </p>
 
                     <h3>How much wedding decorators typically charge?</h3>
                     <p>
-                        Usually, wedding decorators charge anything in between
-                        Rs. 75,000 - Rs. 6+ lakhs with the amount varying on the
-                        style of decor you choose and the extent of decorations,
-                        ranging from tent decorations and the indoor décor to
-                        full outdoor décor. Jaipur is known for its grand royal
-                        weddings and hence the price range might go slightly up
-                        during peak wedding season. Most Jaipur wedding
-                        decorators offer overall decoration packages, but if you
-                        do search a bit, you can find wedding decorators in
-                        budget as well.
+                        Usually, wedding decorators charge anything in between Rs. 75,000 - Rs. 6+ lakhs with the
+                        amount varying on the style of decor you choose and the extent of decorations, ranging from tent
+                        decorations and the indoor décor to full outdoor décor. Jaipur is known for its grand royal
+                        weddings and hence the price range might go slightly up during peak wedding season. Most Jaipur
+                        wedding decorators offer overall decoration packages, but if you do search a bit, you can find
+                        wedding decorators in budget as well.
                     </p>
 
                     <h3>What are the latest wedding decoration trends?</h3>
-                    <p>
-                        This year has seen some of the best wedding trends and
-                        some of them are listed below:
-                    </p>
+                    <p>This year has seen some of the best wedding trends and some of them are listed below:</p>
                     <ul class="sr-bullets">
                         <li>
-                            <strong>A royal Rajasthani wedding</strong> - Book
-                            your favourite palace right now, because this trend
-                            is one of the favourites for Jaipur weddings. With a
-                            grand palace, lights galore and assorted flower
-                            decorations, this wedding decoration trend is
-                            perfect for a regal, royal wedding. Fill it up with
-                            all the red and golden shades that you have and get
-                            your inner royalty out.
+                            <strong>A royal Rajasthani wedding</strong> – Book your favourite palace right now, because
+                            this trend is one of the favourites for Jaipur weddings. With a grand palace, lights galore
+                            and assorted flower decorations, this wedding decoration trend is perfect for a regal, royal
+                            wedding. Fill it up with all the red and golden shades that you have and get your inner
+                            royalty out.
                         </li>
                         <li>
-                            <strong>Bollywood themed wedding</strong> - Perfect
-                            for all the filmy fans and retro lovers. This
-                            wedding decoration trend starts with some of the
-                            best dialogues of Bollywood movies and an entire
-                            venue lit like a Bollywood party with quirky and
-                            stylish wedding décor.
+                            <strong>Bollywood themed wedding</strong> – Perfect for all the filmy fans and retro lovers.
+                            This wedding decoration trend starts with some of the best dialogues of Bollywood movies and
+                            an entire venue lit like a Bollywood party with quirky and stylish wedding décor.
                         </li>
                         <li>
-                            <strong>Bohemian wedding decorations</strong> -
-                            Layering it up with all the bold colours that you
-                            have, this reception décor trend begins with
-                            colourful tent decorations, vibrant hangings on the
-                            wall with colourful fabric and vibrant flower
-                            decorations all around. It is a colourful city after
-                            all and the Jaipur wedding decorators can help you
-                            make most of the natural surroundings.
+                            <strong>Bohemian wedding decorations</strong> – Layering it up with all the bold colours
+                            that you have, this reception décor trend begins with colourful tent decorations, vibrant
+                            hangings on the wall with colourful fabric and vibrant flower decorations all around.
                         </li>
                     </ul>
 
-                    <h3>
-                        What are the questions to ask wedding decorators before
-                        booking them?
-                    </h3>
+                    <h3>What are the questions to ask wedding decorators before booking them?</h3>
                     <p>
-                        Since the outdoor décor is an absolutely irreplaceable
-                        part of your entire wedding ensemble, you cannot mess it
-                        up. It’s better to know everything before making any
-                        decisions.
+                        Since the outdoor décor is an absolutely irreplaceable part of your entire wedding ensemble, you
+                        cannot mess it up. It's better to know everything before making any decisions.
                     </p>
-
                     <ul class="sr-bullets">
                         <li>
-                            <strong>Work experience</strong> - How many years
-                            have you been into this business? This question is
-                            important because decorations are all about
-                            understanding and utilizing the space efficiently,
-                            which comes from experience.
+                            <strong>Work experience</strong> – How many years have you been into this business? This
+                            question is important because decorations are all about understanding and utilizing the space
+                            efficiently, which comes from experience.
                         </li>
                         <li>
-                            <strong>Have you done my venue before?</strong> If
-                            yes, then there is nothing better than it. This way,
-                            the wedding decorators would know how to use the
-                            venue efficiently with the right decorations.
+                            <strong>Have you done my venue before?</strong> If yes, then there is nothing better than
+                            it. This way, the wedding decorators would know how to use the venue efficiently with the
+                            right decorations.
                         </li>
                         <li>
-                            <strong
-                                >How many weddings do you do in a day?</strong
-                            >
-                            You want your marriage and sangeet décor to be
-                            perfect and unique. It’s better to know if it
-                            clashes with any other wedding or not.
+                            <strong>How many weddings do you do in a day?</strong> You want your marriage and sangeet
+                            décor to be perfect and unique. It's better to know if it clashes with any other wedding or
+                            not.
                         </li>
                     </ul>
-
                     <p>
-                        There are many wedding decorators in Jaipur that will
-                        most certainly match your budget and vision of the
-                        wedding. All you need to do is start selecting the theme
-                        you want and then discuss it with the right people, and
-                        you are good to go.
+                        There are many wedding decorators in Jaipur that will most certainly match your budget and
+                        vision of the wedding. All you need to do is start selecting the theme you want and then discuss
+                        it with the right people, and you are good to go.
                     </p>
                 </div>
             </section>
 
-            <div
-                id="main-card-template"
-                class="sr-card-template"
-                data-include="../components/main-card.html"
-            ></div>
+            <div id="main-card-template" class="sr-card-template" data-include="../components/main-card.html"></div>
         </main>
 
         <nav class="sr-mobile-bottom-nav" aria-label="Bottom navigation">
             <a href="../index.html" class="sr-mobile-tab">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                        d="M4 10.5 12 4l8 6.5V19a1 1 0 0 1-1 1h-5v-5h-4v5H5a1 1 0 0 1-1-1v-8.5Z"
-                    />
-                </svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V19a1 1 0 0 1-1 1h-5v-5h-4v5H5a1 1 0 0 1-1-1v-8.5Z"/></svg>
                 <span>Home</span>
             </a>
             <a href="#" class="sr-mobile-tab">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                        d="M5 5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9l-4 3v-3H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"
-                    />
-                </svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9l-4 3v-3H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"/></svg>
                 <span>Send Enquiry</span>
             </a>
-            <a
-                href="#"
-                class="sr-mobile-tab is-active"
-                data-open-mobile-search
-            >
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                        d="M10.5 3a7.5 7.5 0 0 1 5.91 12.12l3.24 3.23a1 1 0 1 1-1.42 1.42L15 16.54A7.5 7.5 0 1 1 10.5 3Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z"
-                    />
-                </svg>
+            <a href="#" class="sr-mobile-tab is-active" data-open-mobile-search>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 3a7.5 7.5 0 0 1 5.91 12.12l3.24 3.23a1 1 0 1 1-1.42 1.42L15 16.54A7.5 7.5 0 1 1 10.5 3Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z"/></svg>
                 <span>Search</span>
             </a>
             <a href="#" class="sr-mobile-tab">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                        d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2c-4.42 0-8 2.02-8 4.5A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5c0-2.48-3.58-4.5-8-4.5Z"
-                    />
-                </svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2c-4.42 0-8 2.02-8 4.5A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5c0-2.48-3.58-4.5-8-4.5Z"/></svg>
                 <span>Profile</span>
             </a>
         </nav>
@@ -322,472 +401,332 @@
 
         <script src="../scripts/include.js"></script>
         <script>
-            const vendorMeta = {
-                all: {
-                    navLabel: "Vendors",
-                    resultsLabel: "Wedding Vendors",
-                    articleLabel: "Wedding Decorators",
-                },
-                venue: {
-                    navLabel: "Wedding Venues",
-                    resultsLabel: "Wedding Venues",
-                    articleLabel: "Wedding Decorators",
-                },
-                photographer: {
-                    navLabel: "Wedding Photographers",
-                    resultsLabel: "Wedding Photographers",
-                    articleLabel: "Wedding Photographers",
-                },
-                makeup: {
-                    navLabel: "Bridal Makeup Artists",
-                    resultsLabel: "Bridal Makeup Artists",
-                    articleLabel: "Bridal Makeup Artists",
-                },
-                decorators: {
-                    navLabel: "Wedding Decorators",
-                    resultsLabel: "Wedding Decorators",
-                    articleLabel: "Wedding Decorators",
-                },
-                caterers: {
-                    navLabel: "Wedding Caterers",
-                    resultsLabel: "Wedding Caterers",
-                    articleLabel: "Wedding Caterers",
-                },
-                mehendi: {
-                    navLabel: "Mehendi Artists",
-                    resultsLabel: "Mehendi Artists",
-                    articleLabel: "Mehendi Artists",
-                },
+            // ─────────────────────────────────────────────
+            // Config
+            // ─────────────────────────────────────────────
+
+            const FILTER_PARAM_MAP = {
+                budget:     'budget',
+                services:   'service',
+                ratings:    'rating',
+                shortlisted:'shortlisted',
+                advanced:   'advanced',
             };
 
+            const vendorMeta = {
+                all:         { navLabel: 'Vendors',                resultsLabel: 'Wedding Vendors',         articleLabel: 'Wedding Decorators' },
+                venue:       { navLabel: 'Wedding Venues',         resultsLabel: 'Wedding Venues',           articleLabel: 'Wedding Decorators' },
+                photographer:{ navLabel: 'Wedding Photographers',  resultsLabel: 'Wedding Photographers',    articleLabel: 'Wedding Photographers' },
+                makeup:      { navLabel: 'Bridal Makeup Artists',  resultsLabel: 'Bridal Makeup Artists',    articleLabel: 'Bridal Makeup Artists' },
+                decorators:  { navLabel: 'Wedding Decorators',     resultsLabel: 'Wedding Decorators',       articleLabel: 'Wedding Decorators' },
+                caterers:    { navLabel: 'Wedding Caterers',       resultsLabel: 'Wedding Caterers',         articleLabel: 'Wedding Caterers' },
+                mehendi:     { navLabel: 'Mehendi Artists',        resultsLabel: 'Mehendi Artists',          articleLabel: 'Mehendi Artists' },
+            };
+
+            // ─────────────────────────────────────────────
+            // URL / context helpers
+            // ─────────────────────────────────────────────
+
             function toTitleCase(text) {
-                return (text || "")
+                return (text || '')
                     .split(/[\s_-]+/)
                     .filter(Boolean)
-                    .map(
-                        (word) =>
-                            word.charAt(0).toUpperCase() +
-                            word.slice(1).toLowerCase(),
-                    )
-                    .join(" ");
+                    .map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+                    .join(' ');
             }
 
             function getCityLabel(cityParam) {
-                if (!cityParam || cityParam === "all") {
-                    return "All Cities";
-                }
-                return toTitleCase(cityParam);
+                return (!cityParam || cityParam === 'all') ? 'All Cities' : toTitleCase(cityParam);
+            }
+
+            function getBudgetLabel(key) {
+                const labels = {
+                    'upto-1l':  'Upto ₹1 Lakh',
+                    '1l-2l':    '₹1 Lakh – ₹2 Lakh',
+                    '2l-3l':    '₹2 Lakh – ₹3 Lakh',
+                    '3l-4l':    '₹3 Lakh – ₹4 Lakh',
+                    'over-4l':  'Over ₹4 Lakh',
+                };
+                return labels[key] || '';
             }
 
             function pseudoResultCount(seedText) {
                 let hash = 0;
-                for (let i = 0; i < seedText.length; i += 1) {
-                    hash = (hash * 31 + seedText.charCodeAt(i)) % 40000;
-                }
-                return (6000 + (hash % 32000)).toLocaleString("en-IN");
+                for (let i = 0; i < seedText.length; i++) hash = (hash * 31 + seedText.charCodeAt(i)) % 40000;
+                return (6000 + (hash % 32000)).toLocaleString('en-IN');
             }
 
             function buildSearchContext() {
-                const params = new URLSearchParams(window.location.search);
-                const q = (params.get("q") || "").trim();
-                const vendorKey = (params.get("vendor") || "all").toLowerCase();
-                const cityKey = (params.get("city") || "all").toLowerCase();
-                const filter = (params.get("filter") || "").toLowerCase();
-                const vendor = vendorMeta[vendorKey] || vendorMeta.all;
+                const params    = new URLSearchParams(window.location.search);
+                const q         = (params.get('q') || '').trim();
+                const vendorKey = (params.get('vendor') || 'all').toLowerCase();
+                const cityKey   = (params.get('city')   || 'all').toLowerCase();
+                const budget    = (params.get('budget') || '').toLowerCase();
+                const vendor    = vendorMeta[vendorKey] || vendorMeta.all;
                 const cityLabel = getCityLabel(cityKey);
-                const count = pseudoResultCount(
-                    `${q}|${vendorKey}|${cityKey}|${filter}`,
-                );
-                return {
-                    params,
-                    q,
-                    vendorKey,
-                    cityKey,
-                    filter,
-                    vendor,
-                    cityLabel,
-                    count,
-                };
+                const count     = pseudoResultCount(`${q}|${vendorKey}|${cityKey}|${budget}`);
+                return { params, q, vendorKey, cityKey, budget, vendor, cityLabel, count };
             }
 
-            function applyDynamicCopy(context) {
-                const breadcrumb = document.getElementById("sr-breadcrumb");
-                const title = document.getElementById("sr-title");
-                const meta = document.getElementById("sr-meta");
-                const mobileCount = document.getElementById("sr-mobile-count");
-                const articleTitle =
-                    document.getElementById("sr-article-title");
+            // ─────────────────────────────────────────────
+            // Dynamic copy
+            // ─────────────────────────────────────────────
 
-                let heading = context.vendor.resultsLabel;
-                if (context.q) {
-                    heading = `Search results for "${context.q}"`;
-                }
+            function applyDynamicCopy(ctx) {
+                const heading = ctx.q ? `Search results for "${ctx.q}"` : ctx.vendor.resultsLabel;
+                const area    = ctx.cityKey === 'all' ? '' : ` in ${ctx.cityLabel}`;
+                const budgetSuffix = ctx.budget ? ` · Budget: ${getBudgetLabel(ctx.budget)}` : '';
 
-                if (title) {
-                    title.textContent = heading;
-                }
-                if (breadcrumb) {
-                    breadcrumb.textContent = `Home / ${context.vendor.navLabel} / ${context.cityLabel}`;
-                }
-                if (meta) {
-                    const area =
-                        context.cityKey === "all"
-                            ? ""
-                            : ` in ${context.cityLabel}`;
-                    if (context.q) {
-                        meta.textContent = `Showing ${context.count} results for "${context.q}"${area}`;
-                    } else {
-                        meta.textContent = `Showing ${context.count} results for ${context.vendor.resultsLabel}${area}`;
-                    }
-                }
-                if (mobileCount) {
-                    mobileCount.textContent = `(${context.count})`;
-                }
-                if (articleTitle) {
-                    const area =
-                        context.cityKey === "all" ? "India" : context.cityLabel;
-                    articleTitle.textContent = `${context.vendor.articleLabel} in ${area}`;
-                }
+                const $  = id => document.getElementById(id);
+                const el = (id, text) => { const e = $(id); if (e) e.textContent = text; };
+
+                el('sr-title',        heading);
+                el('sr-breadcrumb',   `Home / ${ctx.vendor.navLabel} / ${ctx.cityLabel}`);
+                el('sr-meta',         ctx.q
+                    ? `Showing ${ctx.count} results for "${ctx.q}"${area}${budgetSuffix}`
+                    : `Showing ${ctx.count} results for ${ctx.vendor.resultsLabel}${area}${budgetSuffix}`);
+                el('sr-mobile-count', `(${ctx.count})`);
+                el('sr-article-title',`${ctx.vendor.articleLabel} in ${ctx.cityKey === 'all' ? 'India' : ctx.cityLabel}`);
 
                 document.title = `${heading} | CelebrationKart`;
             }
 
-            function applyFilterState(context) {
-                const filterButtons =
-                    document.querySelectorAll("[data-filter]");
-                filterButtons.forEach((button) => {
-                    const isActive = button.dataset.filter === context.filter;
-                    button.classList.toggle("is-active", isActive);
-                    button.addEventListener("click", () => {
+            // ─────────────────────────────────────────────
+            // Filter panel – open / close
+            // ─────────────────────────────────────────────
+
+            let activePanelKey = null;
+
+            function openPanel(key) {
+                closeAllPanels();
+                activePanelKey = key;
+                const panel = document.querySelector(`[data-filter-panel="${key}"]`);
+                const btn   = document.querySelector(`[data-filter="${key}"]`);
+                if (panel) { panel.classList.add('is-visible'); panel.setAttribute('aria-hidden', 'false'); }
+                if (btn)   btn.classList.add('is-active');
+            }
+
+            function closeAllPanels() {
+                document.querySelectorAll('[data-filter-panel]').forEach(p => {
+                    p.classList.remove('is-visible');
+                    p.setAttribute('aria-hidden', 'true');
+                });
+                document.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('is-active'));
+                activePanelKey = null;
+            }
+
+            function initPanelToggles() {
+                // Toggle on chip / filter-btn click
+                document.querySelectorAll('[data-filter]').forEach(btn => {
+                    btn.addEventListener('click', e => {
+                        e.stopPropagation();
+                        const key = btn.dataset.filter;
+                        activePanelKey === key ? closeAllPanels() : openPanel(key);
+                    });
+                });
+
+                // Stop clicks inside a panel from bubbling to document
+                document.querySelectorAll('[data-filter-panel]').forEach(panel => {
+                    panel.addEventListener('click', e => e.stopPropagation());
+                });
+
+                // Click outside → close
+                document.addEventListener('click', () => {
+                    if (activePanelKey) closeAllPanels();
+                });
+
+                // Escape key → close
+                document.addEventListener('keydown', e => {
+                    if (e.key === 'Escape' && activePanelKey) closeAllPanels();
+                });
+            }
+
+            // ─────────────────────────────────────────────
+            // Filter options – unified handler for all panels
+            // ─────────────────────────────────────────────
+
+            function initFilterOptions() {
+                const params = new URLSearchParams(window.location.search);
+
+                // Pill active state + click handler
+                document.querySelectorAll('[data-filter-option]').forEach(btn => {
+                    const panelKey = btn.dataset.filterOption;          // e.g. "budget"
+                    const value    = btn.dataset.value;                  // e.g. "upto-1l"
+                    const urlParam = FILTER_PARAM_MAP[panelKey];         // e.g. "budget"
+                    const current  = (params.get(urlParam) || '').toLowerCase();
+                    const isActive = value === current;
+
+                    btn.classList.toggle('is-active', isActive);
+                    btn.setAttribute('aria-pressed', String(isActive));
+
+                    btn.addEventListener('click', () => {
                         const url = new URL(window.location.href);
-                        url.searchParams.set(
-                            "filter",
-                            button.dataset.filter || "applied",
-                        );
+                        // Toggle: clicking the active option deselects it
+                        isActive
+                            ? url.searchParams.delete(urlParam)
+                            : url.searchParams.set(urlParam, value);
+                        window.location.href = url.toString();
+                    });
+                });
+
+                // Clear all button – removes only its panel's URL param
+                document.querySelectorAll('[data-filter-clear]').forEach(btn => {
+                    btn.addEventListener('click', e => {
+                        e.stopPropagation();
+                        const panelKey = btn.dataset.filterClear;
+                        const urlParam = FILTER_PARAM_MAP[panelKey];
+                        const url = new URL(window.location.href);
+                        if (urlParam) url.searchParams.delete(urlParam);
                         window.location.href = url.toString();
                     });
                 });
             }
 
-            function buildCardData(context) {
-                const locationText =
-                    context.cityKey === "all" ? "India" : context.cityLabel;
+            // ─────────────────────────────────────────────
+            // Card data
+            // ─────────────────────────────────────────────
 
+            function buildCardData(ctx) {
+                const loc = ctx.cityKey === 'all' ? 'India' : ctx.cityLabel;
                 const byVendor = {
                     venue: [
-                        {
-                            name: "Royal Weddingz by...",
-                            type: "Outdoor",
-                            image: "../assets/main-card.jpg",
-                            price: "₹35,00,000",
-                        },
-                        {
-                            name: "Majestic Venue Co...",
-                            type: "Outdoor",
-                            image: "../assets/royal-palace.jpg",
-                            price: "₹28,50,000",
-                        },
-                        {
-                            name: "Palace Celebration...",
-                            type: "Indoor",
-                            image: "../assets/main-card.jpg",
-                            price: "₹41,00,000",
-                        },
+                        { name: 'Royal Weddingz by...',   type: 'Outdoor',     image: '../assets/main-card.jpg',     price: '₹35,00,000' },
+                        { name: 'Majestic Venue Co...',   type: 'Outdoor',     image: '../assets/royal-palace.jpg',  price: '₹28,50,000' },
+                        { name: 'Palace Celebration...',  type: 'Indoor',      image: '../assets/main-card.jpg',     price: '₹41,00,000' },
                     ],
                     photographer: [
-                        {
-                            name: "Dream Lens Studio...",
-                            type: "Premium",
-                            image: "../assets/photographer.jpg",
-                            price: "₹1,20,000",
-                        },
-                        {
-                            name: "Candid Frames Co...",
-                            type: "Candid",
-                            image: "../assets/photographer.jpg",
-                            price: "₹85,000",
-                        },
-                        {
-                            name: "Wed Visual Stories...",
-                            type: "Traditional",
-                            image: "../assets/photographer.jpg",
-                            price: "₹70,000",
-                        },
+                        { name: 'Dream Lens Studio...',   type: 'Premium',     image: '../assets/photographer.jpg',  price: '₹1,20,000' },
+                        { name: 'Candid Frames Co...',    type: 'Candid',      image: '../assets/photographer.jpg',  price: '₹85,000' },
+                        { name: 'Wed Visual Stories...',  type: 'Traditional', image: '../assets/photographer.jpg',  price: '₹70,000' },
                     ],
                     decorators: [
-                        {
-                            name: "Floral Story Decor...",
-                            type: "Theme",
-                            image: "../assets/main-card.jpg",
-                            price: "₹4,50,000",
-                        },
-                        {
-                            name: "Regal Stage Decor...",
-                            type: "Classic",
-                            image: "../assets/royal-palace.jpg",
-                            price: "₹3,25,000",
-                        },
-                        {
-                            name: "Aura Event Decor...",
-                            type: "Luxury",
-                            image: "../assets/main-card.jpg",
-                            price: "₹6,10,000",
-                        },
+                        { name: 'Floral Story Decor...',  type: 'Theme',       image: '../assets/main-card.jpg',     price: '₹4,50,000' },
+                        { name: 'Regal Stage Decor...',   type: 'Classic',     image: '../assets/royal-palace.jpg',  price: '₹3,25,000' },
+                        { name: 'Aura Event Decor...',    type: 'Luxury',      image: '../assets/main-card.jpg',     price: '₹6,10,000' },
                     ],
                     makeup: [
-                        {
-                            name: "Radiant Bridal Pro...",
-                            type: "Bridal",
-                            image: "../assets/makeup-artist.jpg",
-                            price: "₹45,000",
-                        },
-                        {
-                            name: "Glow By Experts...",
-                            type: "HD",
-                            image: "../assets/makeup-artists.jpg",
-                            price: "₹32,000",
-                        },
-                        {
-                            name: "Classic Makeup Co...",
-                            type: "Airbrush",
-                            image: "../assets/makeup-artist.jpg",
-                            price: "₹38,000",
-                        },
+                        { name: 'Radiant Bridal Pro...',  type: 'Bridal',      image: '../assets/makeup-artist.jpg', price: '₹45,000' },
+                        { name: 'Glow By Experts...',     type: 'HD',          image: '../assets/makeup-artists.jpg',price: '₹32,000' },
+                        { name: 'Classic Makeup Co...',   type: 'Airbrush',    image: '../assets/makeup-artist.jpg', price: '₹38,000' },
                     ],
                     caterers: [
-                        {
-                            name: "Royal Feast Caterers...",
-                            type: "Veg + Non-Veg",
-                            image: "../assets/entertainment.jpg",
-                            price: "₹1,100/plate",
-                        },
-                        {
-                            name: "Jaipur Banquet Food...",
-                            type: "Multi-Cuisine",
-                            image: "../assets/gifts.jpg",
-                            price: "₹950/plate",
-                        },
-                        {
-                            name: "Saffron Catering Co...",
-                            type: "Premium",
-                            image: "../assets/entertainment.jpg",
-                            price: "₹1,450/plate",
-                        },
+                        { name: 'Royal Feast Caterers...', type: 'Veg + Non-Veg', image: '../assets/entertainment.jpg', price: '₹1,100/plate' },
+                        { name: 'Jaipur Banquet Food...',  type: 'Multi-Cuisine', image: '../assets/gifts.jpg',          price: '₹950/plate' },
+                        { name: 'Saffron Catering Co...',  type: 'Premium',       image: '../assets/entertainment.jpg', price: '₹1,450/plate' },
                     ],
                     mehendi: [
-                        {
-                            name: "Henna Artistry Pro...",
-                            type: "Bridal",
-                            image: "../assets/jewellery.jpg",
-                            price: "₹11,000",
-                        },
-                        {
-                            name: "Mehendi Moments...",
-                            type: "Guest",
-                            image: "../assets/jewellery.jpg",
-                            price: "₹7,500",
-                        },
-                        {
-                            name: "Heritage Mehendi...",
-                            type: "Arabic",
-                            image: "../assets/jewellery.jpg",
-                            price: "₹9,000",
-                        },
+                        { name: 'Henna Artistry Pro...',  type: 'Bridal',      image: '../assets/jewellery.jpg', price: '₹11,000' },
+                        { name: 'Mehendi Moments...',     type: 'Guest',       image: '../assets/jewellery.jpg', price: '₹7,500' },
+                        { name: 'Heritage Mehendi...',    type: 'Arabic',      image: '../assets/jewellery.jpg', price: '₹9,000' },
                     ],
                 };
 
-                const set = byVendor[context.vendorKey] || byVendor.venue;
-                return set.map((item, index) => ({
+                return (byVendor[ctx.vendorKey] || byVendor.venue).map((item, i) => ({
                     ...item,
-                    location: locationText,
-                    rating: (4.7 + index * 0.1).toFixed(1),
-                    reviews: `${72 + index * 18}`,
+                    location: loc,
+                    rating: (4.7 + i * 0.1).toFixed(1),
+                    reviews: `${72 + i * 18}`,
                 }));
             }
 
-            function toggleHeartOnCard(card) {
-                const heartBtn = card.querySelector(".heart-btn");
-                if (!heartBtn) {
-                    return;
-                }
-
-                let liked = false;
-                const outline = heartBtn.querySelector(".heart-outline");
-                const filled = heartBtn.querySelector(".heart-filled");
-
-                heartBtn.removeAttribute("id");
-
-                heartBtn.addEventListener("click", () => {
-                    liked = !liked;
-                    if (outline && filled) {
-                        outline.style.display = liked ? "none" : "";
-                        filled.style.display = liked ? "block" : "";
-                    }
-                });
-
-                heartBtn.addEventListener("mouseleave", () => {
-                    if (outline && filled) {
-                        outline.style.display = liked ? "none" : "";
-                        filled.style.display = liked ? "block" : "";
-                    }
-                });
-            }
+            // ─────────────────────────────────────────────
+            // Card rendering
+            // ─────────────────────────────────────────────
 
             function applyCardData(card, data) {
-                const image = card.querySelector(".card-img");
-                const name = card.querySelector(".card-name");
-                const price = card.querySelector(".card-price");
-                const location = card.querySelector(".card-location");
-                const type = card.querySelector(".card-type");
-                const rating = card.querySelector(".card-rating");
-                const reviews = card.querySelector(".reviews");
-
-                if (image) {
-                    image.src = data.image;
-                    image.alt = data.name;
-                }
-                if (name) {
-                    name.textContent = data.name;
-                }
-                if (price) {
-                    price.textContent = data.price;
-                }
-                if (location) {
-                    location.textContent = data.location;
-                }
-                if (type) {
-                    type.textContent = data.type;
-                }
-                if (rating) {
-                    rating.firstChild.textContent = `⭐ ${data.rating} `;
-                }
-                if (reviews) {
-                    reviews.textContent = `${data.reviews} Reviews`;
-                }
+                const q = sel => card.querySelector(sel);
+                const img = q('.card-img');
+                if (img)           { img.src = data.image; img.alt = data.name; }
+                if (q('.card-name'))     q('.card-name').textContent    = data.name;
+                if (q('.card-price'))    q('.card-price').textContent   = data.price;
+                if (q('.card-location')) q('.card-location').textContent= data.location;
+                if (q('.card-type'))     q('.card-type').textContent    = data.type;
+                if (q('.card-rating'))   q('.card-rating').firstChild.textContent = `⭐ ${data.rating} `;
+                if (q('.reviews'))       q('.reviews').textContent      = `${data.reviews} Reviews`;
             }
 
-            function renderCardsFromTemplate(
-                templateCard,
-                mountSelector,
-                count,
-                list,
-            ) {
-                const mount = document.querySelector(mountSelector);
-                if (!mount || !templateCard) {
-                    return;
-                }
+            function toggleHeartOnCard(card) {
+                const heartBtn = card.querySelector('.heart-btn');
+                if (!heartBtn) return;
+                let liked = false;
+                const outline = heartBtn.querySelector('.heart-outline');
+                const filled  = heartBtn.querySelector('.heart-filled');
+                heartBtn.removeAttribute('id');
+                heartBtn.addEventListener('click', () => {
+                    liked = !liked;
+                    if (outline && filled) {
+                        outline.style.display = liked ? 'none' : '';
+                        filled.style.display  = liked ? 'block' : '';
+                    }
+                });
+            }
 
-                mount.innerHTML = "";
-                for (let i = 0; i < count; i += 1) {
+            function renderCardsFromTemplate(templateCard, mountSelector, count, list) {
+                const mount = document.querySelector(mountSelector);
+                if (!mount || !templateCard) return;
+                mount.innerHTML = '';
+                for (let i = 0; i < count; i++) {
                     const card = templateCard.cloneNode(true);
-                    const data = list[i % list.length];
-                    applyCardData(card, data);
+                    applyCardData(card, list[i % list.length]);
                     toggleHeartOnCard(card);
                     mount.appendChild(card);
                 }
             }
 
-            function isMobileViewport() {
-                return window.matchMedia("(max-width: 768px)").matches;
-            }
+            // ─────────────────────────────────────────────
+            // Bootstrap
+            // ─────────────────────────────────────────────
 
-            window.addEventListener("includes:loaded", () => {
-                const context = buildSearchContext();
-                applyDynamicCopy(context);
-                applyFilterState(context);
+            window.addEventListener('includes:loaded', () => {
+                const ctx = buildSearchContext();
 
-                const footerLogo = document.querySelector(
-                    ".ck-footer .ck-brand img",
-                );
-                if (footerLogo) {
-                    footerLogo.src = "../assets/logo.png";
-                }
+                applyDynamicCopy(ctx);
+                initPanelToggles();
+                initFilterOptions();
 
-                const quoteCity = document.getElementById("sr-quote-city");
-                if (
-                    quoteCity &&
-                    [...quoteCity.options].some(
-                        (opt) => opt.value === context.cityKey,
-                    )
-                ) {
-                    quoteCity.value = context.cityKey;
-                }
+                // Footer logo path fix
+                const footerLogo = document.querySelector('.ck-footer .ck-brand img');
+                if (footerLogo) footerLogo.src = '../assets/logo.png';
 
-                const quoteVendor = document.getElementById("sr-quote-vendor");
-                if (
-                    quoteVendor &&
-                    [...quoteVendor.options].some(
-                        (opt) => opt.value === context.vendorKey,
-                    )
-                ) {
-                    quoteVendor.value = context.vendorKey;
-                }
+                // Pre-select quote form dropdowns
+                ['sr-quote-city', 'sr-quote-vendor', 'sr-mobile-city'].forEach(id => {
+                    const el = document.getElementById(id);
+                    if (!el) return;
+                    const key = id === 'sr-quote-vendor' ? ctx.vendorKey : ctx.cityKey;
+                    if ([...el.options].some(o => o.value === key)) el.value = key;
+                });
 
-                const mobileCity = document.getElementById("sr-mobile-city");
-                if (
-                    mobileCity &&
-                    [...mobileCity.options].some(
-                        (opt) => opt.value === context.cityKey,
-                    )
-                ) {
-                    mobileCity.value = context.cityKey;
-                }
+                // Mobile city change → reload with new city param
+                const mobileCity = document.getElementById('sr-mobile-city');
                 if (mobileCity) {
-                    mobileCity.addEventListener("change", (event) => {
-                        const nextCity = event.target.value || "all";
+                    mobileCity.addEventListener('change', e => {
                         const url = new URL(window.location.href);
-                        url.searchParams.set("city", nextCity);
+                        url.searchParams.set('city', e.target.value || 'all');
                         window.location.href = url.toString();
                     });
                 }
 
-                const navSearchInput =
-                    document.querySelector(".search-bar input");
-                if (navSearchInput) {
-                    if (context.q) {
-                        navSearchInput.value = context.q;
-                    }
-                    navSearchInput.addEventListener("keydown", (event) => {
-                        if (event.key !== "Enter") {
-                            return;
-                        }
-                        event.preventDefault();
+                // Navbar search
+                const navInput = document.querySelector('.search-bar input');
+                if (navInput) {
+                    if (ctx.q) navInput.value = ctx.q;
+                    navInput.addEventListener('keydown', e => {
+                        if (e.key !== 'Enter') return;
+                        e.preventDefault();
                         const url = new URL(window.location.href);
-                        const q = navSearchInput.value.trim();
-                        if (q) {
-                            url.searchParams.set("q", q);
-                        } else {
-                            url.searchParams.delete("q");
-                        }
+                        const q = navInput.value.trim();
+                        q ? url.searchParams.set('q', q) : url.searchParams.delete('q');
                         window.location.href = url.toString();
                     });
                 }
 
-                const templateCard = document.querySelector(
-                    "#main-card-template .vendor-card",
-                );
-
-                if (!templateCard) {
-                    return;
-                }
-
-                const cardData = buildCardData(context);
-                const mobileView = isMobileViewport();
-                const primaryCount = mobileView ? 15 : 9;
-                const secondaryCount = mobileView ? 0 : 6;
-
-                renderCardsFromTemplate(
-                    templateCard,
-                    "#results-grid-primary",
-                    primaryCount,
-                    cardData,
-                );
-                renderCardsFromTemplate(
-                    templateCard,
-                    "#results-grid-secondary",
-                    secondaryCount,
-                    cardData,
-                );
+                // Render cards
+                const templateCard = document.querySelector('#main-card-template .vendor-card');
+                if (!templateCard) return;
+                const cardData   = buildCardData(ctx);
+                const isMobile   = window.matchMedia('(max-width: 768px)').matches;
+                renderCardsFromTemplate(templateCard, '#results-grid-primary',   isMobile ? 15 : 9,  cardData);
+                renderCardsFromTemplate(templateCard, '#results-grid-secondary',  isMobile ? 0  : 6,  cardData);
             });
         </script>
     </body>

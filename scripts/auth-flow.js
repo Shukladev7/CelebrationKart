@@ -38,7 +38,7 @@
     });
 
     triggerElements.forEach((trigger) => {
-      trigger.addEventListener('click', (event) => {
+      trigger.addEventListener('click', (event) => { 
         event.preventDefault();
         setModalState(true);
       });
